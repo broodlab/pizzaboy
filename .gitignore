@@ -1,2 +1,3 @@
 .idea
+/prisma/data.db
 node_modules

@@ -1,0 +1,133 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./data.db"
+}
+
+model User {
+  id   String   @id @default(cuid())
+  name String   @unique
+  role UserRole
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  doughs      Dough[]
+  ingredients Ingredient[]
+  orders      Order[]
+  pizzas      Pizza[]
+}
+
+model Order {
+  id String @id @default(cuid())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  orderItems OrderItem[]
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String
+}
+
+model OrderItem {
+  id     String @id @default(cuid())
+  amount Int    @default(1)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId String
+  pizza   Pizza?  @relation(fields: [pizzaId], references: [id], onDelete: SetNull)
+  pizzaId String?
+}
+
+model Pizza {
+  id          String  @id @default(cuid())
+  name        String
+  description String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  dough       Dough        @relation(fields: [doughId], references: [id], onDelete: NoAction)
+  doughId     String
+  orderItems  OrderItem[]
+  recipeItems RecipeItem[]
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+}
+
+model Dough {
+  id          String  @id @default(cuid())
+  name        String
+  description String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  pizzas      Pizza[]
+  recipeItems RecipeItem[]
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+}
+
+model RecipeItem {
+  id     String         @id @default(cuid())
+  amount Int?
+  unit   MeasuringUnit?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  dough        Dough?     @relation(fields: [doughId], references: [id], onDelete: Cascade)
+  doughId      String?
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+  ingredientId String
+  pizza        Pizza?     @relation(fields: [pizzaId], references: [id], onDelete: Cascade)
+  pizzaId      String?
+}
+
+model Ingredient {
+  id       String       @id @default(cuid())
+  name     String
+  category FoodCategory @default(Others)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  recipeItems RecipeItem[]
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+}
+
+enum FoodCategory {
+  Cheese
+  Fish
+  Fruits
+  Grain
+  Herbs
+  Liquds
+  Meat
+  Others
+  Sauces
+  Spices
+  Vegetables
+}
+
+enum MeasuringUnit {
+  Gram
+  Milliliter
+  Piece
+  Pinch
+}
+
+enum UserRole {
+  Admin
+  Guest
+  Host
+  System
+}
