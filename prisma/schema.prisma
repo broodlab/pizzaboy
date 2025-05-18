@@ -93,7 +93,7 @@ model RecipeItem {
 
 model Ingredient {
   id       String       @id @default(cuid())
-  name     String
+  name     String       @unique
   category FoodCategory @default(Others)
 
   createdAt DateTime @default(now())
