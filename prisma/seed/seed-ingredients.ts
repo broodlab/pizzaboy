@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { PrismaClient, User } from "@prisma/client";
+import { PrismaClient, type User } from "@prisma/client";
 import { UniqueEnforcer } from "enforce-unique";
 
 export const seedIngredients = async (prisma: PrismaClient, pizzaboy: User) => {

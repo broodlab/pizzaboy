@@ -1,3 +1,5 @@
 .idea
+/.react-router/
+/build/
 /prisma/data.db
 node_modules
