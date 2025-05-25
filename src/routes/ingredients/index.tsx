@@ -1,9 +1,9 @@
 import type { Route } from "./+types/";
 import { PrismaClient } from "@prisma/client";
+import prisma from "~/utils/prisma";
 
-export const loader = async () => {
-  const prisma = new PrismaClient();
-  return await prisma.ingredient.findMany();
+export const loader = () => {
+  return prisma.ingredient.findMany();
 };
 
 export default function Ingredients({ loaderData }: Route.ComponentProps) {
