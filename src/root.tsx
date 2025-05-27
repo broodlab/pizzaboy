@@ -52,10 +52,13 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 
   if (isRouteErrorResponse(error)) {
     message = error.status === 404 ? "404" : "Error";
-    details =
-      error.status === 404
-        ? "The requested page could not be found."
-        : error.statusText || details;
+    if (error.status === 404 && error.data.entity === undefined) {
+      details = "Page not found.";
+    } else if (error.status === 404 && error.data.entity !== undefined) {
+      details = `${error.data.entity.toUpperCase()} not found.`;
+    } else if (error.status !== 404) {
+      details = error.statusText || details;
+    }
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;
