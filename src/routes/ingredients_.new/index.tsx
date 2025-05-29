@@ -4,6 +4,7 @@ import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import prisma from "~/utils/prisma";
 import { redirect } from "react-router";
+import { foodCategories } from "~/types/food-categories";
 
 const schema = z.object({
   category: z.string().optional(),
@@ -14,9 +15,10 @@ const schema = z.object({
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
   const submission = parseWithZod(formData, { schema });
-  const { name, description } = submission.value;
+  const { category, description, name } = submission.value;
   await prisma.ingredient.create({
     data: {
+      category,
       description,
       name,
       user: {
@@ -52,6 +54,15 @@ export default function IngredientCreation({
           type="text"
         />
         <div>{fields.name.errors}</div>
+      </div>
+      <div>
+        <label>Category</label>
+        <select id={fields.category.id} name={fields.category.name}>
+          {foodCategories.map((category) => (
+            <option value={category}>{category}</option>
+          ))}
+        </select>
+        <div>{fields.category.errors}</div>
       </div>
       <div>
         <label>Description</label>
