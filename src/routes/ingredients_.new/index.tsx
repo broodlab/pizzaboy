@@ -1,0 +1,67 @@
+import { z } from "zod";
+import type { Route } from "./+types/";
+import { useForm } from "@conform-to/react";
+import { parseWithZod } from "@conform-to/zod";
+import prisma from "~/utils/prisma";
+import { redirect } from "react-router";
+
+const schema = z.object({
+  category: z.string().optional(),
+  description: z.string().optional(),
+  name: z.string(),
+});
+
+export const action = async ({ request }: Route.ActionArgs) => {
+  const formData = await request.formData();
+  const submission = parseWithZod(formData, { schema });
+  const { name, description } = submission.value;
+  await prisma.ingredient.create({
+    data: {
+      description,
+      name,
+      user: {
+        connect: {
+          name: "pizzaboy",
+        },
+      },
+    },
+  });
+
+  return redirect("/ingredients");
+};
+
+export default function IngredientCreation({
+  actionData,
+}: Route.ComponentProps) {
+  const [form, fields] = useForm({
+    lastResult: actionData,
+    onValidate({ formData }) {
+      return parseWithZod(formData, { schema });
+    },
+    shouldValidate: "onBlur",
+  });
+
+  return (
+    <form id={form.id} method="post" onSubmit={form.onSubmit}>
+      <div>{form.errors}</div>
+      <div>
+        <label>Name</label>
+        <input
+          className="border-1 border-gray-200"
+          name={fields.name.name}
+          type="text"
+        />
+        <div>{fields.name.errors}</div>
+      </div>
+      <div>
+        <label>Description</label>
+        <textarea
+          className="border-1 border-gray-200"
+          name={fields.description.name}
+        />
+        <div>{fields.description.errors}</div>
+      </div>
+      <button type="submit">Save</button>
+    </form>
+  );
+}
