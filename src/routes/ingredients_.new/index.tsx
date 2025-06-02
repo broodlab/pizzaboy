@@ -1,27 +1,30 @@
-import { z } from "zod";
 import type { Route } from "./+types/";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import prisma from "~/utils/prisma";
 import { data, redirect } from "react-router";
 import { foodCategories } from "~/types/food-categories";
+import { z } from "zod";
+import { descriptionMaxLength, nameMaxLength } from "~/configs/schema-rules";
 
 const ingredientSchema = z.object({
   category: z.string().optional(),
-  description: z.string().optional(),
-  name: z.string().refine(async (name) => {
-    const count = await prisma.ingredient.count({
-      where: { name },
-    });
-    return count === 0;
-  }, "Unique"),
+  description: z.string().max(descriptionMaxLength).optional(),
+  name: z.string().max(nameMaxLength),
 });
+
+const ingredientServerSchema = ingredientSchema.refine(async ({ name }) => {
+  const sameNameCount = await prisma.ingredient.count({
+    where: { name },
+  });
+  return sameNameCount === 0;
+}, "Unique");
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
   const submission = await parseWithZod(formData, {
     async: true,
-    schema: ingredientSchema,
+    schema: ingredientServerSchema,
   });
 
   if (submission.value === undefined) {
