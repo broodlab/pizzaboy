@@ -1,5 +1,5 @@
-export type Entity = "ingredient"
+export type Entity = "ingredient";
 
 export type EntityData = {
-  entity: Entity
-}
+  entity: Entity;
+};
