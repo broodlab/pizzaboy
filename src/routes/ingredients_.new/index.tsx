@@ -1,6 +1,6 @@
 import type { Route } from "./+types/";
 import { useForm } from "@conform-to/react";
-import { parseWithZod } from "@conform-to/zod";
+import { parseWithZod } from "@conform-to/zod/v4";
 import prisma from "~/utils/prisma";
 import { data, redirect } from "react-router";
 import { foodCategories } from "~/types/food-categories";
