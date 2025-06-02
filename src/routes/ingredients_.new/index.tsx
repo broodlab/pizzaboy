@@ -4,11 +4,13 @@ import { parseWithZod } from "@conform-to/zod";
 import prisma from "~/utils/prisma";
 import { data, redirect } from "react-router";
 import { foodCategories } from "~/types/food-categories";
-import { z } from "zod";
+import { z } from "zod/v4";
 import { descriptionMaxLength, nameMaxLength } from "~/configs/schema-rules";
 
 const ingredientSchema = z.object({
-  category: z.string().optional(),
+  category: z
+    .union(foodCategories.map((foodCategory) => z.literal(foodCategory)))
+    .optional(),
   description: z.string().max(descriptionMaxLength).optional(),
   name: z.string().max(nameMaxLength),
 });
