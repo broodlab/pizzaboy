@@ -2,7 +2,7 @@ import type { Route } from "./+types/";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod/v4";
 import prisma from "~/utils/prisma";
-import { data, Form, redirect } from "react-router";
+import { Form, redirect } from "react-router";
 import { foodCategories } from "~/types/food-categories";
 import { z } from "zod/v4";
 import { descriptionMaxLength, nameMaxLength } from "~/configs/schema-rules";
@@ -29,10 +29,8 @@ export const action = async ({ request }: Route.ActionArgs) => {
     schema: ingredientServerSchema,
   });
 
-  if (submission.status === "error") {
-    return data({ status: "error", submission } as const, {
-      status: 400,
-    });
+  if (submission.status !== "success") {
+    return submission.reply();
   }
 
   if (submission.status === "success") {
