@@ -2,7 +2,7 @@ import type { Route } from "./+types/";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod/v4";
 import prisma from "~/utils/prisma";
-import { data, redirect } from "react-router";
+import { data, Form, redirect } from "react-router";
 import { foodCategories } from "~/types/food-categories";
 import { z } from "zod/v4";
 import { descriptionMaxLength, nameMaxLength } from "~/configs/schema-rules";
@@ -29,25 +29,27 @@ export const action = async ({ request }: Route.ActionArgs) => {
     schema: ingredientServerSchema,
   });
 
-  if (submission.value === undefined) {
-    return data({ submission } as const, {
+  if (submission.status === "error") {
+    return data({ status: "error", submission } as const, {
       status: 400,
     });
   }
 
-  const { category, description, name } = submission.value;
-  await prisma.ingredient.create({
-    data: {
-      category,
-      description,
-      name,
-      user: {
-        connect: {
-          name: "pizzaboy",
+  if (submission.status === "success") {
+    const { category, description, name } = submission.value;
+    await prisma.ingredient.create({
+      data: {
+        category,
+        description,
+        name,
+        user: {
+          connect: {
+            name: "pizzaboy",
+          },
         },
       },
-    },
-  });
+    });
+  }
 
   return redirect("/ingredients");
 };
@@ -56,7 +58,7 @@ export default function IngredientCreation({
   actionData,
 }: Route.ComponentProps) {
   const [form, fields] = useForm({
-    lastResult: actionData?.submission,
+    lastResult: actionData,
     onValidate({ formData }) {
       return parseWithZod(formData, { schema: ingredientSchema });
     },
@@ -64,7 +66,7 @@ export default function IngredientCreation({
   });
 
   return (
-    <form id={form.id} method="post" onSubmit={form.onSubmit}>
+    <Form id={form.id} method="post" onSubmit={form.onSubmit}>
       <div>{form.errors}</div>
       <div>
         <label>Name</label>
@@ -93,6 +95,6 @@ export default function IngredientCreation({
         <div>{fields.description.errors}</div>
       </div>
       <button type="submit">Save</button>
-    </form>
+    </Form>
   );
 }
