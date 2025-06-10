@@ -1,5 +1,11 @@
 import type { Route } from "./+types/";
-import { useForm } from "@conform-to/react";
+import {
+  getFormProps,
+  getInputProps,
+  getSelectProps,
+  getTextareaProps,
+  useForm,
+} from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod/v4";
 import prisma from "~/utils/prisma";
 import { Form, redirect } from "react-router";
@@ -64,33 +70,33 @@ export default function IngredientCreation({
   });
 
   return (
-    <Form id={form.id} method="post" onSubmit={form.onSubmit}>
+    <Form {...getFormProps(form)} method="post" onSubmit={form.onSubmit}>
       <div>{form.errors}</div>
       <div>
-        <label>Name</label>
+        <label htmlFor={fields.name.id}>Name</label>
         <input
+          {...getInputProps(fields.name, { type: "text" })}
+          autoFocus
           className="border-1 border-gray-200"
-          name={fields.name.name}
-          type="text"
         />
-        <div>{fields.name.errors}</div>
+        <div id={fields.name.errorId}>{fields.name.errors}</div>
       </div>
       <div>
-        <label>Category</label>
-        <select id={fields.category.id} name={fields.category.name}>
+        <label htmlFor={fields.category.id}>Category</label>
+        <select {...getSelectProps(fields.category)}>
           {foodCategories.map((category) => (
             <option value={category}>{category}</option>
           ))}
         </select>
-        <div>{fields.category.errors}</div>
+        <div id={fields.category.errorId}>{fields.category.errors}</div>
       </div>
       <div>
-        <label>Description</label>
+        <label htmlFor={fields.description.id}>Description</label>
         <textarea
+          {...getTextareaProps(fields.description)}
           className="border-1 border-gray-200"
-          name={fields.description.name}
         />
-        <div>{fields.description.errors}</div>
+        <div id={fields.description.errorId}>{fields.description.errors}</div>
       </div>
       <button type="submit">Save</button>
     </Form>
