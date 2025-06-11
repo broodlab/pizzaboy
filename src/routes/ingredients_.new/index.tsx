@@ -15,6 +15,7 @@ import { descriptionMaxLength, nameMaxLength } from "~/configs/schema-rules";
 import { Input } from "~/components/form-fields/input";
 import { Select } from "~/components/form-fields/select";
 import { Textarea } from "~/components/form-fields/textarea";
+import { Label } from "~/components/label";
 
 const ingredientSchema = z.object({
   category: z
@@ -76,12 +77,12 @@ export default function IngredientCreation({
     <Form {...getFormProps(form)} method="post" onSubmit={form.onSubmit}>
       <div>{form.errors}</div>
       <div>
-        <label htmlFor={fields.name.id}>Name</label>
+        <Label htmlFor={fields.name.id}>Name</Label>
         <Input {...getInputProps(fields.name, { type: "text" })} autoFocus />
         <div id={fields.name.errorId}>{fields.name.errors}</div>
       </div>
       <div>
-        <label htmlFor={fields.category.id}>Category</label>
+        <Label htmlFor={fields.category.id}>Category</Label>
         <Select {...getSelectProps(fields.category)}>
           {foodCategories.map((category) => (
             <option key={category} value={category}>
@@ -92,7 +93,7 @@ export default function IngredientCreation({
         <div id={fields.category.errorId}>{fields.category.errors}</div>
       </div>
       <div>
-        <label htmlFor={fields.description.id}>Description</label>
+        <Label htmlFor={fields.description.id}>Description</Label>
         <Textarea {...getTextareaProps(fields.description)} />
         <div id={fields.description.errorId}>{fields.description.errors}</div>
       </div>
