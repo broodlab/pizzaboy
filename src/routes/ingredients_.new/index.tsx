@@ -12,6 +12,7 @@ import { Form, redirect } from "react-router";
 import { foodCategories } from "~/types/food-categories";
 import { z } from "zod/v4";
 import { descriptionMaxLength, nameMaxLength } from "~/configs/schema-rules";
+import { Input } from "~/components/form-fields/input";
 
 const ingredientSchema = z.object({
   category: z
@@ -74,11 +75,7 @@ export default function IngredientCreation({
       <div>{form.errors}</div>
       <div>
         <label htmlFor={fields.name.id}>Name</label>
-        <input
-          {...getInputProps(fields.name, { type: "text" })}
-          autoFocus
-          className="border-1 border-gray-200"
-        />
+        <Input {...getInputProps(fields.name, { type: "text" })} autoFocus />
         <div id={fields.name.errorId}>{fields.name.errors}</div>
       </div>
       <div>
