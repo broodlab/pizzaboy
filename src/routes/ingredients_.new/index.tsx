@@ -14,6 +14,7 @@ import { z } from "zod/v4";
 import { descriptionMaxLength, nameMaxLength } from "~/configs/schema-rules";
 import { Input } from "~/components/form-fields/input";
 import { Select } from "~/components/form-fields/select";
+import { Textarea } from "~/components/form-fields/textarea";
 
 const ingredientSchema = z.object({
   category: z
@@ -92,10 +93,7 @@ export default function IngredientCreation({
       </div>
       <div>
         <label htmlFor={fields.description.id}>Description</label>
-        <textarea
-          {...getTextareaProps(fields.description)}
-          className="border-1 border-gray-200"
-        />
+        <Textarea {...getTextareaProps(fields.description)} />
         <div id={fields.description.errorId}>{fields.description.errors}</div>
       </div>
       <button type="submit">Save</button>
