@@ -13,6 +13,7 @@ import { foodCategories } from "~/types/food-categories";
 import { z } from "zod/v4";
 import { descriptionMaxLength, nameMaxLength } from "~/configs/schema-rules";
 import { Input } from "~/components/form-fields/input";
+import { Select } from "~/components/form-fields/select";
 
 const ingredientSchema = z.object({
   category: z
@@ -80,11 +81,13 @@ export default function IngredientCreation({
       </div>
       <div>
         <label htmlFor={fields.category.id}>Category</label>
-        <select {...getSelectProps(fields.category)}>
+        <Select {...getSelectProps(fields.category)}>
           {foodCategories.map((category) => (
-            <option value={category}>{category}</option>
+            <option key={category} value={category}>
+              {category}
+            </option>
           ))}
-        </select>
+        </Select>
         <div id={fields.category.errorId}>{fields.category.errors}</div>
       </div>
       <div>
