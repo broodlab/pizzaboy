@@ -1,7 +1,7 @@
 import { data, Link, redirect } from "react-router";
 import type { Route } from "./+types/";
 import prisma from "~/utils/prisma";
-import type { EntityData } from "~/routes/types/entities";
+import type { EntityData } from "~/types/entities";
 
 export const action = async ({ params: { id } }: Route.ActionArgs) => {
   await prisma.ingredient.delete({
