@@ -7,7 +7,7 @@
     "module": "ES2022",
     "moduleResolution": "bundler",
     "noEmit": true,
-    "paths": { "~/*": ["./src/*"] },
+    "paths": { "~/*": ["./application/*"] },
     "resolveJsonModule": true,
     "rootDirs": [".", "./.react-router/types"],
     "skipLibCheck": true,
