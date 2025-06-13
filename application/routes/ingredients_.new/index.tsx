@@ -16,6 +16,7 @@ import { Input } from "~/components/form-fields/input";
 import { Select } from "~/components/form-fields/select";
 import { Textarea } from "~/components/form-fields/textarea";
 import { Label } from "~/components/label";
+import { Button } from "~/components/button";
 
 const ingredientSchema = z.object({
   category: z
@@ -97,7 +98,9 @@ export default function IngredientCreation({
         <Textarea {...getTextareaProps(fields.description)} />
         <div id={fields.description.errorId}>{fields.description.errors}</div>
       </div>
-      <button type="submit">Save</button>
+      <Button type="submit" variant="default">
+        Save
+      </Button>
     </Form>
   );
 }
