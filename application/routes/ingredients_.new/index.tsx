@@ -26,12 +26,17 @@ const ingredientSchema = z.object({
   name: z.string().max(nameMaxLength),
 });
 
-const ingredientServerSchema = ingredientSchema.refine(async ({ name }) => {
-  const sameNameCount = await prisma.ingredient.count({
-    where: { name },
-  });
-  return sameNameCount === 0;
-}, "Unique");
+const ingredientServerSchema = ingredientSchema.extend({
+  name: z
+    .string()
+    .max(nameMaxLength)
+    .refine(async (name) => {
+      const sameNameCount = await prisma.ingredient.count({
+        where: { name },
+      });
+      return sameNameCount === 0;
+    }, "Unique"),
+});
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
