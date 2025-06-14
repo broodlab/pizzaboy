@@ -17,6 +17,7 @@ import { Select } from "~/components/form-fields/select";
 import { Textarea } from "~/components/form-fields/textarea";
 import { Label } from "~/components/label";
 import { Button } from "~/components/button";
+import { ErrorList } from "~/components/error-list";
 
 const ingredientSchema = z.object({
   category: z
@@ -81,11 +82,11 @@ export default function IngredientCreation({
 
   return (
     <Form {...getFormProps(form)} method="post" onSubmit={form.onSubmit}>
-      <div>{form.errors}</div>
+      <ErrorList errors={form.errors} id={form.id} />
       <div>
         <Label htmlFor={fields.name.id}>Name</Label>
         <Input {...getInputProps(fields.name, { type: "text" })} autoFocus />
-        <div id={fields.name.errorId}>{fields.name.errors}</div>
+        <ErrorList errors={fields.name.errors} id={fields.name.errorId} />
       </div>
       <div>
         <Label htmlFor={fields.category.id}>Category</Label>
@@ -96,12 +97,18 @@ export default function IngredientCreation({
             </option>
           ))}
         </Select>
-        <div id={fields.category.errorId}>{fields.category.errors}</div>
+        <ErrorList
+          errors={fields.category.errors}
+          id={fields.category.errorId}
+        />
       </div>
       <div>
         <Label htmlFor={fields.description.id}>Description</Label>
         <Textarea {...getTextareaProps(fields.description)} />
-        <div id={fields.description.errorId}>{fields.description.errors}</div>
+        <ErrorList
+          errors={fields.description.errors}
+          id={fields.description.errorId}
+        />
       </div>
       <Button type="submit" variant="default">
         Save
