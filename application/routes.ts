@@ -1,4 +1,4 @@
-import { type RouteConfig, index } from "@react-router/dev/routes";
-import { flatRoutes } from "@react-router/fs-routes";
+import { type RouteConfig } from "@react-router/dev/routes";
+import { ingredientsRoutes } from "./features/ingredients/routes";
 
-export default flatRoutes() satisfies RouteConfig;
+export default [...ingredientsRoutes] satisfies RouteConfig;
