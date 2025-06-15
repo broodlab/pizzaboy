@@ -1,5 +1,4 @@
 import type { Route } from "./+types/";
-import { PrismaClient } from "@prisma/client";
 import prisma from "~/utils/prisma";
 import { Link } from "react-router";
 
