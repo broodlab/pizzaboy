@@ -2,13 +2,13 @@ import type { Route } from "./+types/";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod/v4";
 import prisma from "~/utils/prisma";
-import { redirect } from "react-router";
-
+import { data, redirect } from "react-router";
 import { ingredientSchema } from "~/features/ingredients/common/schemas";
 import { ingredientServerSchema } from "~/features/ingredients/common/schemas/server";
 import { IngredientForm } from "~/features/ingredients/common/components/ingredient-form";
+import type { EntityData } from "~/types/entities";
 
-export const action = async ({ request }: Route.ActionArgs) => {
+export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
   const formData = await request.formData();
   const submission = await parseWithZod(formData, {
     async: true,
@@ -21,16 +21,14 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
   if (submission.status === "success") {
     const { category, description, name } = submission.value;
-    await prisma.ingredient.create({
+    await prisma.ingredient.update({
       data: {
         category,
         description,
         name,
-        user: {
-          connect: {
-            name: "pizzaboy",
-          },
-        },
+      },
+      where: {
+        id,
       },
     });
   }
@@ -38,8 +36,30 @@ export const action = async ({ request }: Route.ActionArgs) => {
   return redirect("/ingredients");
 };
 
-export default function CreateIngredient({ actionData }: Route.ComponentProps) {
+export const loader = async ({ params: { id } }: Route.LoaderArgs) => {
+  const ingredient = await prisma.ingredient.findFirst({
+    where: { id },
+  });
+
+  if (ingredient === null) {
+    throw data({ entity: "ingredient" } satisfies EntityData, {
+      status: 404,
+    });
+  }
+
+  return ingredient;
+};
+
+export default function EditIngredient({
+  actionData,
+  loaderData: { name, description, category },
+}: Route.ComponentProps) {
   const formConfig = useForm({
+    defaultValue: {
+      category,
+      description,
+      name,
+    },
     lastResult: actionData,
     onValidate({ formData }) {
       return parseWithZod(formData, { schema: ingredientSchema });
