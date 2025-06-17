@@ -4,7 +4,7 @@ import { parseWithZod } from "@conform-to/zod/v4";
 import prisma from "~/utils/prisma";
 import { data, redirect } from "react-router";
 import { ingredientSchema } from "~/features/ingredients/common/schemas";
-import { ingredientServerSchema } from "~/features/ingredients/common/schemas/server";
+import { createIngredientEditionServerSchema } from "~/features/ingredients/common/schemas/server";
 import { IngredientForm } from "~/features/ingredients/common/components/ingredient-form";
 import type { EntityData } from "~/types/entities";
 
@@ -12,7 +12,7 @@ export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
   const formData = await request.formData();
   const submission = await parseWithZod(formData, {
     async: true,
-    schema: ingredientServerSchema,
+    schema: createIngredientEditionServerSchema(id),
   });
 
   if (submission.status !== "success") {

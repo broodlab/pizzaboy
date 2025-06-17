@@ -4,7 +4,7 @@ import {
   nameSchema,
 } from "~/features/ingredients/common/schemas/index";
 
-export const ingredientServerSchema = ingredientSchema.extend({
+export const ingredientCreationServerSchema = ingredientSchema.extend({
   name: nameSchema.refine(async (name) => {
     const sameNameCount = await prisma.ingredient.count({
       where: { name },
@@ -12,3 +12,20 @@ export const ingredientServerSchema = ingredientSchema.extend({
     return sameNameCount === 0;
   }, "Unique"),
 });
+
+export const createIngredientEditionServerSchema = (id: string) =>
+  ingredientSchema.extend({}).refine(async ({ name }) => {
+    const sameNameCount = await prisma.ingredient.count({
+      where: {
+        AND: [
+          {
+            id: {
+              not: id,
+            },
+          },
+          { name },
+        ],
+      },
+    });
+    return sameNameCount === 0;
+  }, "Unique");

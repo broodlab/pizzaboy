@@ -5,14 +5,14 @@ import prisma from "~/utils/prisma";
 import { redirect } from "react-router";
 
 import { ingredientSchema } from "~/features/ingredients/common/schemas";
-import { ingredientServerSchema } from "~/features/ingredients/common/schemas/server";
+import { ingredientCreationServerSchema } from "~/features/ingredients/common/schemas/server";
 import { IngredientForm } from "~/features/ingredients/common/components/ingredient-form";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
   const submission = await parseWithZod(formData, {
     async: true,
-    schema: ingredientServerSchema,
+    schema: ingredientCreationServerSchema,
   });
 
   if (submission.status !== "success") {
