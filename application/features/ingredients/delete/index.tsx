@@ -1,4 +1,4 @@
-import { data, Link, redirect } from "react-router";
+import { data, Form, Link, redirect } from "react-router";
 import type { Route } from "./+types/";
 import prisma from "~/utils/prisma";
 import type { EntityData } from "~/types/entities";
@@ -22,15 +22,15 @@ export const loader = async ({ params: { id } }: Route.LoaderArgs) => {
   }
 };
 
-export default function IngredientDeletion() {
+export default function DeleteIngredient() {
   return (
     <>
       <Link to="/ingredients" relative="route">
         Back
       </Link>
-      <form method="post">
+      <Form method="post">
         <button type="submit">Delete</button>
-      </form>
+      </Form>
     </>
   );
 }
