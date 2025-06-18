@@ -4,15 +4,24 @@ import { parseWithZod } from "@conform-to/zod/v4";
 import prisma from "~/utils/prisma";
 import { redirect } from "react-router";
 
-import { ingredientSchema } from "~/features/ingredients/common/schemas";
-import { ingredientCreationServerSchema } from "~/features/ingredients/common/schemas/server";
+import {
+  ingredientNameSchema,
+  ingredientSchema,
+} from "~/features/ingredients/common/schemas";
 import { IngredientForm } from "~/features/ingredients/common/components/ingredient-form";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
   const submission = await parseWithZod(formData, {
     async: true,
-    schema: ingredientCreationServerSchema,
+    schema: ingredientSchema.extend({
+      name: ingredientNameSchema.refine(async (name) => {
+        const sameNameCount = await prisma.ingredient.count({
+          where: { name },
+        });
+        return sameNameCount === 0;
+      }, "Unique"),
+    }),
   });
 
   if (submission.status !== "success") {
