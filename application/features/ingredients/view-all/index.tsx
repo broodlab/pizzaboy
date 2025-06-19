@@ -11,7 +11,14 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
     <ul>
       {loaderData.map(({ category, id, name }) => (
         <li key={id}>
-          {name} ({category}){" "}
+          <span>
+            {name} ({category})
+          </span>
+          <span>&nbsp;</span>
+          <Link to={`${id}/edit`} relative="route">
+            Edit
+          </Link>
+          <span>&nbsp;</span>
           <Link to={`${id}/delete`} relative="route">
             Delete
           </Link>
