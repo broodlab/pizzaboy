@@ -1,5 +1,5 @@
 import type { FC, TextareaHTMLAttributes } from "react";
-import { createClassName } from "~/utils/create-class-name";
+import { cn } from "~/utils/create-class-name";
 
 export const Textarea: FC<TextareaHTMLAttributes<HTMLTextAreaElement>> = ({
   className,
@@ -7,7 +7,7 @@ export const Textarea: FC<TextareaHTMLAttributes<HTMLTextAreaElement>> = ({
 }) => {
   return (
     <textarea
-      className={createClassName("border-1 border-gray-200", className)}
+      className={cn("border-1 border-gray-200", className)}
       {...props}
     />
   );

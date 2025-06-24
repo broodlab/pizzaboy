@@ -1,5 +1,5 @@
 import type { FC, InputHTMLAttributes } from "react";
-import { createClassName } from "~/utils/create-class-name";
+import { cn } from "~/utils/create-class-name";
 
 export const Input: FC<InputHTMLAttributes<HTMLInputElement>> = ({
   className,
@@ -8,7 +8,7 @@ export const Input: FC<InputHTMLAttributes<HTMLInputElement>> = ({
 }) => {
   return (
     <input
-      className={createClassName("border-1 border-gray-200", className)}
+      className={cn("border-1 border-gray-200", className)}
       type={type}
       {...props}
     />
