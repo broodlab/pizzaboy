@@ -10,7 +10,14 @@ import {
 import { ErrorList } from "~/components/error-list";
 import { Label } from "~/components/label";
 import { Input } from "~/components/form-fields/input";
-import { Select } from "~/components/form-fields/select";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/form-fields/select";
 import { foodCategories } from "~/types/food-categories";
 import { Textarea } from "~/components/form-fields/textarea";
 import { Button } from "~/components/button";
@@ -34,11 +41,18 @@ export const IngredientForm: FC<IngredientFormProps> = ({
     <div>
       <Label htmlFor={fields.category.id}>Category</Label>
       <Select {...getSelectProps(fields.category)}>
-        {foodCategories.map((category) => (
-          <option key={category} value={category}>
-            {category}
-          </option>
-        ))}
+        <SelectTrigger className="w-[200px]">
+          <SelectValue placeholder="Select a category" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            {foodCategories.map((category) => (
+              <SelectItem key={category} value={category}>
+                {category}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
       </Select>
       <ErrorList errors={fields.category.errors} id={fields.category.errorId} />
     </div>
