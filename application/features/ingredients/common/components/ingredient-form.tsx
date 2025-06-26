@@ -9,7 +9,7 @@ import {
 } from "@conform-to/react";
 import { ErrorList } from "~/components/error-list";
 import { Label } from "~/components/label";
-import { Input } from "~/components/form-fields/input";
+import { Input } from "~/components/input";
 import {
   Select,
   SelectContent,
@@ -17,9 +17,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "~/components/form-fields/select";
+} from "~/components/select";
 import { foodCategories } from "~/types/food-categories";
-import { Textarea } from "~/components/form-fields/textarea";
+import { Textarea } from "~/components/textarea";
 import { Button } from "~/components/button";
 import type { ingredientSchema } from "~/features/ingredients/common/schemas";
 import type { z } from "zod/v4";
