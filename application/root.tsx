@@ -9,6 +9,8 @@ import {
 
 import type { Route } from "./+types/root";
 import "./application.css";
+import { SidebarProvider, SidebarTrigger } from "~/components/sidebar";
+import { PizzaboySidebar } from "~/components/pizzaboy-sidebar";
 
 export const meta: Route.MetaFunction = () => [
   {
@@ -36,9 +38,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <main>
-      <Outlet />
-    </main>
+    <SidebarProvider>
+      <PizzaboySidebar />
+      <header className="flex h-12 items-center justify-between px-4">
+        <SidebarTrigger />
+      </header>
+      <main>
+        <Outlet />
+      </main>
+    </SidebarProvider>
   );
 }
 
