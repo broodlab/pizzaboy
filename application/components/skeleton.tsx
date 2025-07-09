@@ -1,13 +1,15 @@
 import { cn } from "~/utils/create-class-name";
+import type { ComponentProps, FC } from "react";
 
-function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
+export const Skeleton: FC<ComponentProps<"div">> = ({
+  className,
+  ...props
+}) => {
   return (
     <div
-      data-slot="skeleton"
       className={cn("bg-accent animate-pulse rounded-md", className)}
+      data-slot="skeleton"
       {...props}
     />
   );
-}
-
-export { Skeleton };
+};
