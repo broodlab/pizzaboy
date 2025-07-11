@@ -11,6 +11,7 @@ import type { Route } from "./+types/root";
 import "./application.css";
 import { SidebarProvider, SidebarTrigger } from "~/components/sidebar";
 import { PizzaboySidebar } from "~/components/pizzaboy-sidebar";
+import type { ReactNode } from "react";
 
 export const meta: Route.MetaFunction = () => [
   {
@@ -18,7 +19,7 @@ export const meta: Route.MetaFunction = () => [
   },
 ];
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>

@@ -1,4 +1,4 @@
-import type { FC, PropsWithChildren } from "react";
+import type { ComponentProps, FC, PropsWithChildren } from "react";
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -37,7 +37,7 @@ export const buttonVariants = cva(
 
 export const Button: FC<
   PropsWithChildren<
-    React.ComponentProps<"button"> &
+    ComponentProps<"button"> &
       VariantProps<typeof buttonVariants> & {
         asChild?: boolean;
       }
