@@ -11,6 +11,7 @@ export const HtmlDocument = ({ children }: { children: ReactNode }) => {
         <Links />
       </head>
       <body>
+        {/* The 'children' prop can either be the main or the error content. */}
         {children}
         <ScrollRestoration />
         <Scripts />
