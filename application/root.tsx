@@ -1,5 +1,5 @@
 import type { Route } from "./+types/root";
-import "./application.css";
+import "./root/styles.css";
 import { htmlMetadata } from "~/root/html-metadata";
 import { HtmlDocument } from "~/root/html-document";
 import { HtmlBodyErrorContent } from "~/root/html-body-error-content";
