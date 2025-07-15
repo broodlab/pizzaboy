@@ -1,18 +1,16 @@
 import type { Route } from "./+types/root";
 import "./application.css";
-import {
-  Pizzaboy,
-  PizzaboyErrorBoundary,
-  PizzaboyLayout,
-  pizzaboyMeta,
-} from "~/core";
+import { htmlMetadata } from "~/root/html-metadata";
+import { HtmlDocument } from "~/root/html-document";
+import { HtmlBodyErrorContent } from "~/root/html-body-error-content";
+import { HtmlBodyMainContent } from "~/root/html-body-main-content";
 
-export const ErrorBoundary = PizzaboyErrorBoundary;
+export const meta: Route.MetaFunction = htmlMetadata;
 
-export const Layout = PizzaboyLayout;
+export const Layout = HtmlDocument;
 
-export const meta: Route.MetaFunction = pizzaboyMeta;
+export const ErrorBoundary = HtmlBodyErrorContent;
 
-export default function App() {
-  return <Pizzaboy />;
+export default function MainContent() {
+  return <HtmlBodyMainContent />;
 }

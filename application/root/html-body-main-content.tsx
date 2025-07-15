@@ -3,7 +3,7 @@ import { PizzaboySidebar } from "~/components/pizzaboy-sidebar";
 import { Outlet } from "react-router";
 import type { FC } from "react";
 
-export const Pizzaboy: FC = () => (
+export const HtmlBodyMainContent: FC = () => (
   <SidebarProvider>
     <PizzaboySidebar />
     <header className="flex h-12 items-center justify-between px-4">

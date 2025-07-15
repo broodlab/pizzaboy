@@ -2,7 +2,7 @@ import { isRouteErrorResponse } from "react-router";
 import type { FC } from "react";
 import type { Route } from "../+types/root";
 
-export const PizzaboyErrorBoundary: FC<Route.ErrorBoundaryProps> = ({
+export const HtmlBodyErrorContent: FC<Route.ErrorBoundaryProps> = ({
   error,
 }) => {
   let message = "Oops!";

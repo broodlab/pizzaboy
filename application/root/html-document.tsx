@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Links, Meta, Scripts, ScrollRestoration } from "react-router";
 
-export const PizzaboyLayout = ({ children }: { children: ReactNode }) => {
+export const HtmlDocument = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="en">
       <head>
