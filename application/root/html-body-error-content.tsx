@@ -1,32 +1,35 @@
-import { isRouteErrorResponse } from "react-router";
+import { type ErrorResponse, isRouteErrorResponse } from "react-router";
 import type { FC } from "react";
 import type { Route } from "../+types/root";
+import { Alert, AlertDescription, AlertTitle } from "~/components/alert";
+import { AlertCircleIcon } from "lucide-react";
 
 export const HtmlBodyErrorContent: FC<Route.ErrorBoundaryProps> = ({
   error,
 }) => {
-  let message = "Oops!";
-  let details = "An unexpected error occurred.";
-  let stack: string | undefined;
+  let title, description: string;
+  let stack: undefined | string;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
-    if (error.status === 404 && error.data.entity === undefined) {
-      details = "Page not found.";
-    } else if (error.status === 404 && error.data.entity !== undefined) {
-      details = `${error.data.entity.toUpperCase()} not found.`;
-    } else if (error.status !== 404) {
-      details = error.statusText || details;
-    }
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message;
+    const errorSpecification = specifyRouteResponseError(error);
+    title = errorSpecification.title;
+    description = errorSpecification.description;
+  } else if (import.meta.env.DEV && error instanceof Error) {
+    title = "Oops!";
+    description = error.message;
     stack = error.stack;
+  } else {
+    title = "Oops!";
+    description = "An unexpected error occurred.";
   }
 
   return (
-    <main className="container mx-auto p-4 pt-16">
-      <h1>{message}</h1>
-      <p>{details}</p>
+    <main>
+      <Alert variant="destructive">
+        <AlertCircleIcon />
+        <AlertTitle>{title}</AlertTitle>
+        <AlertDescription>{description}</AlertDescription>
+      </Alert>
       {stack && (
         <pre className="w-full overflow-x-auto p-4">
           <code>{stack}</code>
@@ -34,4 +37,23 @@ export const HtmlBodyErrorContent: FC<Route.ErrorBoundaryProps> = ({
       )}
     </main>
   );
+};
+
+const specifyRouteResponseError = (error: ErrorResponse) => {
+  let title: string;
+  let description: string;
+
+  if (error.status === 404) {
+    title = "Not Found";
+    if (error.data.entity === undefined) {
+      description = "The page you are looking for does not exist (anymore).";
+    } else {
+      description = `The ${error.data.entity} you are looking for does not exist (anymore).`;
+    }
+  } else {
+    title = "Error";
+    description = error.statusText;
+  }
+
+  return { title, description };
 };
