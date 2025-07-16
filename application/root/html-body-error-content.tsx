@@ -3,6 +3,7 @@ import type { FC } from "react";
 import type { Route } from "../+types/root";
 import { Alert, AlertDescription, AlertTitle } from "~/components/alert";
 import { AlertCircleIcon } from "lucide-react";
+import { Layout } from "./layout";
 
 export const HtmlBodyErrorContent: FC<Route.ErrorBoundaryProps> = ({
   error,
@@ -24,7 +25,7 @@ export const HtmlBodyErrorContent: FC<Route.ErrorBoundaryProps> = ({
   }
 
   return (
-    <main>
+    <Layout>
       <Alert variant="destructive">
         <AlertCircleIcon />
         <AlertTitle>{title}</AlertTitle>
@@ -35,7 +36,7 @@ export const HtmlBodyErrorContent: FC<Route.ErrorBoundaryProps> = ({
           <code>{stack}</code>
         </pre>
       )}
-    </main>
+    </Layout>
   );
 };
 
