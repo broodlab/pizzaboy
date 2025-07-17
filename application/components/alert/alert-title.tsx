@@ -1,8 +1,8 @@
-import type { FC } from "react";
+import type { ComponentProps, FC } from "react";
 import * as React from "react";
 import { cn } from "~/utils/create-class-name";
 
-export const AlertTitle: FC<React.ComponentProps<"div">> = ({
+export const AlertTitle: FC<ComponentProps<"div">> = ({
   className,
   ...props
 }) => {
