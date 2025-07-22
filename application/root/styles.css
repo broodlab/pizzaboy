@@ -19,7 +19,7 @@ body {
 }
 
 main {
-  @apply flex h-full w-full justify-center p-10;
+  @apply flex h-full w-full items-center justify-center p-6 md:p-10;
 }
 
 @theme inline {
