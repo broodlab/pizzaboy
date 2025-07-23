@@ -38,7 +38,7 @@ type IngredientFormProps = {
 export const IngredientForm: FC<IngredientFormProps> = ({
   formConfig: [form, fields],
 }) => (
-  <Card className="w-full max-w-sm">
+  <Card className="w-full max-w-md">
     <CardHeader>
       <CardTitle>Create Ingredient</CardTitle>
       <CardDescription>
@@ -61,7 +61,7 @@ export const IngredientForm: FC<IngredientFormProps> = ({
           <div className="grid gap-3">
             <Label htmlFor={fields.category.id}>Category</Label>
             <Select {...getSelectProps(fields.category)}>
-              <SelectTrigger className="w-[200px]">
+              <SelectTrigger className="w-full">
                 <SelectValue placeholder="Select a category" />
               </SelectTrigger>
               <SelectContent>
