@@ -5,6 +5,7 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarHeader,
+  SidebarInset,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -35,9 +36,11 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
       </SidebarContent>
       <SidebarFooter />
     </Sidebar>
-    <header className="flex h-12 items-center justify-between px-4">
-      <SidebarTrigger />
-    </header>
-    <main>{children}</main>
+    <SidebarInset>
+      <header className="flex h-12 items-center justify-between">
+        <SidebarTrigger />
+      </header>
+      {children}
+    </SidebarInset>
   </SidebarProvider>
 );
