@@ -9,7 +9,7 @@ export const ErrorList: FC<{
   return (
     <ul id={id}>
       {errors.map((error, index) => (
-        <li className="text-red-500" key={index}>
+        <li className="text-sm text-red-500" key={index}>
           {error}
         </li>
       ))}
