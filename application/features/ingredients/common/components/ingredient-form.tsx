@@ -19,14 +19,7 @@ import { Form } from "react-router";
 import { ErrorList } from "~/components/error-list";
 import { Label } from "~/components/label";
 import { Input } from "~/components/input";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "~/components/select";
+import { NativeSelect as Select } from "~/components/native-select";
 import { foodCategories } from "~/types/food-categories";
 import { Textarea } from "~/components/textarea";
 import { Button } from "~/components/button";
@@ -61,18 +54,16 @@ export const IngredientForm: FC<IngredientFormProps> = ({
           <div className="grid gap-3">
             <Label htmlFor={fields.category.id}>Category</Label>
             <Select {...getSelectProps(fields.category)}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select a category" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  {foodCategories.map((category) => (
-                    <SelectItem key={category} value={category}>
-                      {category}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
+              {[
+                <option key="none" value="">
+                  Select a category
+                </option>,
+                ...foodCategories.map((category) => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                )),
+              ]}
             </Select>
             <ErrorList
               errors={fields.category.errors}
