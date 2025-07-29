@@ -59,7 +59,11 @@ export const IngredientForm: FC<IngredientFormProps> = ({
                   Select a category
                 </option>,
                 ...foodCategories.map((category) => (
-                  <option key={category} value={category}>
+                  <option
+                    key={category}
+                    selected={category === fields.category.defaultValue}
+                    value={category}
+                  >
                     {category}
                   </option>
                 )),
