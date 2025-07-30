@@ -31,7 +31,7 @@ type IngredientFormProps = {
 export const IngredientForm: FC<IngredientFormProps> = ({
   formConfig: [form, fields],
 }) => (
-  <Card className="w-full max-w-md">
+  <Card className="w-full max-w-md rounded-sm">
     <CardHeader>
       <CardTitle>Create Ingredient</CardTitle>
       <CardDescription>
