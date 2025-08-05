@@ -22,7 +22,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
       <p className="text-muted-foreground text-sm text-balance">
         Search and manage your ingredients.
       </p>
-      <Table className="w-lg">
+      <Table className="md:w-md lg:w-lg">
         <TableHeader>
           <TableRow>
             <TableHead>Name</TableHead>
@@ -33,7 +33,9 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
         <TableBody>
           {loaderData.map(({ category, id, name }) => (
             <TableRow key={id}>
-              <TableCell className="max-w-xs truncate">{name}</TableCell>
+              <TableCell className="truncate md:max-w-50 lg:max-w-50">
+                {name}
+              </TableCell>
               <TableCell>{category}</TableCell>
               <TableCell>
                 <div className="flex items-center justify-end gap-1.5">
