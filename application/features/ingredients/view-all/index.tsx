@@ -12,7 +12,11 @@ import {
 import { SquarePen as EditIcon, Trash2 as DeleteIcon } from "lucide-react";
 
 export const loader = () => {
-  return prisma.ingredient.findMany();
+  return prisma.ingredient.findMany({
+    include: {
+      recipeItems: true,
+    },
+  });
 };
 
 export default function Ingredients({ loaderData }: Route.ComponentProps) {
@@ -27,16 +31,18 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
           <TableRow>
             <TableHead>Name</TableHead>
             <TableHead>Category</TableHead>
+            <TableHead>Recipes</TableHead>
             <TableHead></TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {loaderData.map(({ category, id, name }) => (
+          {loaderData.map(({ category, id, name, recipeItems }) => (
             <TableRow key={id}>
               <TableCell className="truncate md:max-w-50 lg:max-w-50">
                 {name}
               </TableCell>
               <TableCell>{category}</TableCell>
+              <TableCell>{recipeItems.length}</TableCell>
               <TableCell>
                 <div className="flex items-center justify-end gap-1.5">
                   <Link to={`${id}/edit`} relative="route">
