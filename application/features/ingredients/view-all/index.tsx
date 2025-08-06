@@ -1,7 +1,14 @@
 import type { Route } from "./+types/";
 import prisma from "~/utils/prisma";
 import { Link } from "react-router";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~/components/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "~/components/table";
 import { SquarePen as EditIcon, Trash2 as DeleteIcon } from "lucide-react";
 
 export const loader = () => {
