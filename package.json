@@ -53,7 +53,7 @@
     "react-dom": "^19.1.1",
     "react-router": "^7.6.0",
     "tailwind-merge": "^3.3.1",
-    "zod": "^4.0.14"
+    "zod": "^4.0.15"
   },
   "prisma": {
     "seed": "npx tsx prisma/seed/index.ts"
