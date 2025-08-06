@@ -1,14 +1,7 @@
 import type { Route } from "./+types/";
 import prisma from "~/utils/prisma";
 import { Link } from "react-router";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "~/components/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~/components/table";
 import { SquarePen as EditIcon, Trash2 as DeleteIcon } from "lucide-react";
 
 export const loader = () => {
@@ -40,7 +33,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
               <TableCell>
                 <div className="flex items-center justify-end gap-1.5">
                   <Link to={`${id}/edit`} relative="route">
-                    <EditIcon className="-mb-0.5 size-5" />
+                    <EditIcon className="-mb-0.5 size-5 text-gray-600" />
                   </Link>
                   <Link to={`${id}/delete`} relative="route">
                     <DeleteIcon className="size-5 text-red-400" />
