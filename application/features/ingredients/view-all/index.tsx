@@ -15,8 +15,8 @@ export const loader = () => {
 export default function Ingredients({ loaderData }: Route.ComponentProps) {
   return (
     <>
-      <h1 className="text-lg font-semibold">Ingredients</h1>
-      <p className="text-muted-foreground text-sm text-balance">
+      <h1 className="text-2xl font-semibold">Ingredients</h1>
+      <p className="text-muted-foreground">
         Search and manage your ingredients.
       </p>
       <Table className="md:w-md lg:w-lg">
