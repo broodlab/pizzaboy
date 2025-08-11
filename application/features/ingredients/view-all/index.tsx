@@ -39,11 +39,11 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
               <TableCell>
                 <div className="flex items-center justify-end gap-1.5">
                   <Link to={`${id}/edit`} relative="route">
-                    <EditIcon className="-mb-0.5 size-5 text-gray-600" />
+                    <EditIcon className="-mb-0.5 size-6 text-gray-600 sm:size-5" />
                   </Link>
                   {recipeItems.length === 0 ? (
                     <Link to={`${id}/delete`} relative="route">
-                      <DeleteIcon className="size-5 text-red-400" />
+                      <DeleteIcon className="size-6 text-red-400 sm:size-5" />
                     </Link>
                   ) : (
                     <DeleteIcon className="size-5 text-red-200" />
