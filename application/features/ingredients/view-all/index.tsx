@@ -20,7 +20,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
         Search and manage your ingredients.
       </p>
       <Table className="md:w-md lg:w-lg">
-        <TableHeader>
+        <TableHeader className="hidden md:table-header-group">
           <TableRow>
             <TableHead>Name</TableHead>
             <TableHead>Category</TableHead>
