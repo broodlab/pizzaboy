@@ -67,7 +67,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
                       <DeleteIcon className="size-6 text-red-400 sm:size-5" />
                     </Link>
                   ) : (
-                    <DeleteIcon className="size-5 text-red-200" />
+                    <DeleteIcon className="size-6 text-red-200 md:size-5" />
                   )}
                 </div>
               </TableCell>
