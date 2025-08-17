@@ -39,7 +39,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
                 </Link>
               </TableCell>
               <TableCell
-                className="block pt-0 pb-0 before:content-[attr(data-label)] md:table-cell md:pt-8 md:pb-8 md:before:content-none"
+                className="block pt-0 pb-0 before:content-[attr(data-label)] md:table-cell md:pt-2 md:pb-2 md:before:content-none"
                 data-label="Category: "
               >
                 {category}
