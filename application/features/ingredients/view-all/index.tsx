@@ -33,7 +33,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
         <TableBody>
           {loaderData.map(({ category, id, name, recipeItems }) => (
             <TableRow key={id}>
-              <TableCell className="block max-w-50 truncate text-lg font-semibold md:table-cell md:text-base md:font-normal">
+              <TableCell className="block max-w-50 truncate text-lg font-semibold max-[768px]:max-w-140 max-[750px]:max-w-130 max-[700px]:max-w-120 max-[650px]:max-w-110 max-[600px]:max-w-100 max-[550px]:max-w-90 max-[500px]:max-w-80 max-[450px]:max-w-70 max-[400px]:max-w-60 max-[350px]:max-w-50 max-[300px]:max-w-40 md:table-cell md:max-w-50 md:text-base md:font-normal">
                 <Link to={`${id}/edit`} relative="route">
                   {name}
                 </Link>
