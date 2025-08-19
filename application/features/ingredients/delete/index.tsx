@@ -25,9 +25,7 @@ export const loader = async ({ params: { id } }: Route.LoaderArgs) => {
 export default function DeleteIngredient() {
   return (
     <>
-      <Link to="/ingredients" relative="route">
-        Back
-      </Link>
+      <Link to="/ingredients">Back</Link>
       <Form method="post">
         <button type="submit">Delete</button>
       </Form>
