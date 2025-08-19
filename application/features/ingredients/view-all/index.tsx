@@ -21,7 +21,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
           Search and manage your ingredients.
         </p>
       </div>
-      <Table className="w-full md:w-md lg:w-lg">
+      <Table className="w-full border-t-1 border-b-1 md:w-md md:border-t-0 md:border-b-0 lg:w-lg">
         <TableHeader className="hidden md:table-header-group">
           <TableRow>
             <TableHead>Name</TableHead>
