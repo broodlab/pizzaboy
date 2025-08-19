@@ -3,6 +3,7 @@ import prisma from "~/utils/prisma";
 import { Link } from "react-router";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~/components/table";
 import { SquarePen as EditIcon, Trash2 as DeleteIcon } from "lucide-react";
+import type { FC } from "react";
 
 export const loader = () => {
   return prisma.ingredient.findMany({
@@ -51,18 +52,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
                 {recipeItems.length}
               </TableCell>
               <TableCell>
-                <div className="flex items-center justify-end gap-1.5">
-                  <Link to={`${id}/edit`} relative="route">
-                    <EditIcon className="-mb-0.5 size-6 text-gray-600 md:size-5" />
-                  </Link>
-                  {recipeItems.length === 0 ? (
-                    <Link to={`${id}/delete`} relative="route">
-                      <DeleteIcon className="size-6 text-red-400 md:size-5" />
-                    </Link>
-                  ) : (
-                    <DeleteIcon className="size-6 text-red-200 md:size-5" />
-                  )}
-                </div>
+                <ActionLinks deletable={recipeItems.length === 0} id={id} />
               </TableCell>
             </TableRow>
           ))}
@@ -71,3 +61,21 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
     </div>
   );
 }
+
+const ActionLinks: FC<{ deletable: boolean; id: string }> = ({
+  deletable,
+  id,
+}) => (
+  <div className="flex items-center justify-end gap-1.5">
+    <Link to={`${id}/edit`} relative="route">
+      <EditIcon className="-mb-0.5 size-6 text-gray-600 md:size-5" />
+    </Link>
+    {deletable ? (
+      <Link to={`${id}/delete`} relative="route">
+        <DeleteIcon className="size-6 text-red-400 md:size-5" />
+      </Link>
+    ) : (
+      <DeleteIcon className="size-6 text-red-200 md:size-5" />
+    )}
+  </div>
+);
