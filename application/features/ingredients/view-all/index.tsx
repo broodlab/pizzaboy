@@ -75,7 +75,11 @@ const ActionLinks: FC<{ deletable: boolean; id: string }> = ({
         <DeleteIcon className="size-6 text-red-400 md:size-5" />
       </Link>
     ) : (
-      <DeleteIcon className="size-6 text-red-200 md:size-5" />
+      <DeleteIcon
+        aria-disabled="true"
+        className="size-6 text-red-200 md:size-5"
+        tabIndex={-1}
+      />
     )}
   </div>
 );
