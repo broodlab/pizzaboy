@@ -21,14 +21,14 @@ export const loader = () => {
 
 export default function Ingredients({ loaderData }: Route.ComponentProps) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-8">
       <div>
         <h1 className="text-2xl font-semibold">Ingredients</h1>
         <p className="text-muted-foreground">
           Search and manage your ingredients.
         </p>
       </div>
-      <div className="flex w-full flex-col gap-4 md:w-md md:gap-0 lg:w-lg">
+      <div className="flex w-full flex-col gap-4 md:w-md md:gap-2 lg:w-lg">
         <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <Button asChild variant="outline">
             <Link to="filter">
