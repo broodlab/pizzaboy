@@ -1,5 +1,11 @@
 import type { ReactNode } from "react";
-import { Links, Meta, Scripts, ScrollRestoration } from "react-router";
+import {
+  type GetScrollRestorationKeyFunction,
+  Links,
+  Meta,
+  Scripts,
+  ScrollRestoration,
+} from "react-router";
 
 export const HtmlDocument = ({ children }: { children: ReactNode }) => {
   return (
@@ -13,9 +19,14 @@ export const HtmlDocument = ({ children }: { children: ReactNode }) => {
       <body>
         {/* The 'children' prop can either be the main or the error content. */}
         {children}
-        <ScrollRestoration />
+        <ScrollRestoration getKey={getScrollRestorationKey} />
         <Scripts />
       </body>
     </html>
   );
+};
+
+const getScrollRestorationKey: GetScrollRestorationKeyFunction = (location) => {
+  if (location.state?.navigationIntent === "back") return location.pathname;
+  return location.key;
 };

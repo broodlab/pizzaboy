@@ -3,6 +3,7 @@ import type { Route } from "./+types/";
 import prisma from "~/utils/prisma";
 import type { EntityData } from "~/types/entities";
 import { Button } from "~/components/button";
+import { backNavigationIntent } from "~/types";
 
 export const action = async ({ params: { id } }: Route.ActionArgs) => {
   await prisma.ingredient.delete({
@@ -43,7 +44,9 @@ export default function DeleteIngredient({
         <div className="flex flex-col gap-2 md:flex-row">
           <Button variant="destructive">Delete</Button>
           <Button asChild variant="outline">
-            <Link to="/ingredients">Cancel</Link>
+            <Link state={{ ...backNavigationIntent }} to="/ingredients">
+              Cancel
+            </Link>
           </Button>
         </div>
       </Form>
