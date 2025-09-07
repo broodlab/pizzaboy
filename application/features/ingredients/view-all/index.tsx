@@ -1,6 +1,6 @@
 import type { Route } from "./+types/";
 import prisma from "~/utils/prisma";
-import { Link } from "react-router";
+import { Form, Link } from "react-router";
 import {
   Table,
   TableBody,
@@ -17,6 +17,25 @@ import {
 } from "lucide-react";
 import type { FC } from "react";
 import { Button } from "~/components/button";
+import { AlertDialog } from "~/components/alert-dialog/alert-dialog";
+import { AlertDialogTrigger } from "~/components/alert-dialog/alert-dialog-trigger";
+import { useScripting } from "~/hooks/use-scripting";
+import { AlertDialogContent } from "~/components/alert-dialog/alert-dialog-content";
+import { AlertDialogTitle } from "~/components/alert-dialog/alert-dialog-title";
+import { AlertDialogHeader } from "~/components/alert-dialog/alert-dialog-header";
+import { AlertDialogDescription } from "~/components/alert-dialog/alert-dialog-description";
+import { AlertDialogFooter } from "~/components/alert-dialog/alert-dialog-footer";
+import { AlertDialogCancel } from "~/components/alert-dialog/alert-dialog-cancel";
+import { AlertDialogAction } from "~/components/alert-dialog/alert-dialog-action";
+
+export const action = async ({ request }: Route.ActionArgs) => {
+  const formData = await request.formData();
+  const id = formData.get("id") as string;
+
+  await prisma.ingredient.delete({
+    where: { id },
+  });
+};
 
 export const loader = () => {
   return prisma.ingredient.findMany({
@@ -76,7 +95,11 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
                   {recipeItems.length}
                 </TableCell>
                 <TableCell>
-                  <ActionLinks deletable={recipeItems.length === 0} id={id} />
+                  <ActionLinks
+                    deletable={recipeItems.length === 0}
+                    id={id}
+                    name={name}
+                  />
                 </TableCell>
               </TableRow>
             ))}
@@ -87,24 +110,64 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
   );
 }
 
-const ActionLinks: FC<{ deletable: boolean; id: string }> = ({
+const ActionLinks: FC<{ deletable: boolean; id: string; name: string }> = ({
   deletable,
   id,
-}) => (
-  <div className="flex items-center justify-end gap-1.5">
-    <Link to={`${id}/edit`}>
-      <EditIcon className="-mb-0.5 size-6 text-gray-600 md:size-5" />
-    </Link>
-    {deletable ? (
+  name,
+}) => {
+  const isScripting = useScripting();
+
+  let DeleteAction = () => (
+    <DeleteIcon
+      aria-disabled="true"
+      className="size-6 text-red-200 md:size-5"
+      tabIndex={-1}
+    />
+  );
+
+  if (deletable && isScripting) {
+    DeleteAction = () => (
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <DeleteIcon
+            className="size-6 cursor-pointer text-red-400 md:size-5"
+            role="button"
+          />
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete Ingredient</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete ingredient{" "}
+              <span className="font-bold">{name}</span>? This action cannot be
+              undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <Form method="post">
+              <AlertDialogAction name="id" type="submit" value={id}>
+                Delete
+              </AlertDialogAction>
+            </Form>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    );
+  } else if (deletable && !isScripting) {
+    DeleteAction = () => (
       <Link to={`${id}/delete`}>
         <DeleteIcon className="size-6 text-red-400 md:size-5" />
       </Link>
-    ) : (
-      <DeleteIcon
-        aria-disabled="true"
-        className="size-6 text-red-200 md:size-5"
-        tabIndex={-1}
-      />
-    )}
-  </div>
-);
+    );
+  }
+
+  return (
+    <div className="flex items-center justify-end gap-1.5">
+      <Link to={`${id}/edit`}>
+        <EditIcon className="-mb-0.5 size-6 text-gray-600 md:size-5" />
+      </Link>
+      <DeleteAction />
+    </div>
+  );
+};
