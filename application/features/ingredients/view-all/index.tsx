@@ -1,12 +1,19 @@
 import type { Route } from "./+types/";
 import prisma from "~/utils/prisma";
 import { Form, Link } from "react-router";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~/components/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "~/components/table";
 import {
   ListFilter as FilterIcon,
   Plus as CreateIcon,
   SquarePen as EditIcon,
-  Trash2 as DeleteIcon
+  Trash2 as DeleteIcon,
 } from "lucide-react";
 import type { FC } from "react";
 import { Button } from "~/components/button";
@@ -43,9 +50,17 @@ export const loader = ({ request }: Route.ActionArgs) => {
     }
   }
 
+  let name: undefined | string;
+  if (searchParams.has("name")) {
+    name = searchParams.get("name") as string;
+  }
+
   return prisma.ingredient.findMany({
     where: {
       category,
+      name: {
+        contains: name,
+      },
     },
     include: {
       recipeItems: true,
