@@ -2,14 +2,7 @@ import type { Route } from "./+types/";
 import prisma from "~/utils/prisma";
 import { Form, Link } from "react-router";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "~/components/table";
-import {
+  InfoIcon,
   ListFilter as FilterIcon,
   Plus as CreateIcon,
   SquarePen as EditIcon,
@@ -29,6 +22,14 @@ import { AlertDialogCancel } from "~/components/alert-dialog/alert-dialog-cancel
 import { AlertDialogAction } from "~/components/alert-dialog/alert-dialog-action";
 import type { FoodCategory } from "@prisma/client";
 import { foodCategories } from "~/types/food-categories";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "~/components/table";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -99,34 +100,48 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
               <TableHead></TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
-            {loaderData.map(({ category, id, name, recipeItems }) => (
-              <TableRow key={id}>
-                <TableCell className="block max-w-50 truncate text-lg font-semibold max-[768px]:max-w-140 max-[750px]:max-w-130 max-[700px]:max-w-120 max-[650px]:max-w-110 max-[600px]:max-w-100 max-[550px]:max-w-90 max-[500px]:max-w-80 max-[450px]:max-w-70 max-[400px]:max-w-60 max-[350px]:max-w-50 max-[300px]:max-w-40 md:table-cell md:max-w-50 md:text-base md:font-normal">
-                  <Link to={`${id}/edit`}>{name}</Link>
-                </TableCell>
-                <TableCell
-                  className="block pt-0 pb-0 before:content-[attr(data-label)] md:table-cell md:pt-2 md:pb-2 md:before:content-none"
-                  data-label="Category: "
-                >
-                  {category}
-                </TableCell>
-                <TableCell
-                  className="block before:content-[attr(data-label)] md:table-cell md:before:content-none"
-                  data-label="Recipes: "
-                >
-                  {recipeItems.length}
-                </TableCell>
-                <TableCell>
-                  <ActionLinks
-                    deletable={recipeItems.length === 0}
-                    id={id}
-                    name={name}
-                  />
+          {loaderData.length === 0 && (
+            <TableBody>
+              <TableRow>
+                <TableCell colSpan={4}>
+                  <div className="items-top flex flex-row gap-2">
+                    <InfoIcon className="size-5 text-blue-500" />
+                    <span>No ingredients or no matching filter(s).</span>
+                  </div>
                 </TableCell>
               </TableRow>
-            ))}
-          </TableBody>
+            </TableBody>
+          )}
+          {loaderData.length > 0 && (
+            <TableBody>
+              {loaderData.map(({ category, id, name, recipeItems }) => (
+                <TableRow key={id}>
+                  <TableCell className="block max-w-50 truncate text-lg font-semibold max-[768px]:max-w-140 max-[750px]:max-w-130 max-[700px]:max-w-120 max-[650px]:max-w-110 max-[600px]:max-w-100 max-[550px]:max-w-90 max-[500px]:max-w-80 max-[450px]:max-w-70 max-[400px]:max-w-60 max-[350px]:max-w-50 max-[300px]:max-w-40 md:table-cell md:max-w-50 md:text-base md:font-normal">
+                    <Link to={`${id}/edit`}>{name}</Link>
+                  </TableCell>
+                  <TableCell
+                    className="block pt-0 pb-0 before:content-[attr(data-label)] md:table-cell md:pt-2 md:pb-2 md:before:content-none"
+                    data-label="Category: "
+                  >
+                    {category}
+                  </TableCell>
+                  <TableCell
+                    className="block before:content-[attr(data-label)] md:table-cell md:before:content-none"
+                    data-label="Recipes: "
+                  >
+                    {recipeItems.length}
+                  </TableCell>
+                  <TableCell>
+                    <ActionLinks
+                      deletable={recipeItems.length === 0}
+                      id={id}
+                      name={name}
+                    />
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          )}
         </Table>
       </div>
     </div>
