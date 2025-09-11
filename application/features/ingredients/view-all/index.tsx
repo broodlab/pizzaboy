@@ -91,7 +91,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
             </Link>
           </Button>
         </div>
-        <Table className="border-t-1 border-b-1 md:border-t-0 md:border-b-0">
+        <Table className="border-t-1 md:border-t-0">
           <TableHeader className="hidden md:table-header-group">
             <TableRow>
               <TableHead>Name</TableHead>
