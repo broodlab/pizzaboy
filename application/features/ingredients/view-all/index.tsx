@@ -6,7 +6,7 @@ import {
   ListFilter as FilterIcon,
   Plus as CreateIcon,
   SquarePen as EditIcon,
-  Trash2 as DeleteIcon,
+  Trash2 as DeleteIcon
 } from "lucide-react";
 import type { FC } from "react";
 import { Button } from "~/components/button";
@@ -22,14 +22,7 @@ import { AlertDialogCancel } from "~/components/alert-dialog/alert-dialog-cancel
 import { AlertDialogAction } from "~/components/alert-dialog/alert-dialog-action";
 import type { FoodCategory } from "@prisma/client";
 import { foodCategories } from "~/types/food-categories";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "~/components/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~/components/table";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -78,7 +71,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
           Search and manage your ingredients.
         </p>
       </div>
-      <div className="flex w-full flex-col gap-4 md:w-md md:gap-2 lg:w-lg">
+      <div className="flex w-full flex-col gap-4 md:w-md md:gap-2 lg:w-xl">
         <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <Button asChild variant="outline">
             <Link to="filter">
