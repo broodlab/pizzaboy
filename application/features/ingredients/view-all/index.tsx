@@ -6,7 +6,7 @@ import {
   ListFilter as FilterIcon,
   Plus as CreateIcon,
   SquarePen as EditIcon,
-  Trash2 as DeleteIcon
+  Trash2 as DeleteIcon,
 } from "lucide-react";
 import type { FC } from "react";
 import { Button } from "~/components/button";
@@ -22,7 +22,14 @@ import { AlertDialogCancel } from "~/components/alert-dialog/alert-dialog-cancel
 import { AlertDialogAction } from "~/components/alert-dialog/alert-dialog-action";
 import type { FoodCategory } from "@prisma/client";
 import { foodCategories } from "~/types/food-categories";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~/components/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "~/components/table";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -166,22 +173,22 @@ const ActionLinks: FC<{ deletable: boolean; id: string; name: string }> = ({
           />
         </AlertDialogTrigger>
         <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Delete Ingredient</AlertDialogTitle>
-            <AlertDialogDescription>
-              Are you sure you want to delete ingredient{" "}
-              <span className="font-bold">{name}</span>? This action cannot be
-              undone.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <Form method="post">
+          <Form method="post">
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete Ingredient</AlertDialogTitle>
+              <AlertDialogDescription>
+                Are you sure you want to delete ingredient{" "}
+                <span className="font-bold">{name}</span>? This action cannot be
+                undone.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
               <AlertDialogAction name="id" type="submit" value={id}>
                 Delete
               </AlertDialogAction>
-            </Form>
-          </AlertDialogFooter>
+            </AlertDialogFooter>
+          </Form>
         </AlertDialogContent>
       </AlertDialog>
     );
