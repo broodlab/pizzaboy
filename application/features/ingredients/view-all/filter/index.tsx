@@ -87,7 +87,7 @@ export default function FilterIngredients({
             id={fields.category.errorId}
           />
         </div>
-        <div className="flex flex-col justify-end gap-2 md:flex-row">
+        <div className="flex flex-col-reverse justify-end gap-2 md:flex-col md:flex-row">
           <Button asChild variant="outline">
             <Link state={{ ...backNavigationIntent }} to="/ingredients">
               Cancel
