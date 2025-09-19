@@ -57,7 +57,7 @@ export default function FilterIngredients({
 
   return (
     <Form {...getFormProps(form)} method="post" onSubmit={form.onSubmit}>
-      <div className="flex flex-col gap-6">
+      <div className="mb-4 flex flex-col gap-6 md:mb-0">
         <ErrorList errors={form.errors} id={form.id} />
         <div className="grid gap-3">
           <Label htmlFor={fields.name.id}>Name</Label>
