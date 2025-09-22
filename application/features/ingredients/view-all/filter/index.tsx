@@ -15,6 +15,7 @@ import { Input } from "~/components/input";
 import { NativeSelect as Select } from "~/components/native-select";
 import { Button } from "~/components/button";
 import { backNavigationIntent } from "~/types";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/card";
 
 const schema = z.object({
   category: z
@@ -56,48 +57,58 @@ export default function FilterIngredients({
   });
 
   return (
-    <Form {...getFormProps(form)} method="post" onSubmit={form.onSubmit}>
-      <div className="mb-4 flex flex-col gap-6 md:mb-0">
-        <ErrorList errors={form.errors} id={form.id} />
-        <div className="grid gap-3">
-          <Label htmlFor={fields.name.id}>Name</Label>
-          <Input {...getInputProps(fields.name, { type: "text" })} autoFocus />
-          <ErrorList errors={fields.name.errors} id={fields.name.errorId} />
-        </div>
-        <div className="grid gap-3">
-          <Label htmlFor={fields.category.id}>Category</Label>
-          <Select {...getSelectProps(fields.category)}>
-            {[
-              <option key="none" value="">
-                Select a category
-              </option>,
-              ...foodCategories.map((category) => (
-                <option
-                  key={category}
-                  selected={category === fields.category.defaultValue}
-                  value={category}
-                >
-                  {category}
-                </option>
-              )),
-            ]}
-          </Select>
-          <ErrorList
-            errors={fields.category.errors}
-            id={fields.category.errorId}
-          />
-        </div>
-        <div className="flex flex-col-reverse justify-end gap-2 md:flex-col md:flex-row">
-          <Button asChild variant="outline">
-            <Link state={{ ...backNavigationIntent }} to="/ingredients">
-              Cancel
-            </Link>
-          </Button>
-          <Button type="submit" variant="default">
-            Apply Filter
-          </Button>
-        </div>
-      </div>
-    </Form>
+    <Card>
+      <CardHeader>
+        <CardTitle>Filter</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Form {...getFormProps(form)} method="post" onSubmit={form.onSubmit}>
+          <div className="mb-4 flex flex-col gap-6 md:mb-0">
+            <ErrorList errors={form.errors} id={form.id} />
+            <div className="grid gap-3">
+              <Label htmlFor={fields.name.id}>Name</Label>
+              <Input
+                {...getInputProps(fields.name, { type: "text" })}
+                autoFocus
+              />
+              <ErrorList errors={fields.name.errors} id={fields.name.errorId} />
+            </div>
+            <div className="grid gap-3">
+              <Label htmlFor={fields.category.id}>Category</Label>
+              <Select {...getSelectProps(fields.category)}>
+                {[
+                  <option key="none" value="">
+                    Select a category
+                  </option>,
+                  ...foodCategories.map((category) => (
+                    <option
+                      key={category}
+                      selected={category === fields.category.defaultValue}
+                      value={category}
+                    >
+                      {category}
+                    </option>
+                  )),
+                ]}
+              </Select>
+              <ErrorList
+                errors={fields.category.errors}
+                id={fields.category.errorId}
+              />
+            </div>
+            <div className="flex flex-col-reverse justify-end gap-2 md:flex-col md:flex-row">
+              <Button asChild variant="outline">
+                <Link state={{ ...backNavigationIntent }} to="/ingredients">
+                  Cancel
+                </Link>
+              </Button>
+              <Button type="submit" variant="default">
+                Apply
+              </Button>
+            </div>
+          </div>
+        </Form>
+      </CardContent>
+    </Card>
   );
 }
