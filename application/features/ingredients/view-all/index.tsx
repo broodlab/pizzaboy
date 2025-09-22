@@ -1,6 +1,6 @@
 import type { Route } from "./+types/";
 import prisma from "~/utils/prisma";
-import { Form, Link, Outlet } from "react-router";
+import { Form, Link, Outlet, useLocation } from "react-router";
 import {
   FunnelPlus as FilterIcon,
   InfoIcon,
@@ -70,6 +70,9 @@ export const loader = ({ request }: Route.ActionArgs) => {
 };
 
 export default function Ingredients({ loaderData }: Route.ComponentProps) {
+  const location = useLocation();
+  const visibleFilterForm = location.pathname.includes("/filter");
+
   return (
     <div className="flex flex-col gap-8">
       <div>
@@ -85,7 +88,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
               <FilterIcon /> Filter
             </Link>
           </Button>
-          <Button asChild variant="default">
+          <Button asChild variant={visibleFilterForm ? "outline" : "default"}>
             <Link to="create">
               <CreateIcon /> Create
             </Link>
