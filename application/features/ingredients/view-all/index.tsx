@@ -1,9 +1,9 @@
 import type { Route } from "./+types/";
 import prisma from "~/utils/prisma";
-import { Form, Link, Outlet, useLocation } from "react-router";
+import { Form, Link, Outlet } from "react-router";
 import {
+  FunnelPlus as FilterIcon,
   InfoIcon,
-  ListFilter as FilterIcon,
   Plus as CreateIcon,
   SquarePen as EditIcon,
   Trash2 as DeleteIcon,
@@ -70,8 +70,6 @@ export const loader = ({ request }: Route.ActionArgs) => {
 };
 
 export default function Ingredients({ loaderData }: Route.ComponentProps) {
-  const location = useLocation();
-
   return (
     <div className="flex flex-col gap-8">
       <div>
@@ -81,23 +79,21 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
         </p>
       </div>
       <div className="flex w-full flex-col gap-4 md:w-md md:gap-2 lg:w-xl">
-        <Outlet />
-      </div>
-      <div className="flex w-full flex-col gap-4 md:w-md md:gap-2 lg:w-xl">
-        {!location.pathname.includes("/filter") && (
-          <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
-            <Button asChild variant="outline">
-              <Link to="filter">
-                <FilterIcon /> Filter
-              </Link>
-            </Button>
-            <Button asChild>
-              <Link to="create">
-                <CreateIcon /> Create
-              </Link>
-            </Button>
-          </div>
-        )}
+        <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+          <Button asChild variant="outline">
+            <Link to="filter">
+              <FilterIcon /> Filter
+            </Link>
+          </Button>
+          <Button asChild variant="default">
+            <Link to="create">
+              <CreateIcon /> Create
+            </Link>
+          </Button>
+        </div>
+        <div className="flex w-full flex-col gap-4 md:w-md md:gap-2 lg:w-xl">
+          <Outlet />
+        </div>
         <Table className="border-t-1 md:border-t-0">
           <TableHeader className="hidden md:table-header-group">
             <TableRow>
