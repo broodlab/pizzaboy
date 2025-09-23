@@ -3,6 +3,7 @@ import prisma from "~/utils/prisma";
 import { Form, Link, Outlet, useLocation } from "react-router";
 import {
   FunnelPlus as FilterIcon,
+  FunnelX as ClearFilterIcon,
   InfoIcon,
   Plus as CreateIcon,
   SquarePen as EditIcon,
@@ -86,6 +87,11 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
           <Button asChild variant="outline">
             <Link to="filter">
               <FilterIcon /> Filter
+            </Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link to="/ingredients">
+              <ClearFilterIcon /> Clear
             </Link>
           </Button>
           <Button asChild variant={visibleFilterForm ? "outline" : "default"}>
