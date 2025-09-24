@@ -8,7 +8,7 @@ import {
 import { parseWithZod } from "@conform-to/zod/v4";
 import { z } from "zod/v4";
 import { foodCategories } from "~/types/food-categories";
-import { Form, Link, redirect } from "react-router";
+import { Form, Link, redirect, useSearchParams } from "react-router";
 import { ErrorList } from "~/components/error-list";
 import { Label } from "~/components/label";
 import { Input } from "~/components/input";
@@ -48,7 +48,12 @@ export const action = async ({ request }: Route.ActionArgs) => {
 export default function FilterIngredients({
   actionData,
 }: Route.ComponentProps) {
+  const [searchParams] = useSearchParams();
   const [form, fields] = useForm({
+    defaultValue: {
+      category: searchParams.get("category"),
+      name: searchParams.get("name"),
+    },
     lastResult: actionData,
     onValidate({ formData }) {
       return parseWithZod(formData, { schema: schema });
@@ -98,7 +103,13 @@ export default function FilterIngredients({
             </div>
             <div className="flex flex-col-reverse justify-end gap-2 md:flex-col md:flex-row">
               <Button asChild variant="outline">
-                <Link state={{ ...backNavigationIntent }} to="/ingredients">
+                <Link
+                  state={{ ...backNavigationIntent }}
+                  to={{
+                    pathname: "/ingredients",
+                    search: searchParams.toString(),
+                  }}
+                >
                   Cancel
                 </Link>
               </Button>
