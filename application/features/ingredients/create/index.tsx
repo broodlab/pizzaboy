@@ -9,6 +9,7 @@ import {
   ingredientSchema,
 } from "~/features/ingredients/common/schemas";
 import { IngredientForm } from "~/features/ingredients/common/components/ingredient-form";
+import { enhanceWithSuccessSearchParams } from "~/utils/alerts";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -30,7 +31,8 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
   if (submission.status === "success") {
     const { category, description, name } = submission.value;
-    await prisma.ingredient.create({
+
+    const { id } = await prisma.ingredient.create({
       data: {
         category,
         description,
@@ -42,9 +44,10 @@ export const action = async ({ request }: Route.ActionArgs) => {
         },
       },
     });
-  }
 
-  return redirect("/ingredients");
+    const searchParams = enhanceWithSuccessSearchParams(id, name);
+    return redirect(`/ingredients?${searchParams.toString()}`);
+  }
 };
 
 export default function CreateIngredient({ actionData }: Route.ComponentProps) {

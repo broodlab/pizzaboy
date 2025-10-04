@@ -31,6 +31,7 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/table";
+import { Alerts } from "~/utils/alerts";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -82,6 +83,9 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
         <p className="text-muted-foreground">
           Search and manage your ingredients.
         </p>
+      </div>
+      <div className="flex w-full flex-col gap-4 md:w-md md:gap-2 lg:w-xl">
+        <Alerts entity="ingredient" />
       </div>
       <div className="flex w-full flex-col gap-4 md:w-md md:gap-2 lg:w-xl">
         <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
