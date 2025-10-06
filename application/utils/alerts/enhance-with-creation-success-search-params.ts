@@ -1,4 +1,4 @@
-export const enhanceWithSuccessSearchParams = (
+export const enhanceWithCreationSuccessSearchParams = (
   id: string,
   name: string,
   searchParams = new URLSearchParams(),

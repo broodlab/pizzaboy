@@ -9,7 +9,7 @@ import {
   ingredientSchema,
 } from "~/features/ingredients/common/schemas";
 import { IngredientForm } from "~/features/ingredients/common/components/ingredient-form";
-import { enhanceWithSuccessSearchParams } from "~/utils/alerts";
+import { enhanceWithCreationSuccessSearchParams } from "~/utils/alerts";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -45,7 +45,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
       },
     });
 
-    const searchParams = enhanceWithSuccessSearchParams(id, name);
+    const searchParams = enhanceWithCreationSuccessSearchParams(id, name);
     return redirect(`/ingredients?${searchParams.toString()}`);
   }
 };
