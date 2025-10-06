@@ -54,4 +54,18 @@ export const Alerts: FC<{ editionPath: string; entity: Entity }> = ({
       </SuccessAlert>
     );
   }
+
+  if (searchParams.has("deletionSuccessName")) {
+    return (
+      <SuccessAlert title="Deletion Success">
+        <span>
+          <span>{entity} </span>
+          <span className="font-bold">
+            {searchParams.get("deletionSuccessName")}
+          </span>
+          <span> has been successfully deleted.</span>
+        </span>
+      </SuccessAlert>
+    );
+  }
 };

@@ -1,6 +1,13 @@
 import type { Route } from "./+types/";
 import prisma from "~/utils/prisma";
-import { Form, Link, Outlet, useLocation, useSearchParams } from "react-router";
+import {
+  Form,
+  Link,
+  Outlet,
+  redirect,
+  useLocation,
+  useSearchParams,
+} from "react-router";
 import {
   FunnelPlus as FilterIcon,
   FunnelX as ClearFilterIcon,
@@ -32,14 +39,22 @@ import {
   TableRow,
 } from "~/components/table";
 import { Alerts } from "~/utils/alerts";
+import { enhanceWithDeletionSuccessSearchParams } from "~/utils/alerts/enhance-with-deletion-success-search-params";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
   const id = formData.get("id") as string;
 
+  const ingredient = await prisma.ingredient.findFirst({
+    where: { id },
+  });
+
   await prisma.ingredient.delete({
     where: { id },
   });
+
+  const searchParams = enhanceWithDeletionSuccessSearchParams(ingredient!.name);
+  return redirect(`/ingredients?${searchParams.toString()}`);
 };
 
 export const loader = ({ request }: Route.ActionArgs) => {
