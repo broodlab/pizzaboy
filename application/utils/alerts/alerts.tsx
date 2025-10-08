@@ -2,6 +2,7 @@ import type { FC } from "react";
 import type { Entity } from "~/types/entities";
 import { generatePath, Link, useSearchParams } from "react-router";
 import { SuccessAlert } from "~/components/alerts/success-alert";
+import { capitalize } from "~/utils/strings";
 
 export const Alerts: FC<{ editionPath: string; entity: Entity }> = ({
   editionPath,
@@ -19,7 +20,7 @@ export const Alerts: FC<{ editionPath: string; entity: Entity }> = ({
     return (
       <SuccessAlert title="Creation Success">
         <span>
-          <span>{entity} </span>
+          <span>{capitalize(entity)} </span>
           <Link
             className="font-medium underline underline-offset-4"
             to={editionPathWithId}
@@ -42,7 +43,7 @@ export const Alerts: FC<{ editionPath: string; entity: Entity }> = ({
     return (
       <SuccessAlert title="Edition Success">
         <span>
-          <span>{entity} </span>
+          <span>{capitalize(entity)} </span>
           <Link
             className="font-medium underline underline-offset-4"
             to={editionPathWithId}
@@ -59,7 +60,7 @@ export const Alerts: FC<{ editionPath: string; entity: Entity }> = ({
     return (
       <SuccessAlert title="Deletion Success">
         <span>
-          <span>{entity} </span>
+          <span>{capitalize(entity)} </span>
           <span className="font-bold">
             {searchParams.get("deletionSuccessName")}
           </span>
