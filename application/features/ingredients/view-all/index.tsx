@@ -38,8 +38,10 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/table";
-import { Alerts } from "~/utils/alerts";
-import { enhanceWithDeletionSuccessSearchParams } from "~/utils/alerts/enhance-with-deletion-success-search-params";
+import {
+  Alerts,
+  enhanceWithDeletionSuccessSearchParams,
+} from "~/utils/notifications";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();

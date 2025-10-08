@@ -9,7 +9,7 @@ import {
 } from "~/features/ingredients/common/schemas";
 import { IngredientForm } from "~/features/ingredients/common/components/ingredient-form";
 import type { EntityData } from "~/types/entities";
-import { enhanceWithEditionSuccessSearchParams } from "~/utils/alerts";
+import { enhanceWithEditionSuccessSearchParams } from "~/utils/notifications";
 
 export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
   const formData = await request.formData();
