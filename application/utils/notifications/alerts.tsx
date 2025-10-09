@@ -3,6 +3,7 @@ import type { Entity } from "~/types/entities";
 import { generatePath, Link, useSearchParams } from "react-router";
 import { SuccessAlert } from "~/components/alerts/success-alert";
 import { capitalize } from "~/utils/strings";
+import { clearNotificationSearchParams } from "~/utils/notifications/clear-notification-search-params";
 
 export const Alerts: FC<{ editionPath: string; entity: Entity }> = ({
   editionPath,
@@ -14,18 +15,24 @@ export const Alerts: FC<{ editionPath: string; entity: Entity }> = ({
     searchParams.has("creationSuccessId") &&
     searchParams.has("creationSuccessName")
   ) {
-    const editionPathWithId = generatePath(editionPath, {
+    const name = searchParams.get("creationSuccessName");
+    const creationPathWithId = generatePath(editionPath, {
       id: searchParams.get("creationSuccessId"),
     });
+    const clearedSearchParams = clearNotificationSearchParams(searchParams);
+
     return (
       <SuccessAlert title="Creation Success">
         <span>
           <span>{capitalize(entity)} </span>
           <Link
             className="font-medium underline underline-offset-4"
-            to={editionPathWithId}
+            to={{
+              pathname: creationPathWithId,
+              search: clearedSearchParams.toString(),
+            }}
           >
-            {searchParams.get("creationSuccessName")}
+            {name}
           </Link>
           <span> has been successfully created.</span>
         </span>
@@ -37,18 +44,24 @@ export const Alerts: FC<{ editionPath: string; entity: Entity }> = ({
     searchParams.has("editionSuccessId") &&
     searchParams.has("editionSuccessName")
   ) {
+    const name = searchParams.get("editionSuccessName");
     const editionPathWithId = generatePath(editionPath, {
       id: searchParams.get("editionSuccessId"),
     });
+    const clearedSearchParams = clearNotificationSearchParams(searchParams);
+
     return (
       <SuccessAlert title="Edition Success">
         <span>
           <span>{capitalize(entity)} </span>
           <Link
             className="font-medium underline underline-offset-4"
-            to={editionPathWithId}
+            to={{
+              pathname: editionPathWithId,
+              search: clearedSearchParams.toString(),
+            }}
           >
-            {searchParams.get("editionSuccessName")}
+            {name}
           </Link>
           <span> has been successfully updated.</span>
         </span>

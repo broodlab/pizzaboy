@@ -1,13 +1,6 @@
 import type { Route } from "./+types/";
 import prisma from "~/utils/prisma";
-import {
-  Form,
-  Link,
-  Outlet,
-  redirect,
-  useLocation,
-  useSearchParams,
-} from "react-router";
+import { Form, Link, Outlet, redirect, useLocation } from "react-router";
 import {
   FunnelPlus as FilterIcon,
   FunnelX as ClearFilterIcon,
@@ -41,6 +34,7 @@ import {
 import {
   Alerts,
   enhanceWithDeletionSuccessSearchParams,
+  useNotificationlessSearchParams,
 } from "~/utils/notifications";
 
 export const action = async ({ request }: Route.ActionArgs) => {
@@ -91,7 +85,7 @@ export const loader = ({ request }: Route.ActionArgs) => {
 export default function Ingredients({ loaderData }: Route.ComponentProps) {
   const location = useLocation();
   const visibleFilterForm = location.pathname.includes("/filter");
-  const [searchParams] = useSearchParams();
+  const [searchParams] = useNotificationlessSearchParams();
 
   return (
     <div className="flex flex-col gap-8">
@@ -117,7 +111,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
             </Link>
           </Button>
           <Button asChild variant={visibleFilterForm ? "outline" : "default"}>
-            <Link to="create">
+            <Link to={{ pathname: "create", search: searchParams.toString() }}>
               <CreateIcon /> Create
             </Link>
           </Button>
@@ -151,7 +145,14 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
               {loaderData.map(({ category, id, name, recipeItems }) => (
                 <TableRow key={id}>
                   <TableCell className="block max-w-50 truncate text-lg font-semibold max-[768px]:max-w-140 max-[750px]:max-w-130 max-[700px]:max-w-120 max-[650px]:max-w-110 max-[600px]:max-w-100 max-[550px]:max-w-90 max-[500px]:max-w-80 max-[450px]:max-w-70 max-[400px]:max-w-60 max-[350px]:max-w-50 max-[300px]:max-w-40 md:table-cell md:max-w-50 md:text-base md:font-normal">
-                    <Link to={`${id}/edit`}>{name}</Link>
+                    <Link
+                      to={{
+                        pathname: `${id}/edit`,
+                        search: searchParams.toString(),
+                      }}
+                    >
+                      {name}
+                    </Link>
                   </TableCell>
                   <TableCell
                     className="block pt-0 pb-0 before:content-[attr(data-label)] md:table-cell md:pt-2 md:pb-2 md:before:content-none"
@@ -188,6 +189,7 @@ const ActionLinks: FC<{ deletable: boolean; id: string; name: string }> = ({
   name,
 }) => {
   const isScripting = useScripting();
+  const [searchParams] = useNotificationlessSearchParams();
 
   let DeleteAction = () => (
     <DeleteIcon
@@ -236,7 +238,7 @@ const ActionLinks: FC<{ deletable: boolean; id: string; name: string }> = ({
 
   return (
     <div className="flex items-center justify-end gap-1.5">
-      <Link to={`${id}/edit`}>
+      <Link to={{ pathname: `${id}/edit`, search: searchParams.toString() }}>
         <EditIcon className="-mb-0.5 size-6 text-gray-600 md:size-5" />
       </Link>
       <DeleteAction />

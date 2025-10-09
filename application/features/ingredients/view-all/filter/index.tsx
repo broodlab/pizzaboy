@@ -8,7 +8,7 @@ import {
 import { parseWithZod } from "@conform-to/zod/v4";
 import { z } from "zod/v4";
 import { foodCategories } from "~/types/food-categories";
-import { Form, Link, redirect, useSearchParams } from "react-router";
+import { Form, Link, redirect } from "react-router";
 import { ErrorList } from "~/components/error-list";
 import { Label } from "~/components/label";
 import { Input } from "~/components/input";
@@ -16,6 +16,7 @@ import { NativeSelect as Select } from "~/components/native-select";
 import { Button } from "~/components/button";
 import { backNavigationIntent } from "~/types";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/card";
+import { useNotificationlessSearchParams } from "~/utils/notifications";
 
 const schema = z.object({
   category: z
@@ -48,7 +49,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
 export default function FilterIngredients({
   actionData,
 }: Route.ComponentProps) {
-  const [searchParams] = useSearchParams();
+  const [searchParams] = useNotificationlessSearchParams();
   const [form, fields] = useForm({
     defaultValue: {
       category: searchParams.get("category"),

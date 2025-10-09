@@ -51,7 +51,11 @@ export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
       },
     });
 
-    const searchParams = enhanceWithEditionSuccessSearchParams(id, name);
+    const searchParams = enhanceWithEditionSuccessSearchParams(
+      id,
+      name,
+      new URL(request.url).searchParams,
+    );
     return redirect(`/ingredients?${searchParams.toString()}`);
   }
 };
