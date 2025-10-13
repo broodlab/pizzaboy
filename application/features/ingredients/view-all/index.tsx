@@ -32,8 +32,8 @@ import {
   TableRow,
 } from "~/components/table";
 import {
-  Alerts,
   enhanceWithDeletionSuccessSearchParams,
+  Notifications,
   useNotificationlessSearchParams,
 } from "~/utils/notifications";
 
@@ -96,7 +96,10 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
         </p>
       </div>
       <div className="flex w-full flex-col gap-4 md:w-md md:gap-2 lg:w-xl">
-        <Alerts editionPath="/ingredients/:id/edit" entity="ingredient" />
+        <Notifications
+          editionPath="/ingredients/:id/edit"
+          entity="ingredient"
+        />
       </div>
       <div className="flex w-full flex-col gap-4 md:w-md md:gap-2 lg:w-xl">
         <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">

@@ -13,6 +13,7 @@ import {
   SidebarTrigger,
 } from "~/components/sidebar";
 import { Link } from "react-router";
+import { Toaster } from "sonner";
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => (
   <SidebarProvider>
@@ -41,6 +42,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
         <SidebarTrigger />
       </header>
       {children}
+      <Toaster />
     </SidebarInset>
   </SidebarProvider>
 );

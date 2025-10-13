@@ -3,7 +3,8 @@ export const enhanceWithCreationSuccessSearchParams = (
   name: string,
   searchParams = new URLSearchParams(),
 ) => {
-  searchParams.set("creationSuccessId", id);
-  searchParams.set("creationSuccessName", name);
+  searchParams.set("cs_mid", crypto.randomUUID());
+  searchParams.set("cs_eid", id);
+  searchParams.set("cs_ena", name);
   return searchParams;
 };

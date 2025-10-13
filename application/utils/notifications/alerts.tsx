@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { type FC } from "react";
 import type { Entity } from "~/types/entities";
 import { generatePath, Link, useSearchParams } from "react-router";
 import { SuccessAlert } from "~/components/alerts/success-alert";
@@ -11,13 +11,10 @@ export const Alerts: FC<{ editionPath: string; entity: Entity }> = ({
 }) => {
   const [searchParams] = useSearchParams();
 
-  if (
-    searchParams.has("creationSuccessId") &&
-    searchParams.has("creationSuccessName")
-  ) {
-    const name = searchParams.get("creationSuccessName");
+  if (searchParams.has("cs_eid") && searchParams.has("cs_ena")) {
+    const name = searchParams.get("cs_ena");
     const creationPathWithId = generatePath(editionPath, {
-      id: searchParams.get("creationSuccessId"),
+      id: searchParams.get("cs_eid"),
     });
     const clearedSearchParams = clearNotificationSearchParams(searchParams);
 
