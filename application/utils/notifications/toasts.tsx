@@ -34,6 +34,7 @@ export const Toasts: FC<{ editionPath: string; entity: Entity }> = ({
         onClick: () => navigate(creationPathWithId),
       },
       description: `${capitalize(entity)} '${searchParams.get("cs_ena")}' has been successfully created.`,
+      duration: 10_000,
     });
   }, [searchParams.get("cs_mid")]);
 };
