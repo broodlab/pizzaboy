@@ -133,3 +133,18 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes deferredVisibilityAnimation {
+  0%,
+  99% {
+    display: none;
+  }
+  100% {
+    display: block;
+  }
+}
+
+.deferredVisibility {
+  animation-duration: 2s;
+  animation-name: deferredVisibilityAnimation;
+}
