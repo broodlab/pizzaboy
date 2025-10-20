@@ -1,8 +1,8 @@
 import { type FC } from "react";
 import type { Entity } from "~/types/entities";
 import { useScripting } from "~/hooks/use-scripting";
-import { Alerts } from "~/utils/notifications/alerts";
-import { Toasts } from "~/utils/notifications/toasts";
+import { Alerts } from "~/utils/notifications/components/alerts";
+import { Toasts } from "~/utils/notifications/components/toasts";
 
 export const Notifications: FC<{ editionPath: string; entity: Entity }> = ({
   editionPath,

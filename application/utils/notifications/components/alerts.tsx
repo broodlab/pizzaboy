@@ -3,7 +3,7 @@ import type { Entity } from "~/types/entities";
 import { generatePath, Link, useSearchParams } from "react-router";
 import { SuccessAlert } from "~/components/alerts/success-alert";
 import { capitalize } from "~/utils/strings";
-import { clearNotificationSearchParams } from "~/utils/notifications/clear-notification-search-params";
+import { clearNotificationSearchParams } from "~/utils/notifications/search-params/clear-notification-search-params";
 
 export const Alerts: FC<{ editionPath: string; entity: Entity }> = ({
   editionPath,

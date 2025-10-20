@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router";
 import { useMemo } from "react";
-import { clearNotificationSearchParams } from "~/utils/notifications/clear-notification-search-params";
+import { clearNotificationSearchParams } from "~/utils/notifications/search-params/clear-notification-search-params";
 
 export const useNotificationlessSearchParams = () => {
   const [searchParams, setSearchParams] = useSearchParams();
