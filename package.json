@@ -34,8 +34,8 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
-    "@conform-to/react": "^1.13.1",
-    "@conform-to/zod": "^1.13.1",
+    "@conform-to/react": "^1.13.2",
+    "@conform-to/zod": "^1.13.2",
     "@prisma/client": "^6.18.0",
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-dialog": "^1.1.15",
