@@ -37,4 +37,6 @@ export const Toasts: FC<{ editionPath: string; entity: Entity }> = ({
       duration: 10_000,
     });
   }, [searchParams.get("cs_mid")]);
+
+  return null;
 };

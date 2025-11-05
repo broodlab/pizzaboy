@@ -1,6 +1,6 @@
 import { useEffect, useId, useState } from "react";
 
-export function useAlertsVisibility(): boolean {
+export const useAlertsVisibility = (): [string, boolean] => {
   const alertsId = useId();
   const getAlerts = () => document.getElementById(alertsId);
   const [alertsHasHeight, setAlertsHasHeight] = useState(false);
@@ -27,4 +27,4 @@ export function useAlertsVisibility(): boolean {
   }, []);
 
   return [alertsId, alertsHasHeight];
-}
+};
