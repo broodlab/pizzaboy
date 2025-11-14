@@ -4,6 +4,8 @@ import { generatePath, useNavigate, useSearchParams } from "react-router";
 import { toast } from "sonner";
 import { capitalize } from "~/utils/strings";
 
+const toastDuration = 10_000;
+
 export const Toasts: FC<{ editionPath: string; entity: Entity }> = ({
   editionPath,
   entity,
@@ -13,30 +15,68 @@ export const Toasts: FC<{ editionPath: string; entity: Entity }> = ({
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (
-      !searchParams.has("cs_mid") ||
-      !searchParams.has("cs_eid") ||
-      !searchParams.has("cs_ena")
-    )
-      return;
+    const creationSuccess =
+      searchParams.has("cs_mid") &&
+      searchParams.has("cs_eid") &&
+      searchParams.has("cs_ena");
+    const editionSuccess =
+      searchParams.has("es_mid") &&
+      searchParams.has("es_eid") &&
+      searchParams.has("es_ena");
+    const deletionSuccess =
+      searchParams.has("ds_mid") && searchParams.has("ds_ena");
 
-    if (searchParams.get("cs_mid") === lastNotificationRef.current) return;
+    if (!creationSuccess && !editionSuccess && !deletionSuccess) return;
 
-    lastNotificationRef.current = searchParams.get("cs_mid");
+    const messageId = (searchParams.get("cs_mid") ||
+      searchParams.get("es_mid") ||
+      searchParams.get("ds_mid"))!;
 
-    const creationPathWithId = generatePath(editionPath, {
-      id: searchParams.get("cs_eid"),
-    });
+    if (messageId === lastNotificationRef.current) return;
 
-    toast("Creation Success", {
-      action: {
-        label: "Edit",
-        onClick: () => navigate(creationPathWithId),
-      },
-      description: `${capitalize(entity)} '${searchParams.get("cs_ena")}' has been successfully created.`,
-      duration: 10_000,
-    });
-  }, [searchParams.get("cs_mid")]);
+    lastNotificationRef.current = messageId;
+
+    if (creationSuccess) {
+      const creationPathWithId = generatePath(editionPath, {
+        id: searchParams.get("cs_eid"),
+      });
+
+      toast("Creation Success", {
+        action: {
+          label: "Edit",
+          onClick: () => navigate(creationPathWithId),
+        },
+        description: `${capitalize(entity)} '${searchParams.get("cs_ena")}' has been successfully created.`,
+        duration: toastDuration,
+      });
+    }
+
+    if (editionSuccess) {
+      const editionPathWithId = generatePath(editionPath, {
+        id: searchParams.get("es_eid"),
+      });
+
+      toast("Edition Success", {
+        action: {
+          label: "Edit",
+          onClick: () => navigate(editionPathWithId),
+        },
+        description: `${capitalize(entity)} '${searchParams.get("es_ena")}' has been successfully updated.`,
+        duration: toastDuration,
+      });
+    }
+
+    if (deletionSuccess) {
+      toast("Deletion Success", {
+        description: `${capitalize(entity)} '${searchParams.get("ds_ena")}' has been successfully deleted.`,
+        duration: toastDuration,
+      });
+    }
+  }, [
+    searchParams.get("cs_mid"),
+    searchParams.get("es_mid"),
+    searchParams.get("ds_mid"),
+  ]);
 
   return null;
 };

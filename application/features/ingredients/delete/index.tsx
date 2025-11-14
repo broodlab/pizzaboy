@@ -4,13 +4,18 @@ import prisma from "~/utils/prisma";
 import type { EntityData } from "~/types/entities";
 import { Button } from "~/components/button";
 import { backNavigationIntent } from "~/types";
+import { enhanceWithDeletionSuccessSearchParams } from "~/utils/notifications";
 
-export const action = async ({ params: { id } }: Route.ActionArgs) => {
+export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
   await prisma.ingredient.delete({
     where: { id },
   });
 
-  return redirect("/ingredients");
+  const searchParams = enhanceWithDeletionSuccessSearchParams(
+    id,
+    new URL(request.url).searchParams,
+  );
+  return redirect(`/ingredients?${searchParams.toString()}`);
 };
 
 export const loader = async ({ params: { id } }: Route.LoaderArgs) => {

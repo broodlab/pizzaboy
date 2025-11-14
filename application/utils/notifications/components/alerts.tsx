@@ -37,13 +37,10 @@ export const Alerts: FC<{ editionPath: string; entity: Entity }> = ({
     );
   }
 
-  if (
-    searchParams.has("editionSuccessId") &&
-    searchParams.has("editionSuccessName")
-  ) {
-    const name = searchParams.get("editionSuccessName");
+  if (searchParams.has("es_eid") && searchParams.has("es_ena")) {
+    const name = searchParams.get("es_ena");
     const editionPathWithId = generatePath(editionPath, {
-      id: searchParams.get("editionSuccessId"),
+      id: searchParams.get("es_eid"),
     });
     const clearedSearchParams = clearNotificationSearchParams(searchParams);
 
@@ -66,14 +63,12 @@ export const Alerts: FC<{ editionPath: string; entity: Entity }> = ({
     );
   }
 
-  if (searchParams.has("deletionSuccessName")) {
+  if (searchParams.has("ds_ena")) {
     return (
       <SuccessAlert title="Deletion Success">
         <span>
           <span>{capitalize(entity)} </span>
-          <span className="font-bold">
-            {searchParams.get("deletionSuccessName")}
-          </span>
+          <span className="font-bold">{searchParams.get("ds_ena")}</span>
           <span> has been successfully deleted.</span>
         </span>
       </SuccessAlert>

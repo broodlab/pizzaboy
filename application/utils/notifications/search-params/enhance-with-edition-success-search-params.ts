@@ -3,7 +3,8 @@ export const enhanceWithEditionSuccessSearchParams = (
   name: string,
   searchParams = new URLSearchParams(),
 ) => {
-  searchParams.set("editionSuccessId", id);
-  searchParams.set("editionSuccessName", name);
+  searchParams.set("es_mid", crypto.randomUUID());
+  searchParams.set("es_eid", id);
+  searchParams.set("es_ena", name);
   return searchParams;
 };
