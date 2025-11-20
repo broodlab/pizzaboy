@@ -105,17 +105,17 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
         <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <Button asChild variant="outline">
             <Link to={{ pathname: "filter", search: searchParams.toString() }}>
-              <FilterIcon /> Filter
+              <FilterIcon className="invisible sm:visible" /> Filter
             </Link>
           </Button>
           <Button asChild variant="outline">
             <Link to="/ingredients">
-              <ClearFilterIcon /> Clear
+              <ClearFilterIcon className="invisible sm:visible" /> Clear
             </Link>
           </Button>
           <Button asChild variant={visibleFilterForm ? "outline" : "default"}>
             <Link to={{ pathname: "create", search: searchParams.toString() }}>
-              <CreateIcon /> Create
+              <CreateIcon className="invisible sm:visible" /> Create
             </Link>
           </Button>
         </div>
