@@ -1,4 +1,4 @@
-import { FoodCategory } from "@prisma/client";
+import type { FoodCategory } from "~/prisma/enums";
 
 export const foodCategories: FoodCategory[] = [
   "Cheese",
