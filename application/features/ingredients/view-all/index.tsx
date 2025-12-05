@@ -21,7 +21,7 @@ import { AlertDialogDescription } from "~/components/alert-dialog/alert-dialog-d
 import { AlertDialogFooter } from "~/components/alert-dialog/alert-dialog-footer";
 import { AlertDialogCancel } from "~/components/alert-dialog/alert-dialog-cancel";
 import { AlertDialogAction } from "~/components/alert-dialog/alert-dialog-action";
-import type { FoodCategory } from "@prisma/client";
+import type { FoodCategory } from "~/prisma/client";
 import { foodCategories } from "~/types/food-categories";
 import {
   Table,
