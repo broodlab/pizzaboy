@@ -6,7 +6,7 @@ export const foodCategories: FoodCategory[] = [
   "Fruits",
   "Grain",
   "Herbs",
-  "Liquds",
+  "Liquids",
   "Meat",
   "Others",
   "Sauces",

@@ -111,7 +111,7 @@ enum FoodCategory {
   Fruits
   Grain
   Herbs
-  Liquds
+  Liquids
   Meat
   Others
   Sauces
