@@ -8,6 +8,7 @@
   "scripts": {
     "build": "react-router build",
     "db:crud": "npx prisma studio",
+    "db:generate": "npx prisma generate",
     "db:push": "npx prisma db push",
     "db:seed": "npx prisma db seed",
     "dev": "react-router dev",
