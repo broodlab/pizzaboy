@@ -1,4 +1,4 @@
-import type { Route } from "./+types/";
+import type { Route } from "./+types";
 import prisma from "~/utils/prisma";
 import { Form, Link, Outlet, redirect, useLocation } from "react-router";
 import {

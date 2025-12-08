@@ -1,5 +1,5 @@
 import prisma from "~/utils/prisma";
-import type { Route } from "../../../../.react-router/types/application/features/ingredients/view-all/+types";
+import type { Route } from "./+types";
 
 export const loader = () => {
   return prisma.dough.findMany({});

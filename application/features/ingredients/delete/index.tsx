@@ -1,5 +1,5 @@
 import { data, Form, Link, redirect } from "react-router";
-import type { Route } from "./+types/";
+import type { Route } from "./+types";
 import prisma from "~/utils/prisma";
 import type { EntityData } from "~/types/entities";
 import { Button } from "~/components/button";
