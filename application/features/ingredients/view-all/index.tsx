@@ -36,6 +36,7 @@ import {
   Notifications,
   useNotificationlessSearchParams,
 } from "~/utils/notifications";
+import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -88,20 +89,18 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
   const [searchParams] = useNotificationlessSearchParams();
 
   return (
-    <div className="flex flex-col gap-8">
+    <Page>
+      <PageHeader>
+        <PageTitle>Ingredients</PageTitle>
+        <PageIntro>Search and manage your ingredients.</PageIntro>
+      </PageHeader>
       <div>
-        <h1 className="text-2xl font-semibold">Ingredients</h1>
-        <p className="text-muted-foreground">
-          Search and manage your ingredients.
-        </p>
-      </div>
-      <div className="flex w-full flex-col gap-4 md:w-md md:gap-2 lg:w-xl">
         <Notifications
           editionPath="/ingredients/:id/edit"
           entity="ingredient"
         />
       </div>
-      <div className="flex w-full flex-col gap-4 md:w-md md:gap-2 lg:w-xl">
+      <div className="flex flex-col gap-4 md:gap-2">
         <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <Button asChild variant="outline">
             <Link to={{ pathname: "filter", search: searchParams.toString() }}>
@@ -119,7 +118,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
             </Link>
           </Button>
         </div>
-        <div className="flex w-full flex-col gap-4 md:w-md md:gap-2 lg:w-xl">
+        <div>
           <Outlet />
         </div>
         <Table className="border-t-1 md:border-t-0">
@@ -182,7 +181,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
           )}
         </Table>
       </div>
-    </div>
+    </Page>
   );
 }
 
