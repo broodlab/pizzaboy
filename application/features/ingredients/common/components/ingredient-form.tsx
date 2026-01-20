@@ -70,9 +70,15 @@ export const IngredientForm: FC<IngredientFormProps> = ({
             />
           </div>
           <div className="grid gap-3">
-            <Button type="submit" variant="default">
-              Save
-            </Button>
+            <div className="flex justify-end">
+              <Button
+                className="w-full sm:w-auto"
+                type="submit"
+                variant="default"
+              >
+                Save
+              </Button>
+            </div>
           </div>
         </div>
       </Form>
