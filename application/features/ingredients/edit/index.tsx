@@ -10,6 +10,7 @@ import {
 import { IngredientForm } from "~/features/ingredients/common/components/ingredient-form";
 import type { EntityData } from "~/types/entities";
 import { enhanceWithEditionSuccessSearchParams } from "~/utils/notifications";
+import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
 
 export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -91,5 +92,16 @@ export default function EditIngredient({
     shouldValidate: "onBlur",
   });
 
-  return <IngredientForm formConfig={formConfig} />;
+  return (
+    <Page>
+      <PageHeader>
+        <PageTitle>Edit Ingredient</PageTitle>
+        <PageIntro>
+          Use an unique name and assign a suitable category. A description is
+          optional, but might be useful for exotic ingredients.
+        </PageIntro>
+      </PageHeader>
+      <IngredientForm formConfig={formConfig} />
+    </Page>
+  );
 }

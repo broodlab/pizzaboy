@@ -8,13 +8,7 @@ import {
 } from "@conform-to/react";
 import type { ingredientSchema } from "~/features/ingredients/common/schemas";
 import type { z } from "zod/v4";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "~/components/card";
+import { Card, CardContent } from "~/components/card";
 import { Form } from "react-router";
 import { ErrorList } from "~/components/error-list";
 import { Label } from "~/components/label";
@@ -31,14 +25,7 @@ type IngredientFormProps = {
 export const IngredientForm: FC<IngredientFormProps> = ({
   formConfig: [form, fields],
 }) => (
-  <Card className="w-full max-w-md rounded-sm">
-    <CardHeader>
-      <CardTitle>Create Ingredient</CardTitle>
-      <CardDescription>
-        Use an unique name and assign a suitable category. A description is
-        optional, but might be useful for exotic ingredients.
-      </CardDescription>
-    </CardHeader>
+  <Card>
     <CardContent>
       <Form {...getFormProps(form)} method="post" onSubmit={form.onSubmit}>
         <div className="flex flex-col gap-6">

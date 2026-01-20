@@ -10,6 +10,7 @@ import {
 } from "~/features/ingredients/common/schemas";
 import { IngredientForm } from "~/features/ingredients/common/components/ingredient-form";
 import { enhanceWithCreationSuccessSearchParams } from "~/utils/notifications";
+import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -63,5 +64,16 @@ export default function CreateIngredient({ actionData }: Route.ComponentProps) {
     shouldValidate: "onBlur",
   });
 
-  return <IngredientForm formConfig={formConfig} />;
+  return (
+    <Page>
+      <PageHeader>
+        <PageTitle>Create Ingredient</PageTitle>
+        <PageIntro>
+          Use an unique name and assign a suitable category. A description is
+          optional, but might be useful for exotic ingredients.
+        </PageIntro>
+      </PageHeader>
+      <IngredientForm formConfig={formConfig} />
+    </Page>
+  );
 }
