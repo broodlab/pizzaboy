@@ -5,6 +5,7 @@ import type { EntityData } from "~/types/entities";
 import { Button } from "~/components/button";
 import { backNavigationIntent } from "~/types";
 import { enhanceWithDeletionSuccessSearchParams } from "~/utils/notifications";
+import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
 
 export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
   await prisma.ingredient.delete({
@@ -36,17 +37,17 @@ export default function DeleteIngredient({
   loaderData: { name },
 }: Route.ComponentProps) {
   return (
-    <div className="flex w-full flex-col gap-6 md:w-md">
-      <div>
-        <h1 className="text-2xl font-semibold">Delete Ingredient</h1>
-        <p className="text-muted-foreground">
+    <Page>
+      <PageHeader>
+        <PageTitle>Delete Ingredient</PageTitle>
+        <PageIntro>
           Are you sure you want to delete ingredient{" "}
           <span className="font-bold">{name}</span>? This action cannot be
           undone.
-        </p>
-      </div>
+        </PageIntro>
+      </PageHeader>
       <Form method="post">
-        <div className="flex flex-col gap-2 md:flex-row">
+        <div className="flex flex-col gap-2 sm:flex-row">
           <Button variant="destructive">Delete</Button>
           <Button asChild variant="outline">
             <Link state={{ ...backNavigationIntent }} to="/ingredients">
@@ -55,6 +56,6 @@ export default function DeleteIngredient({
           </Button>
         </div>
       </Form>
-    </div>
+    </Page>
   );
 }
