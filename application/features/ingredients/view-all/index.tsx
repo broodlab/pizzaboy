@@ -124,7 +124,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
         </div>
         <Card>
           <CardContent>
-            <Table className="border-t-1 md:border-t-0">
+            <Table>
               <TableHeader className="hidden md:table-header-group">
                 <TableRow>
                   <TableHead>Name</TableHead>
