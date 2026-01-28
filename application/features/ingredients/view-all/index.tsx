@@ -44,6 +44,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
   const id = formData.get("id") as string;
 
   const ingredient = await prisma.ingredient.findFirst({
+    select: { name: true, recipeItems: { select: { id: true } } },
     where: { id },
   });
 
@@ -72,14 +73,21 @@ export const loader = ({ request }: Route.ActionArgs) => {
   }
 
   return prisma.ingredient.findMany({
+    select: {
+      category: true,
+      id: true,
+      name: true,
+      recipeItems: {
+        select: {
+          id: true,
+        },
+      },
+    },
     where: {
       category,
       name: {
         contains: name,
       },
-    },
-    include: {
-      recipeItems: true,
     },
   });
 };
