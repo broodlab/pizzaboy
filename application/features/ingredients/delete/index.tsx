@@ -21,6 +21,7 @@ export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
 
 export const loader = async ({ params: { id } }: Route.LoaderArgs) => {
   const ingredient = await prisma.ingredient.findFirst({
+    select: { name: true },
     where: { id },
   });
 
