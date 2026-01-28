@@ -1,6 +1,6 @@
 import { data, Form, Link, redirect } from "react-router";
 import type { Route } from "./+types";
-import prisma from "~/utils/prisma";
+import prisma from "~/utils/prisma.server";
 import type { EntityData } from "~/types/entities";
 import { Button } from "~/components/button";
 import { backNavigationIntent } from "~/types";

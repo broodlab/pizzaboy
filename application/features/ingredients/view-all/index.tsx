@@ -1,5 +1,5 @@
 import type { Route } from "./+types";
-import prisma from "~/utils/prisma";
+import prisma from "~/utils/prisma.server";
 import { Form, Link, Outlet, redirect, useLocation } from "react-router";
 import {
   FunnelPlus as FilterIcon,

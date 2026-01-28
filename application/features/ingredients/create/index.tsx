@@ -1,7 +1,7 @@
 import type { Route } from "./+types";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod/v4";
-import prisma from "~/utils/prisma";
+import prisma from "~/utils/prisma.server";
 import { redirect } from "react-router";
 
 import {
