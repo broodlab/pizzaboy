@@ -1079,8 +1079,7 @@ export type DoughScalarFieldEnum =
 
 export const RecipeItemScalarFieldEnum = {
   id: "id",
-  amount: "amount",
-  unit: "unit",
+  quantity: "quantity",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
   doughId: "doughId",
@@ -1152,14 +1151,6 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<
   $PrismaModel,
   "Int"
->;
-
-/**
- * Reference to a field of type 'MeasuringUnit'
- */
-export type EnumMeasuringUnitFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  "MeasuringUnit"
 >;
 
 /**

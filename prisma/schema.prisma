@@ -76,9 +76,8 @@ model Dough {
 }
 
 model RecipeItem {
-  id     String         @id @default(cuid())
-  amount Int?
-  unit   MeasuringUnit?
+  id       String  @id @default(cuid())
+  quantity String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -117,13 +116,6 @@ enum FoodCategory {
   Sauces
   Spices
   Vegetables
-}
-
-enum MeasuringUnit {
-  Gram
-  Milliliter
-  Piece
-  Pinch
 }
 
 enum UserRole {

@@ -20,24 +20,13 @@ export type RecipeItemModel =
 
 export type AggregateRecipeItem = {
   _count: RecipeItemCountAggregateOutputType | null;
-  _avg: RecipeItemAvgAggregateOutputType | null;
-  _sum: RecipeItemSumAggregateOutputType | null;
   _min: RecipeItemMinAggregateOutputType | null;
   _max: RecipeItemMaxAggregateOutputType | null;
 };
 
-export type RecipeItemAvgAggregateOutputType = {
-  amount: number | null;
-};
-
-export type RecipeItemSumAggregateOutputType = {
-  amount: number | null;
-};
-
 export type RecipeItemMinAggregateOutputType = {
   id: string | null;
-  amount: number | null;
-  unit: $Enums.MeasuringUnit | null;
+  quantity: string | null;
   createdAt: Date | null;
   updatedAt: Date | null;
   doughId: string | null;
@@ -47,8 +36,7 @@ export type RecipeItemMinAggregateOutputType = {
 
 export type RecipeItemMaxAggregateOutputType = {
   id: string | null;
-  amount: number | null;
-  unit: $Enums.MeasuringUnit | null;
+  quantity: string | null;
   createdAt: Date | null;
   updatedAt: Date | null;
   doughId: string | null;
@@ -58,8 +46,7 @@ export type RecipeItemMaxAggregateOutputType = {
 
 export type RecipeItemCountAggregateOutputType = {
   id: number;
-  amount: number;
-  unit: number;
+  quantity: number;
   createdAt: number;
   updatedAt: number;
   doughId: number;
@@ -68,18 +55,9 @@ export type RecipeItemCountAggregateOutputType = {
   _all: number;
 };
 
-export type RecipeItemAvgAggregateInputType = {
-  amount?: true;
-};
-
-export type RecipeItemSumAggregateInputType = {
-  amount?: true;
-};
-
 export type RecipeItemMinAggregateInputType = {
   id?: true;
-  amount?: true;
-  unit?: true;
+  quantity?: true;
   createdAt?: true;
   updatedAt?: true;
   doughId?: true;
@@ -89,8 +67,7 @@ export type RecipeItemMinAggregateInputType = {
 
 export type RecipeItemMaxAggregateInputType = {
   id?: true;
-  amount?: true;
-  unit?: true;
+  quantity?: true;
   createdAt?: true;
   updatedAt?: true;
   doughId?: true;
@@ -100,8 +77,7 @@ export type RecipeItemMaxAggregateInputType = {
 
 export type RecipeItemCountAggregateInputType = {
   id?: true;
-  amount?: true;
-  unit?: true;
+  quantity?: true;
   createdAt?: true;
   updatedAt?: true;
   doughId?: true;
@@ -153,18 +129,6 @@ export type RecipeItemAggregateArgs<
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
-   * Select which fields to average
-   **/
-  _avg?: RecipeItemAvgAggregateInputType;
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   *
-   * Select which fields to sum
-   **/
-  _sum?: RecipeItemSumAggregateInputType;
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   *
    * Select which fields to find the minimum value
    **/
   _min?: RecipeItemMinAggregateInputType;
@@ -197,24 +161,19 @@ export type RecipeItemGroupByArgs<
   take?: number;
   skip?: number;
   _count?: RecipeItemCountAggregateInputType | true;
-  _avg?: RecipeItemAvgAggregateInputType;
-  _sum?: RecipeItemSumAggregateInputType;
   _min?: RecipeItemMinAggregateInputType;
   _max?: RecipeItemMaxAggregateInputType;
 };
 
 export type RecipeItemGroupByOutputType = {
   id: string;
-  amount: number | null;
-  unit: $Enums.MeasuringUnit | null;
+  quantity: string | null;
   createdAt: Date;
   updatedAt: Date;
   doughId: string | null;
   ingredientId: string;
   pizzaId: string | null;
   _count: RecipeItemCountAggregateOutputType | null;
-  _avg: RecipeItemAvgAggregateOutputType | null;
-  _sum: RecipeItemSumAggregateOutputType | null;
   _min: RecipeItemMinAggregateOutputType | null;
   _max: RecipeItemMaxAggregateOutputType | null;
 };
@@ -237,11 +196,7 @@ export type RecipeItemWhereInput = {
   OR?: Prisma.RecipeItemWhereInput[];
   NOT?: Prisma.RecipeItemWhereInput | Prisma.RecipeItemWhereInput[];
   id?: Prisma.StringFilter<"RecipeItem"> | string;
-  amount?: Prisma.IntNullableFilter<"RecipeItem"> | number | null;
-  unit?:
-    | Prisma.EnumMeasuringUnitNullableFilter<"RecipeItem">
-    | $Enums.MeasuringUnit
-    | null;
+  quantity?: Prisma.StringNullableFilter<"RecipeItem"> | string | null;
   createdAt?: Prisma.DateTimeFilter<"RecipeItem"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"RecipeItem"> | Date | string;
   doughId?: Prisma.StringNullableFilter<"RecipeItem"> | string | null;
@@ -263,8 +218,7 @@ export type RecipeItemWhereInput = {
 
 export type RecipeItemOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
-  amount?: Prisma.SortOrderInput | Prisma.SortOrder;
-  unit?: Prisma.SortOrderInput | Prisma.SortOrder;
+  quantity?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   doughId?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -281,11 +235,7 @@ export type RecipeItemWhereUniqueInput = Prisma.AtLeast<
     AND?: Prisma.RecipeItemWhereInput | Prisma.RecipeItemWhereInput[];
     OR?: Prisma.RecipeItemWhereInput[];
     NOT?: Prisma.RecipeItemWhereInput | Prisma.RecipeItemWhereInput[];
-    amount?: Prisma.IntNullableFilter<"RecipeItem"> | number | null;
-    unit?:
-      | Prisma.EnumMeasuringUnitNullableFilter<"RecipeItem">
-      | $Enums.MeasuringUnit
-      | null;
+    quantity?: Prisma.StringNullableFilter<"RecipeItem"> | string | null;
     createdAt?: Prisma.DateTimeFilter<"RecipeItem"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"RecipeItem"> | Date | string;
     doughId?: Prisma.StringNullableFilter<"RecipeItem"> | string | null;
@@ -309,18 +259,15 @@ export type RecipeItemWhereUniqueInput = Prisma.AtLeast<
 
 export type RecipeItemOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
-  amount?: Prisma.SortOrderInput | Prisma.SortOrder;
-  unit?: Prisma.SortOrderInput | Prisma.SortOrder;
+  quantity?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   doughId?: Prisma.SortOrderInput | Prisma.SortOrder;
   ingredientId?: Prisma.SortOrder;
   pizzaId?: Prisma.SortOrderInput | Prisma.SortOrder;
   _count?: Prisma.RecipeItemCountOrderByAggregateInput;
-  _avg?: Prisma.RecipeItemAvgOrderByAggregateInput;
   _max?: Prisma.RecipeItemMaxOrderByAggregateInput;
   _min?: Prisma.RecipeItemMinOrderByAggregateInput;
-  _sum?: Prisma.RecipeItemSumOrderByAggregateInput;
 };
 
 export type RecipeItemScalarWhereWithAggregatesInput = {
@@ -332,10 +279,9 @@ export type RecipeItemScalarWhereWithAggregatesInput = {
     | Prisma.RecipeItemScalarWhereWithAggregatesInput
     | Prisma.RecipeItemScalarWhereWithAggregatesInput[];
   id?: Prisma.StringWithAggregatesFilter<"RecipeItem"> | string;
-  amount?: Prisma.IntNullableWithAggregatesFilter<"RecipeItem"> | number | null;
-  unit?:
-    | Prisma.EnumMeasuringUnitNullableWithAggregatesFilter<"RecipeItem">
-    | $Enums.MeasuringUnit
+  quantity?:
+    | Prisma.StringNullableWithAggregatesFilter<"RecipeItem">
+    | string
     | null;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"RecipeItem"> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"RecipeItem"> | Date | string;
@@ -352,8 +298,7 @@ export type RecipeItemScalarWhereWithAggregatesInput = {
 
 export type RecipeItemCreateInput = {
   id?: string;
-  amount?: number | null;
-  unit?: $Enums.MeasuringUnit | null;
+  quantity?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   dough?: Prisma.DoughCreateNestedOneWithoutRecipeItemsInput;
@@ -363,8 +308,7 @@ export type RecipeItemCreateInput = {
 
 export type RecipeItemUncheckedCreateInput = {
   id?: string;
-  amount?: number | null;
-  unit?: $Enums.MeasuringUnit | null;
+  quantity?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   doughId?: string | null;
@@ -374,11 +318,7 @@ export type RecipeItemUncheckedCreateInput = {
 
 export type RecipeItemUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  amount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  unit?:
-    | Prisma.NullableEnumMeasuringUnitFieldUpdateOperationsInput
-    | $Enums.MeasuringUnit
-    | null;
+  quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dough?: Prisma.DoughUpdateOneWithoutRecipeItemsNestedInput;
@@ -388,11 +328,7 @@ export type RecipeItemUpdateInput = {
 
 export type RecipeItemUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  amount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  unit?:
-    | Prisma.NullableEnumMeasuringUnitFieldUpdateOperationsInput
-    | $Enums.MeasuringUnit
-    | null;
+  quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -402,8 +338,7 @@ export type RecipeItemUncheckedUpdateInput = {
 
 export type RecipeItemCreateManyInput = {
   id?: string;
-  amount?: number | null;
-  unit?: $Enums.MeasuringUnit | null;
+  quantity?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   doughId?: string | null;
@@ -413,22 +348,14 @@ export type RecipeItemCreateManyInput = {
 
 export type RecipeItemUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  amount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  unit?:
-    | Prisma.NullableEnumMeasuringUnitFieldUpdateOperationsInput
-    | $Enums.MeasuringUnit
-    | null;
+  quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type RecipeItemUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  amount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  unit?:
-    | Prisma.NullableEnumMeasuringUnitFieldUpdateOperationsInput
-    | $Enums.MeasuringUnit
-    | null;
+  quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -448,8 +375,7 @@ export type RecipeItemOrderByRelationAggregateInput = {
 
 export type RecipeItemCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
-  amount?: Prisma.SortOrder;
-  unit?: Prisma.SortOrder;
+  quantity?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   doughId?: Prisma.SortOrder;
@@ -457,14 +383,9 @@ export type RecipeItemCountOrderByAggregateInput = {
   pizzaId?: Prisma.SortOrder;
 };
 
-export type RecipeItemAvgOrderByAggregateInput = {
-  amount?: Prisma.SortOrder;
-};
-
 export type RecipeItemMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
-  amount?: Prisma.SortOrder;
-  unit?: Prisma.SortOrder;
+  quantity?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   doughId?: Prisma.SortOrder;
@@ -474,17 +395,12 @@ export type RecipeItemMaxOrderByAggregateInput = {
 
 export type RecipeItemMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
-  amount?: Prisma.SortOrder;
-  unit?: Prisma.SortOrder;
+  quantity?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   doughId?: Prisma.SortOrder;
   ingredientId?: Prisma.SortOrder;
   pizzaId?: Prisma.SortOrder;
-};
-
-export type RecipeItemSumOrderByAggregateInput = {
-  amount?: Prisma.SortOrder;
 };
 
 export type RecipeItemCreateNestedManyWithoutPizzaInput = {
@@ -699,18 +615,6 @@ export type RecipeItemUncheckedUpdateManyWithoutDoughNestedInput = {
     | Prisma.RecipeItemScalarWhereInput[];
 };
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null;
-  increment?: number;
-  decrement?: number;
-  multiply?: number;
-  divide?: number;
-};
-
-export type NullableEnumMeasuringUnitFieldUpdateOperationsInput = {
-  set?: $Enums.MeasuringUnit | null;
-};
-
 export type RecipeItemCreateNestedManyWithoutIngredientInput = {
   create?:
     | Prisma.XOR<
@@ -819,8 +723,7 @@ export type RecipeItemUncheckedUpdateManyWithoutIngredientNestedInput = {
 
 export type RecipeItemCreateWithoutPizzaInput = {
   id?: string;
-  amount?: number | null;
-  unit?: $Enums.MeasuringUnit | null;
+  quantity?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   dough?: Prisma.DoughCreateNestedOneWithoutRecipeItemsInput;
@@ -829,8 +732,7 @@ export type RecipeItemCreateWithoutPizzaInput = {
 
 export type RecipeItemUncheckedCreateWithoutPizzaInput = {
   id?: string;
-  amount?: number | null;
-  unit?: $Enums.MeasuringUnit | null;
+  quantity?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   doughId?: string | null;
@@ -884,11 +786,7 @@ export type RecipeItemScalarWhereInput = {
   OR?: Prisma.RecipeItemScalarWhereInput[];
   NOT?: Prisma.RecipeItemScalarWhereInput | Prisma.RecipeItemScalarWhereInput[];
   id?: Prisma.StringFilter<"RecipeItem"> | string;
-  amount?: Prisma.IntNullableFilter<"RecipeItem"> | number | null;
-  unit?:
-    | Prisma.EnumMeasuringUnitNullableFilter<"RecipeItem">
-    | $Enums.MeasuringUnit
-    | null;
+  quantity?: Prisma.StringNullableFilter<"RecipeItem"> | string | null;
   createdAt?: Prisma.DateTimeFilter<"RecipeItem"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"RecipeItem"> | Date | string;
   doughId?: Prisma.StringNullableFilter<"RecipeItem"> | string | null;
@@ -898,8 +796,7 @@ export type RecipeItemScalarWhereInput = {
 
 export type RecipeItemCreateWithoutDoughInput = {
   id?: string;
-  amount?: number | null;
-  unit?: $Enums.MeasuringUnit | null;
+  quantity?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   ingredient: Prisma.IngredientCreateNestedOneWithoutRecipeItemsInput;
@@ -908,8 +805,7 @@ export type RecipeItemCreateWithoutDoughInput = {
 
 export type RecipeItemUncheckedCreateWithoutDoughInput = {
   id?: string;
-  amount?: number | null;
-  unit?: $Enums.MeasuringUnit | null;
+  quantity?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   ingredientId: string;
@@ -960,8 +856,7 @@ export type RecipeItemUpdateManyWithWhereWithoutDoughInput = {
 
 export type RecipeItemCreateWithoutIngredientInput = {
   id?: string;
-  amount?: number | null;
-  unit?: $Enums.MeasuringUnit | null;
+  quantity?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   dough?: Prisma.DoughCreateNestedOneWithoutRecipeItemsInput;
@@ -970,8 +865,7 @@ export type RecipeItemCreateWithoutIngredientInput = {
 
 export type RecipeItemUncheckedCreateWithoutIngredientInput = {
   id?: string;
-  amount?: number | null;
-  unit?: $Enums.MeasuringUnit | null;
+  quantity?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   doughId?: string | null;
@@ -1022,8 +916,7 @@ export type RecipeItemUpdateManyWithWhereWithoutIngredientInput = {
 
 export type RecipeItemCreateManyPizzaInput = {
   id?: string;
-  amount?: number | null;
-  unit?: $Enums.MeasuringUnit | null;
+  quantity?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   doughId?: string | null;
@@ -1032,11 +925,7 @@ export type RecipeItemCreateManyPizzaInput = {
 
 export type RecipeItemUpdateWithoutPizzaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  amount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  unit?:
-    | Prisma.NullableEnumMeasuringUnitFieldUpdateOperationsInput
-    | $Enums.MeasuringUnit
-    | null;
+  quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dough?: Prisma.DoughUpdateOneWithoutRecipeItemsNestedInput;
@@ -1045,11 +934,7 @@ export type RecipeItemUpdateWithoutPizzaInput = {
 
 export type RecipeItemUncheckedUpdateWithoutPizzaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  amount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  unit?:
-    | Prisma.NullableEnumMeasuringUnitFieldUpdateOperationsInput
-    | $Enums.MeasuringUnit
-    | null;
+  quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1058,11 +943,7 @@ export type RecipeItemUncheckedUpdateWithoutPizzaInput = {
 
 export type RecipeItemUncheckedUpdateManyWithoutPizzaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  amount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  unit?:
-    | Prisma.NullableEnumMeasuringUnitFieldUpdateOperationsInput
-    | $Enums.MeasuringUnit
-    | null;
+  quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1071,8 +952,7 @@ export type RecipeItemUncheckedUpdateManyWithoutPizzaInput = {
 
 export type RecipeItemCreateManyDoughInput = {
   id?: string;
-  amount?: number | null;
-  unit?: $Enums.MeasuringUnit | null;
+  quantity?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   ingredientId: string;
@@ -1081,11 +961,7 @@ export type RecipeItemCreateManyDoughInput = {
 
 export type RecipeItemUpdateWithoutDoughInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  amount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  unit?:
-    | Prisma.NullableEnumMeasuringUnitFieldUpdateOperationsInput
-    | $Enums.MeasuringUnit
-    | null;
+  quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   ingredient?: Prisma.IngredientUpdateOneRequiredWithoutRecipeItemsNestedInput;
@@ -1094,11 +970,7 @@ export type RecipeItemUpdateWithoutDoughInput = {
 
 export type RecipeItemUncheckedUpdateWithoutDoughInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  amount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  unit?:
-    | Prisma.NullableEnumMeasuringUnitFieldUpdateOperationsInput
-    | $Enums.MeasuringUnit
-    | null;
+  quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   ingredientId?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1107,11 +979,7 @@ export type RecipeItemUncheckedUpdateWithoutDoughInput = {
 
 export type RecipeItemUncheckedUpdateManyWithoutDoughInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  amount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  unit?:
-    | Prisma.NullableEnumMeasuringUnitFieldUpdateOperationsInput
-    | $Enums.MeasuringUnit
-    | null;
+  quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   ingredientId?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1120,8 +988,7 @@ export type RecipeItemUncheckedUpdateManyWithoutDoughInput = {
 
 export type RecipeItemCreateManyIngredientInput = {
   id?: string;
-  amount?: number | null;
-  unit?: $Enums.MeasuringUnit | null;
+  quantity?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   doughId?: string | null;
@@ -1130,11 +997,7 @@ export type RecipeItemCreateManyIngredientInput = {
 
 export type RecipeItemUpdateWithoutIngredientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  amount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  unit?:
-    | Prisma.NullableEnumMeasuringUnitFieldUpdateOperationsInput
-    | $Enums.MeasuringUnit
-    | null;
+  quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dough?: Prisma.DoughUpdateOneWithoutRecipeItemsNestedInput;
@@ -1143,11 +1006,7 @@ export type RecipeItemUpdateWithoutIngredientInput = {
 
 export type RecipeItemUncheckedUpdateWithoutIngredientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  amount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  unit?:
-    | Prisma.NullableEnumMeasuringUnitFieldUpdateOperationsInput
-    | $Enums.MeasuringUnit
-    | null;
+  quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1156,11 +1015,7 @@ export type RecipeItemUncheckedUpdateWithoutIngredientInput = {
 
 export type RecipeItemUncheckedUpdateManyWithoutIngredientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  amount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-  unit?:
-    | Prisma.NullableEnumMeasuringUnitFieldUpdateOperationsInput
-    | $Enums.MeasuringUnit
-    | null;
+  quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1173,8 +1028,7 @@ export type RecipeItemSelect<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
-    amount?: boolean;
-    unit?: boolean;
+    quantity?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     doughId?: boolean;
@@ -1193,8 +1047,7 @@ export type RecipeItemSelectCreateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
-    amount?: boolean;
-    unit?: boolean;
+    quantity?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     doughId?: boolean;
@@ -1213,8 +1066,7 @@ export type RecipeItemSelectUpdateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
-    amount?: boolean;
-    unit?: boolean;
+    quantity?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     doughId?: boolean;
@@ -1229,8 +1081,7 @@ export type RecipeItemSelectUpdateManyAndReturn<
 
 export type RecipeItemSelectScalar = {
   id?: boolean;
-  amount?: boolean;
-  unit?: boolean;
+  quantity?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
   doughId?: boolean;
@@ -1243,8 +1094,7 @@ export type RecipeItemOmit<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
   | "id"
-  | "amount"
-  | "unit"
+  | "quantity"
   | "createdAt"
   | "updatedAt"
   | "doughId"
@@ -1290,8 +1140,7 @@ export type $RecipeItemPayload<
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
       id: string;
-      amount: number | null;
-      unit: $Enums.MeasuringUnit | null;
+      quantity: string | null;
       createdAt: Date;
       updatedAt: Date;
       doughId: string | null;
@@ -1930,8 +1779,7 @@ export interface Prisma__RecipeItemClient<
  */
 export interface RecipeItemFieldRefs {
   readonly id: Prisma.FieldRef<"RecipeItem", "String">;
-  readonly amount: Prisma.FieldRef<"RecipeItem", "Int">;
-  readonly unit: Prisma.FieldRef<"RecipeItem", "MeasuringUnit">;
+  readonly quantity: Prisma.FieldRef<"RecipeItem", "String">;
   readonly createdAt: Prisma.FieldRef<"RecipeItem", "DateTime">;
   readonly updatedAt: Prisma.FieldRef<"RecipeItem", "DateTime">;
   readonly doughId: Prisma.FieldRef<"RecipeItem", "String">;

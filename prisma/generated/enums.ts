@@ -24,15 +24,6 @@ export const FoodCategory = {
 
 export type FoodCategory = (typeof FoodCategory)[keyof typeof FoodCategory];
 
-export const MeasuringUnit = {
-  Gram: "Gram",
-  Milliliter: "Milliliter",
-  Piece: "Piece",
-  Pinch: "Pinch",
-} as const;
-
-export type MeasuringUnit = (typeof MeasuringUnit)[keyof typeof MeasuringUnit];
-
 export const UserRole = {
   Admin: "Admin",
   Guest: "Guest",

@@ -136,8 +136,7 @@ export type DoughScalarFieldEnum =
 
 export const RecipeItemScalarFieldEnum = {
   id: "id",
-  amount: "amount",
-  unit: "unit",
+  quantity: "quantity",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
   doughId: "doughId",
