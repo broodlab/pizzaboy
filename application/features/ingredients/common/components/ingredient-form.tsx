@@ -31,7 +31,9 @@ export const IngredientForm: FC<IngredientFormProps> = ({
         <div className="flex flex-col gap-6">
           <ErrorList errors={form.errors} id={form.id} />
           <div className="grid gap-3">
-            <Label htmlFor={fields.name.id}>Name</Label>
+            <Label htmlFor={fields.name.id} required>
+              Name
+            </Label>
             <Input
               {...getInputProps(fields.name, { type: "text" })}
               autoFocus
@@ -39,7 +41,9 @@ export const IngredientForm: FC<IngredientFormProps> = ({
             <ErrorList errors={fields.name.errors} id={fields.name.errorId} />
           </div>
           <div className="grid gap-3">
-            <Label htmlFor={fields.category.id}>Category</Label>
+            <Label htmlFor={fields.category.id} required>
+              Category
+            </Label>
             <Select {...getSelectProps(fields.category)}>
               {[
                 <option key="none" value="">
