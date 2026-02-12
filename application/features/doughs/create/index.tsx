@@ -149,14 +149,14 @@ export default function CreateDough({ actionData }: Route.ComponentProps) {
                             </div>
                             <Button
                               className="basis-1/3"
-                              asChild
+                              render={
+                                <Link className="text-gray-600" to="/mama">
+                                  <SearchIcon className="size-6 text-gray-600 md:size-5" />
+                                  <span>Advanced Search</span>
+                                </Link>
+                              }
                               variant="link"
-                            >
-                              <Link className="text-gray-600" to="/mama">
-                                <SearchIcon className="size-6 text-gray-600 md:size-5" />
-                                <span>Advanced Search</span>
-                              </Link>
-                            </Button>
+                            />
                           </div>
                           <div className="grid gap-3">
                             <Label>Quantity</Label>

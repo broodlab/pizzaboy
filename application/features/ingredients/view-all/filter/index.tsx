@@ -103,17 +103,20 @@ export default function FilterIngredients({
               />
             </div>
             <div className="flex flex-col-reverse justify-end gap-2 md:flex-col md:flex-row">
-              <Button asChild variant="outline">
-                <Link
-                  state={{ ...backNavigationIntent }}
-                  to={{
-                    pathname: "/ingredients",
-                    search: searchParams.toString(),
-                  }}
-                >
-                  Cancel
-                </Link>
-              </Button>
+              <Button
+                render={
+                  <Link
+                    state={{ ...backNavigationIntent }}
+                    to={{
+                      pathname: "/ingredients",
+                      search: searchParams.toString(),
+                    }}
+                  >
+                    Cancel
+                  </Link>
+                }
+                variant="outline"
+              />
               <Button type="submit" variant="default">
                 Apply
               </Button>

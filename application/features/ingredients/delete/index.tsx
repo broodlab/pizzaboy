@@ -50,11 +50,14 @@ export default function DeleteIngredient({
       <Form method="post">
         <div className="flex flex-col gap-2 sm:flex-row">
           <Button variant="destructive">Delete</Button>
-          <Button asChild variant="outline">
-            <Link state={{ ...backNavigationIntent }} to="/ingredients">
-              Cancel
-            </Link>
-          </Button>
+          <Button
+            render={
+              <Link state={{ ...backNavigationIntent }} to="/ingredients">
+                Cancel
+              </Link>
+            }
+            variant="outline"
+          />
         </div>
       </Form>
     </Page>
