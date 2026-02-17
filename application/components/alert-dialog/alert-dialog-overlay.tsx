@@ -1,15 +1,15 @@
-import type { ComponentProps, FC } from "react";
-import * as React from "react";
-import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
+import type { FC } from "react";
+import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
 import { cn } from "~/utils/create-class-name";
 
-export const AlertDialogOverlay: FC<
-  ComponentProps<typeof AlertDialogPrimitive.Overlay>
-> = ({ className, ...props }) => {
+export const AlertDialogOverlay: FC<AlertDialogPrimitive.Backdrop.Props> = ({
+  className,
+  ...props
+}) => {
   return (
-    <AlertDialogPrimitive.Overlay
+    <AlertDialogPrimitive.Backdrop
       className={cn(
-        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
+        "data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 fixed inset-0 isolate z-50 bg-black/10 duration-100 supports-backdrop-filter:backdrop-blur-xs",
         className,
       )}
       data-slot="alert-dialog-overlay"

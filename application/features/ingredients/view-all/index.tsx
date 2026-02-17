@@ -11,16 +11,7 @@ import {
 } from "lucide-react";
 import type { FC } from "react";
 import { Button } from "~/components/button";
-import { AlertDialog } from "~/components/alert-dialog/alert-dialog";
-import { AlertDialogTrigger } from "~/components/alert-dialog/alert-dialog-trigger";
 import { useScripting } from "~/hooks/use-scripting";
-import { AlertDialogContent } from "~/components/alert-dialog/alert-dialog-content";
-import { AlertDialogTitle } from "~/components/alert-dialog/alert-dialog-title";
-import { AlertDialogHeader } from "~/components/alert-dialog/alert-dialog-header";
-import { AlertDialogDescription } from "~/components/alert-dialog/alert-dialog-description";
-import { AlertDialogFooter } from "~/components/alert-dialog/alert-dialog-footer";
-import { AlertDialogCancel } from "~/components/alert-dialog/alert-dialog-cancel";
-import { AlertDialogAction } from "~/components/alert-dialog/alert-dialog-action";
 import type { FoodCategory } from "~/prisma/client";
 import { foodCategories } from "~/types/food-categories";
 import {
@@ -38,6 +29,17 @@ import {
 } from "~/utils/notifications";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
 import { Card, CardContent } from "~/components/card";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "~/components/alert-dialog";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -230,12 +232,14 @@ const ActionLinks: FC<{ deletable: boolean; id: string; name: string }> = ({
   if (deletable && isScripting) {
     DeleteAction = () => (
       <AlertDialog>
-        <AlertDialogTrigger asChild>
-          <DeleteIcon
-            className="size-6 cursor-pointer text-red-400 md:size-5"
-            role="button"
-          />
-        </AlertDialogTrigger>
+        <AlertDialogTrigger
+          render={
+            <DeleteIcon
+              className="size-6 cursor-pointer text-red-400 md:size-5"
+              role="button"
+            />
+          }
+        ></AlertDialogTrigger>
         <AlertDialogContent>
           <Form method="post">
             <AlertDialogHeader>
@@ -248,7 +252,7 @@ const ActionLinks: FC<{ deletable: boolean; id: string; name: string }> = ({
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction name="id" type="submit" value={id}>
+              <AlertDialogAction name="id" size="sm" type="submit" value={id}>
                 Delete
               </AlertDialogAction>
             </AlertDialogFooter>
