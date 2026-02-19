@@ -9,9 +9,9 @@
   },
   "iconLibrary": "lucide",
   "rsc": false,
-  "style": "new-york",
+  "style": "radix-nova",
   "tailwind": {
-    "baseColor": "slate",
+    "baseColor": "neutral",
     "config": "",
     "css": "application/root/styles.css",
     "cssVariables": true,
