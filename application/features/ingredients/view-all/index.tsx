@@ -241,17 +241,17 @@ const ActionLinks: FC<{ deletable: boolean; id: string; name: string }> = ({
           }
         ></AlertDialogTrigger>
         <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete Ingredient</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete ingredient{" "}
+              <span className="font-bold">{name}</span>? This action cannot be
+              undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
           <Form method="post">
-            <AlertDialogHeader>
-              <AlertDialogTitle>Delete Ingredient</AlertDialogTitle>
-              <AlertDialogDescription>
-                Are you sure you want to delete ingredient{" "}
-                <span className="font-bold">{name}</span>? This action cannot be
-                undone.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogCancel size="sm">Cancel</AlertDialogCancel>
               <AlertDialogAction name="id" size="sm" type="submit" value={id}>
                 Delete
               </AlertDialogAction>
