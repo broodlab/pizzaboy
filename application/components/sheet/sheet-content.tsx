@@ -1,5 +1,4 @@
 import type { ComponentProps, FC } from "react";
-import * as React from "react";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { cn } from "~/utils/create-class-name";
 import { XIcon } from "lucide-react";

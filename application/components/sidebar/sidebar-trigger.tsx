@@ -1,5 +1,4 @@
 import type { ComponentProps, FC } from "react";
-import * as React from "react";
 import { Button } from "~/components/button";
 import { cn } from "~/utils/create-class-name";
 import { PanelLeftIcon } from "lucide-react";

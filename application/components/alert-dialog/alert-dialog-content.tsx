@@ -1,4 +1,3 @@
-import * as React from "react";
 import { type FC } from "react";
 import { cn } from "~/utils/create-class-name";
 import { AlertDialogPortal } from "~/components/alert-dialog/alert-dialog-portal";

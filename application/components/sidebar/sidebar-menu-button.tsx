@@ -1,6 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import type { ComponentProps, FC } from "react";
-import * as React from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "~/components/tooltip";
 import { Slot } from "@radix-ui/react-slot";
 import { cn } from "~/utils/create-class-name";

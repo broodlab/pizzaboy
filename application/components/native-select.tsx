@@ -1,4 +1,3 @@
-import * as React from "react";
 import { type ComponentProps, type FC } from "react";
 
 export const NativeSelect: FC<ComponentProps<"select">> = ({

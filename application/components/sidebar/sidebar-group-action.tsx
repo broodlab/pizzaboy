@@ -1,5 +1,4 @@
 import type { ComponentProps, FC } from "react";
-import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cn } from "~/utils/create-class-name";
 

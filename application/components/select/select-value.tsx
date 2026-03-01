@@ -1,5 +1,4 @@
 import type { ComponentProps, FC } from "react";
-import * as React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 
 export const SelectValue: FC<ComponentProps<typeof SelectPrimitive.Value>> = ({

@@ -1,5 +1,4 @@
 import type { ComponentProps, FC } from "react";
-import * as React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { ChevronDownIcon } from "lucide-react";
 import { cn } from "~/utils/create-class-name";
