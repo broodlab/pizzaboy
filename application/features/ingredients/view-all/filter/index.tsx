@@ -63,7 +63,7 @@ export default function FilterIngredients({
   });
 
   return (
-    <Card>
+    <Card className="mt-4 mb-5">
       <CardHeader>
         <CardTitle>Filter</CardTitle>
       </CardHeader>

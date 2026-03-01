@@ -111,7 +111,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
           entity="ingredient"
         />
       </div>
-      <div className="flex flex-col gap-4 md:gap-2">
+      <div className="flex flex-col gap-4">
         <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <Button
             render={
