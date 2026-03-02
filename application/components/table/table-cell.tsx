@@ -8,7 +8,7 @@ export const TableCell: FC<ComponentProps<"td">> = ({
   return (
     <td
       className={cn(
-        "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0",
         className,
       )}
       data-slot="table-cell"
