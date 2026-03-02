@@ -22,11 +22,7 @@ import type { Route } from "./+types";
 import prisma from "~/utils/prisma.server";
 import { ErrorList } from "~/components/error-list";
 import { Textarea } from "~/components/textarea";
-import {
-  Plus as PlusIcon,
-  SearchIcon,
-  Trash2 as DeleteIcon,
-} from "lucide-react";
+import { SearchIcon, Trash2 as DeleteIcon } from "lucide-react";
 import { Separator } from "~/components/separator";
 import { Fragment } from "react";
 
@@ -188,9 +184,9 @@ export default function CreateDough({ actionData }: Route.ComponentProps) {
                     {...form.insert.getButtonProps({
                       name: fields.recipeItems.name,
                     })}
-                    variant="outline"
+                    // variant="outline"
                   >
-                    <PlusIcon className="size-6 text-gray-600 md:size-5" />
+                    {/*<PlusIcon className="size-6 text-gray-600 md:size-5" />*/}
                     <span>Add</span>
                   </Button>
                 </div>
