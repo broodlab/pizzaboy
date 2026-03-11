@@ -1767,6 +1767,11 @@ export type DoughFindManyArgs<
    * Skip the first `n` Doughs.
    */
   skip?: number;
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   *
+   * Filter by unique combinations of Doughs.
+   */
   distinct?: Prisma.DoughScalarFieldEnum | Prisma.DoughScalarFieldEnum[];
 };
 

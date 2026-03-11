@@ -1544,6 +1544,11 @@ export type OrderFindManyArgs<
    * Skip the first `n` Orders.
    */
   skip?: number;
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   *
+   * Filter by unique combinations of Orders.
+   */
   distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[];
 };
 

@@ -15,8 +15,8 @@ import type * as Prisma from "./prismaNamespace";
 
 const config: runtime.GetPrismaClientConfig = {
   previewFeatures: [],
-  clientVersion: "7.4.0",
-  engineVersion: "ab56fe763f921d033a6c195e7ddeb3e255bdbb57",
+  clientVersion: "7.5.0",
+  engineVersion: "280c870be64f457428992c43c1f6d557fab6e29e",
   activeProvider: "sqlite",
   inlineSchema:
     'generator client {\n  output   = "./generated"\n  provider = "prisma-client"\n}\n\ndatasource db {\n  provider = "sqlite"\n}\n\nmodel User {\n  id   String   @id @default(cuid())\n  name String   @unique\n  role UserRole\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  doughs      Dough[]\n  ingredients Ingredient[]\n  orders      Order[]\n  pizzas      Pizza[]\n}\n\nmodel Order {\n  id String @id @default(cuid())\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  orderItems OrderItem[]\n  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)\n  userId     String\n}\n\nmodel OrderItem {\n  id     String @id @default(cuid())\n  amount Int    @default(1)\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)\n  orderId String\n  pizza   Pizza?  @relation(fields: [pizzaId], references: [id], onDelete: SetNull)\n  pizzaId String?\n}\n\nmodel Pizza {\n  id          String  @id @default(cuid())\n  name        String\n  description String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  dough       Dough        @relation(fields: [doughId], references: [id], onDelete: NoAction)\n  doughId     String\n  orderItems  OrderItem[]\n  recipeItems RecipeItem[]\n  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)\n  userId      String\n}\n\nmodel Dough {\n  id          String  @id @default(cuid())\n  name        String\n  description String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  pizzas      Pizza[]\n  recipeItems RecipeItem[]\n  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)\n  userId      String\n}\n\nmodel RecipeItem {\n  id       String  @id @default(cuid())\n  quantity String?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  dough        Dough?     @relation(fields: [doughId], references: [id], onDelete: Cascade)\n  doughId      String?\n  ingredient   Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)\n  ingredientId String\n  pizza        Pizza?     @relation(fields: [pizzaId], references: [id], onDelete: Cascade)\n  pizzaId      String?\n}\n\nmodel Ingredient {\n  id          String       @id @default(cuid())\n  name        String       @unique\n  description String?\n  category    FoodCategory @default(Others)\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  recipeItems RecipeItem[]\n  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)\n  userId      String\n}\n\nenum FoodCategory {\n  Cheese\n  Fish\n  Fruits\n  Grain\n  Herbs\n  Liquids\n  Meat\n  Others\n  Sauces\n  Spices\n  Vegetables\n}\n\nenum UserRole {\n  Admin\n  Guest\n  Host\n  System\n}\n',
@@ -77,7 +77,9 @@ export interface PrismaClientConstructor {
    * Type-safe database client for TypeScript
    * @example
    * ```
-   * const prisma = new PrismaClient()
+   * const prisma = new PrismaClient({
+   *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
+   * })
    * // Fetch zero or more Users
    * const users = await prisma.user.findMany()
    * ```
@@ -106,7 +108,9 @@ export interface PrismaClientConstructor {
  * Type-safe database client for TypeScript
  * @example
  * ```
- * const prisma = new PrismaClient()
+ * const prisma = new PrismaClient({
+ *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
+ * })
  * // Fetch zero or more Users
  * const users = await prisma.user.findMany()
  * ```
@@ -208,7 +212,7 @@ export interface PrismaClient<
    * ])
    * ```
    *
-   * Read more in our [docs](https://www.prisma.io/docs/concepts/components/prisma-client/transactions).
+   * Read more in our [docs](https://www.prisma.io/docs/orm/prisma-client/queries/transactions).
    */
   $transaction<P extends Prisma.PrismaPromise<any>[]>(
     arg: [...P],
