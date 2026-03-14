@@ -1,13 +1,6 @@
-import type { ComponentProps, FC } from "react";
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
-import { TooltipProvider } from "~/components/tooltip";
+import type { FC } from "react";
+import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
 
-export const Tooltip: FC<ComponentProps<typeof TooltipPrimitive.Root>> = ({
-  ...props
-}) => {
-  return (
-    <TooltipProvider>
-      <TooltipPrimitive.Root data-slot="tooltip" {...props} />
-    </TooltipProvider>
-  );
+export const Tooltip: FC<TooltipPrimitive.Root.Props> = ({ ...props }) => {
+  return <TooltipPrimitive.Root data-slot="tooltip" {...props} />;
 };

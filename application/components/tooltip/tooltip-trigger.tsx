@@ -1,8 +1,8 @@
-import type { ComponentProps, FC } from "react";
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
+import type { FC } from "react";
+import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
 
-export const TooltipTrigger: FC<
-  ComponentProps<typeof TooltipPrimitive.Trigger>
-> = ({ ...props }) => {
+export const TooltipTrigger: FC<TooltipPrimitive.Trigger.Props> = ({
+  ...props
+}) => {
   return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
 };
