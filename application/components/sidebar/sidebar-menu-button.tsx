@@ -68,9 +68,8 @@ export const SidebarMenuButton: FC<
 
   return (
     <Tooltip>
-      <TooltipTrigger asChild>{button}</TooltipTrigger>
+      <TooltipTrigger render={button} />
       <TooltipContent
-        align="center"
         hidden={state !== "collapsed" || isMobile}
         side="right"
         {...tooltip}

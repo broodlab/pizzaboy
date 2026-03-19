@@ -2,7 +2,13 @@ import type { FC } from "react";
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
 import { cn } from "~/utils/create-class-name";
 
-export const TooltipContent: FC<TooltipPrimitive.Popup.Props> = ({
+export const TooltipContent: FC<
+  TooltipPrimitive.Popup.Props &
+    Pick<
+      TooltipPrimitive.Positioner.Props,
+      "align" | "alignOffset" | "side" | "sideOffset"
+    >
+> = ({
   align = "center",
   alignOffset = 0,
   children,
@@ -10,11 +16,7 @@ export const TooltipContent: FC<TooltipPrimitive.Popup.Props> = ({
   side = "top",
   sideOffset = 4,
   ...props
-}: TooltipPrimitive.Popup.Props &
-  Pick<
-    TooltipPrimitive.Positioner.Props,
-    "align" | "alignOffset" | "side" | "sideOffset"
-  >) => {
+}) => {
   return (
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Positioner
