@@ -3,7 +3,7 @@ import { cn } from "~/utils/create-class-name";
 
 export const FieldError: FC<
   ComponentProps<"div"> & {
-    errors?: Array<{ message?: string } | undefined>;
+    errors?: string[];
   }
 > = ({ className, children, errors, ...props }) => {
   const content = useMemo(() => {
@@ -15,19 +15,16 @@ export const FieldError: FC<
       return null;
     }
 
-    const uniqueErrors = [
-      ...new Map(errors.map((error) => [error?.message, error])).values(),
-    ];
+    const uniqueErrors = Array.from(new Set(errors));
 
-    if (uniqueErrors?.length == 1) {
-      return uniqueErrors[0]?.message;
+    if (uniqueErrors.length == 1) {
+      return uniqueErrors[0];
     }
 
     return (
       <ul className="ml-4 flex list-disc flex-col gap-1">
         {uniqueErrors.map(
-          (error, index) =>
-            error?.message && <li key={index}>{error.message}</li>,
+          (error, index) => error && <li key={index}>{error}</li>,
         )}
       </ul>
     );
