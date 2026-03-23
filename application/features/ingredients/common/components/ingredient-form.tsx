@@ -10,13 +10,20 @@ import type { ingredientSchema } from "~/features/ingredients/common/schemas";
 import type { z } from "zod/v4";
 import { Card, CardContent } from "~/components/card";
 import { Form } from "react-router";
-import { ErrorList } from "~/components/error-list";
-import { Label } from "~/components/label";
 import { Input } from "~/components/input";
 import { NativeSelect as Select } from "~/components/native-select";
 import { foodCategories } from "~/types/food-categories";
 import { Textarea } from "~/components/textarea";
 import { Button } from "~/components/button";
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSet,
+} from "~/components/field";
 
 type IngredientFormProps = {
   formConfig: ReturnType<typeof useForm<z.infer<typeof ingredientSchema>>>;
@@ -28,63 +35,65 @@ export const IngredientForm: FC<IngredientFormProps> = ({
   <Card>
     <CardContent>
       <Form {...getFormProps(form)} method="post" onSubmit={form.onSubmit}>
-        <div className="flex flex-col gap-6">
-          <ErrorList errors={form.errors} id={form.id} />
-          <div className="grid gap-3">
-            <Label htmlFor={fields.name.id} required>
-              Name
-            </Label>
-            <Input
-              {...getInputProps(fields.name, { type: "text" })}
-              autoFocus
-            />
-            <ErrorList errors={fields.name.errors} id={fields.name.errorId} />
-          </div>
-          <div className="grid gap-3">
-            <Label htmlFor={fields.category.id} required>
-              Category
-            </Label>
-            <Select {...getSelectProps(fields.category)}>
-              {[
-                <option key="none" value="">
-                  Select a category
-                </option>,
-                ...foodCategories.map((category) => (
-                  <option
-                    key={category}
-                    selected={category === fields.category.defaultValue}
-                    value={category}
-                  >
-                    {category}
-                  </option>
-                )),
-              ]}
-            </Select>
-            <ErrorList
-              errors={fields.category.errors}
-              id={fields.category.errorId}
-            />
-          </div>
-          <div className="grid gap-3">
-            <Label htmlFor={fields.description.id}>Description</Label>
-            <Textarea {...getTextareaProps(fields.description)} />
-            <ErrorList
-              errors={fields.description.errors}
-              id={fields.description.errorId}
-            />
-          </div>
-          <div className="grid gap-3">
-            <div className="flex justify-end">
-              <Button
-                className="w-full sm:w-auto"
-                type="submit"
-                variant="default"
-              >
-                Save
-              </Button>
-            </div>
-          </div>
-        </div>
+        <FieldGroup>
+          <FieldSet>
+            <FieldLegend>Title</FieldLegend>
+            <FieldGroup>
+              <Field>
+                <FieldError errors={form.errors} />
+              </Field>
+              <Field data-invalid={!fields.name.valid}>
+                <FieldLabel htmlFor={fields.name.id} required>
+                  Name
+                </FieldLabel>
+                <Input
+                  {...getInputProps(fields.name, { type: "text" })}
+                  autoFocus
+                />
+                <FieldDescription>Use a unique name</FieldDescription>
+                <FieldError errors={fields.name.errors}></FieldError>
+              </Field>
+              <Field data-invalid={!fields.category.valid}>
+                <FieldLabel htmlFor={fields.category.id} required>
+                  Category
+                </FieldLabel>
+                <Select {...getSelectProps(fields.category)}>
+                  {[
+                    <option key="none" value="">
+                      Select a category
+                    </option>,
+                    ...foodCategories.map((category) => (
+                      <option
+                        key={category}
+                        selected={category === fields.category.defaultValue}
+                        value={category}
+                      >
+                        {category}
+                      </option>
+                    )),
+                  ]}
+                </Select>
+                <FieldError errors={fields.category.errors} />
+              </Field>
+              <Field data-invalid={!fields.description.valid}>
+                <FieldLabel htmlFor={fields.description.id}>
+                  Description
+                </FieldLabel>
+                <Textarea {...getTextareaProps(fields.description)} />
+                <FieldError errors={fields.description.errors} />
+              </Field>
+              <Field orientation="responsive">
+                <Button
+                  className="w-full sm:w-auto"
+                  type="submit"
+                  variant="default"
+                >
+                  Save
+                </Button>
+              </Field>
+            </FieldGroup>
+          </FieldSet>
+        </FieldGroup>
       </Form>
     </CardContent>
   </Card>
