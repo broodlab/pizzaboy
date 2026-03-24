@@ -21,7 +21,6 @@ import {
   FieldError,
   FieldGroup,
   FieldLabel,
-  FieldLegend,
   FieldSet,
 } from "~/components/field";
 
@@ -37,7 +36,6 @@ export const IngredientForm: FC<IngredientFormProps> = ({
       <Form {...getFormProps(form)} method="post" onSubmit={form.onSubmit}>
         <FieldGroup>
           <FieldSet>
-            <FieldLegend>Title</FieldLegend>
             <FieldGroup>
               <Field>
                 <FieldError errors={form.errors} />
