@@ -20,11 +20,17 @@ import { parseWithZod } from "@conform-to/zod/v4";
 import { doughSchema } from "~/features/doughs/common/schemas";
 import type { Route } from "./+types";
 import prisma from "~/utils/prisma.server";
-import { ErrorList } from "~/components/error-list";
 import { Textarea } from "~/components/textarea";
 import { PlusIcon, SearchIcon, Trash2 as DeleteIcon } from "lucide-react";
 import { Separator } from "~/components/separator";
 import { Fragment } from "react";
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  FieldSet,
+} from "~/components/field";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -87,29 +93,29 @@ export default function CreateDough({ actionData }: Route.ComponentProps) {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-col gap-6">
-                <div className="grid gap-3">
-                  <Label htmlFor={fields.name.id} required>
-                    Name
-                  </Label>
-                  <Input
-                    {...getInputProps(fields.name, { type: "text" })}
-                    autoFocus
-                  />
-                  <ErrorList
-                    errors={fields.name.errors}
-                    id={fields.name.errorId}
-                  />
-                </div>
-                <div className="grid gap-3">
-                  <Label htmlFor={fields.description.id}>Description</Label>
-                  <Textarea {...getTextareaProps(fields.description)} />
-                  <ErrorList
-                    errors={fields.description.errors}
-                    id={fields.description.errorId}
-                  />
-                </div>
-              </div>
+              <FieldGroup>
+                <FieldSet>
+                  <FieldGroup>
+                    <Field data-invalid={!fields.name.valid}>
+                      <FieldLabel htmlFor={fields.name.id} required>
+                        Name
+                      </FieldLabel>
+                      <Input
+                        {...getInputProps(fields.name, { type: "text" })}
+                        autoFocus
+                      />
+                      <FieldError errors={fields.name.errors} />
+                    </Field>
+                    <Field data-invalid={!fields.description.valid}>
+                      <FieldLabel htmlFor={fields.description.id}>
+                        Description
+                      </FieldLabel>
+                      <Textarea {...getTextareaProps(fields.description)} />
+                      <FieldError errors={fields.description.errors} />
+                    </Field>
+                  </FieldGroup>
+                </FieldSet>
+              </FieldGroup>
             </CardContent>
           </Card>
           <Card>
