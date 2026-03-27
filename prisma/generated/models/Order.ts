@@ -157,17 +157,18 @@ export type OrderGroupByOutputType = {
   _max: OrderMaxAggregateOutputType | null;
 };
 
-type GetOrderGroupByPayload<T extends OrderGroupByArgs> = Prisma.PrismaPromise<
-  Array<
-    Prisma.PickEnumerable<OrderGroupByOutputType, T["by"]> & {
-      [P in keyof T & keyof OrderGroupByOutputType]: P extends "_count"
-        ? T[P] extends boolean
-          ? number
-          : Prisma.GetScalarType<T[P], OrderGroupByOutputType[P]>
-        : Prisma.GetScalarType<T[P], OrderGroupByOutputType[P]>;
-    }
-  >
->;
+export type GetOrderGroupByPayload<T extends OrderGroupByArgs> =
+  Prisma.PrismaPromise<
+    Array<
+      Prisma.PickEnumerable<OrderGroupByOutputType, T["by"]> & {
+        [P in keyof T & keyof OrderGroupByOutputType]: P extends "_count"
+          ? T[P] extends boolean
+            ? number
+            : Prisma.GetScalarType<T[P], OrderGroupByOutputType[P]>
+          : Prisma.GetScalarType<T[P], OrderGroupByOutputType[P]>;
+      }
+    >
+  >;
 
 export type OrderWhereInput = {
   AND?: Prisma.OrderWhereInput | Prisma.OrderWhereInput[];

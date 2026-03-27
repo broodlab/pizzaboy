@@ -178,17 +178,18 @@ export type PizzaGroupByOutputType = {
   _max: PizzaMaxAggregateOutputType | null;
 };
 
-type GetPizzaGroupByPayload<T extends PizzaGroupByArgs> = Prisma.PrismaPromise<
-  Array<
-    Prisma.PickEnumerable<PizzaGroupByOutputType, T["by"]> & {
-      [P in keyof T & keyof PizzaGroupByOutputType]: P extends "_count"
-        ? T[P] extends boolean
-          ? number
-          : Prisma.GetScalarType<T[P], PizzaGroupByOutputType[P]>
-        : Prisma.GetScalarType<T[P], PizzaGroupByOutputType[P]>;
-    }
-  >
->;
+export type GetPizzaGroupByPayload<T extends PizzaGroupByArgs> =
+  Prisma.PrismaPromise<
+    Array<
+      Prisma.PickEnumerable<PizzaGroupByOutputType, T["by"]> & {
+        [P in keyof T & keyof PizzaGroupByOutputType]: P extends "_count"
+          ? T[P] extends boolean
+            ? number
+            : Prisma.GetScalarType<T[P], PizzaGroupByOutputType[P]>
+          : Prisma.GetScalarType<T[P], PizzaGroupByOutputType[P]>;
+      }
+    >
+  >;
 
 export type PizzaWhereInput = {
   AND?: Prisma.PizzaWhereInput | Prisma.PizzaWhereInput[];

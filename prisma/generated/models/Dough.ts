@@ -171,17 +171,18 @@ export type DoughGroupByOutputType = {
   _max: DoughMaxAggregateOutputType | null;
 };
 
-type GetDoughGroupByPayload<T extends DoughGroupByArgs> = Prisma.PrismaPromise<
-  Array<
-    Prisma.PickEnumerable<DoughGroupByOutputType, T["by"]> & {
-      [P in keyof T & keyof DoughGroupByOutputType]: P extends "_count"
-        ? T[P] extends boolean
-          ? number
-          : Prisma.GetScalarType<T[P], DoughGroupByOutputType[P]>
-        : Prisma.GetScalarType<T[P], DoughGroupByOutputType[P]>;
-    }
-  >
->;
+export type GetDoughGroupByPayload<T extends DoughGroupByArgs> =
+  Prisma.PrismaPromise<
+    Array<
+      Prisma.PickEnumerable<DoughGroupByOutputType, T["by"]> & {
+        [P in keyof T & keyof DoughGroupByOutputType]: P extends "_count"
+          ? T[P] extends boolean
+            ? number
+            : Prisma.GetScalarType<T[P], DoughGroupByOutputType[P]>
+          : Prisma.GetScalarType<T[P], DoughGroupByOutputType[P]>;
+      }
+    >
+  >;
 
 export type DoughWhereInput = {
   AND?: Prisma.DoughWhereInput | Prisma.DoughWhereInput[];
