@@ -37,9 +37,7 @@ export const IngredientForm: FC<IngredientFormProps> = ({
         <FieldGroup>
           <FieldSet>
             <FieldGroup>
-              <Field>
-                <FieldError errors={form.errors} />
-              </Field>
+              <FieldError errors={form.errors} />
               <Field data-invalid={!fields.name.valid}>
                 <FieldLabel htmlFor={fields.name.id} required>
                   Name
