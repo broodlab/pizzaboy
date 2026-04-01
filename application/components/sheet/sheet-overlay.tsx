@@ -1,14 +1,15 @@
-import type { ComponentProps, FC } from "react";
-import * as SheetPrimitive from "@radix-ui/react-dialog";
+import type { FC } from "react";
+import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 import { cn } from "~/utils/create-class-name";
 
-export const SheetOverlay: FC<
-  ComponentProps<typeof SheetPrimitive.Overlay>
-> = ({ className, ...props }) => {
+export const SheetOverlay: FC<SheetPrimitive.Backdrop.Props> = ({
+  className,
+  ...props
+}) => {
   return (
-    <SheetPrimitive.Overlay
+    <SheetPrimitive.Backdrop
       className={cn(
-        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
+        "fixed inset-0 z-50 bg-black/10 transition-opacity duration-150 data-ending-style:opacity-0 data-starting-style:opacity-0 supports-backdrop-filter:backdrop-blur-xs",
         className,
       )}
       data-slot="sheet-overlay"

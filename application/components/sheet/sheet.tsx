@@ -1,8 +1,6 @@
-import type { ComponentProps, FC } from "react";
-import * as SheetPrimitive from "@radix-ui/react-dialog";
+import type { FC } from "react";
+import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 
-export const Sheet: FC<ComponentProps<typeof SheetPrimitive.Root>> = ({
-  ...props
-}) => {
+export const Sheet: FC<SheetPrimitive.Root.Props> = ({ ...props }) => {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />;
 };

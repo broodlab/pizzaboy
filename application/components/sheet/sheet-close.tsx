@@ -1,8 +1,6 @@
-import type { ComponentProps, FC } from "react";
-import * as SheetPrimitive from "@radix-ui/react-dialog";
+import type { FC } from "react";
+import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 
-export const SheetClose: FC<ComponentProps<typeof SheetPrimitive.Close>> = ({
-  ...props
-}) => {
+export const SheetClose: FC<SheetPrimitive.Close.Props> = ({ ...props }) => {
   return <SheetPrimitive.Close data-slot="sheet-close" {...props} />;
 };

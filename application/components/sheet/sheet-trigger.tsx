@@ -1,8 +1,8 @@
-import type { ComponentProps, FC } from "react";
-import * as SheetPrimitive from "@radix-ui/react-dialog";
+import type { FC } from "react";
+import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 
-export const SheetTrigger: FC<
-  ComponentProps<typeof SheetPrimitive.Trigger>
-> = ({ ...props }) => {
+export const SheetTrigger: FC<SheetPrimitive.Trigger.Props> = ({
+  ...props
+}) => {
   return <SheetPrimitive.Trigger data-slot="sheet-trigger" {...props} />;
 };

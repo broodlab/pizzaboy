@@ -1,14 +1,17 @@
-import type { ComponentProps, FC } from "react";
-import * as SheetPrimitive from "@radix-ui/react-dialog";
+import type { FC } from "react";
+import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 import { cn } from "~/utils/create-class-name";
 
-export const SheetTitle: FC<ComponentProps<typeof SheetPrimitive.Title>> = ({
+export const SheetTitle: FC<SheetPrimitive.Title.Props> = ({
   className,
   ...props
 }) => {
   return (
     <SheetPrimitive.Title
-      className={cn("text-foreground font-semibold", className)}
+      className={cn(
+        "cn-font-heading text-foreground text-base font-medium",
+        className,
+      )}
       data-slot="sheet-title"
       {...props}
     />
