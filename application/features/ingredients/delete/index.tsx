@@ -49,7 +49,9 @@ export default function DeleteIngredient({
       </PageHeader>
       <Form method="post">
         <div className="flex flex-col gap-2 sm:flex-row">
-          <Button variant="destructive">Delete</Button>
+          <Button type="submit" variant="destructive">
+            Delete
+          </Button>
           <Button
             render={
               <Link state={{ ...backNavigationIntent }} to="/ingredients">
