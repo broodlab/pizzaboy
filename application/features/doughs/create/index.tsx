@@ -30,6 +30,7 @@ import {
   FieldSeparator,
   FieldSet,
 } from "~/components/field";
+import { ButtonContainer } from "~/components/button-container";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -134,7 +135,7 @@ export default function CreateDough({ actionData }: Route.ComponentProps) {
                       <FieldSet>
                         <FieldGroup>
                           <div className="grid grid-cols-12 gap-x-1 gap-y-3">
-                            <div className="col-span-11 grid gap-3 border-r pr-6">
+                            <div className="col-span-12 grid gap-3 sm:col-span-11 sm:border-r sm:pr-6">
                               <div className="flex flex-row items-end">
                                 <Field className="grid basis-2/3 gap-3">
                                   <FieldLabel required>Ingredient</FieldLabel>
@@ -157,7 +158,7 @@ export default function CreateDough({ actionData }: Route.ComponentProps) {
                                   render={
                                     <Link className="text-gray-600" to="/mama">
                                       <SearchIcon className="size-6 text-gray-600 md:size-5" />
-                                      <span>Advanced Search</span>
+                                      <span>Browse Ingredients</span>
                                     </Link>
                                   }
                                   variant="link"
@@ -178,16 +179,28 @@ export default function CreateDough({ actionData }: Route.ComponentProps) {
                                 />
                               </Field>
                             </div>
-                            <div className="col-span-1 flex flex-row items-center">
+                            <div className="col-span-12 sm:col-span-1 sm:flex sm:flex-row sm:items-center">
                               <Button
                                 {...form.remove.getButtonProps({
                                   name: fields.recipeItems.name,
                                   index,
                                 })}
+                                className="block w-full sm:hidden"
+                                type="submit"
+                                variant="outline"
+                              >
+                                Delete
+                              </Button>
+                              <Button
+                                {...form.remove.getButtonProps({
+                                  name: fields.recipeItems.name,
+                                  index,
+                                })}
+                                className="hidden sm:block"
                                 type="submit"
                                 variant="ghost"
                               >
-                                <DeleteIcon className="size-6 text-gray-600 md:size-5" />
+                                <DeleteIcon className="hidden size-6 text-gray-600 sm:block md:size-5" />
                               </Button>
                             </div>
                           </div>
@@ -197,7 +210,7 @@ export default function CreateDough({ actionData }: Route.ComponentProps) {
                     </Fragment>
                   );
                 })}
-                <Field orientation="responsive">
+                <ButtonContainer>
                   <Button
                     {...form.insert.getButtonProps({
                       name: fields.recipeItems.name,
@@ -205,18 +218,16 @@ export default function CreateDough({ actionData }: Route.ComponentProps) {
                     type="submit"
                     variant="outline"
                   >
-                    <PlusIcon className="size-6 text-gray-600 md:size-5" />
+                    <PlusIcon className="size-5 text-gray-600" />
                     <span>Add</span>
                   </Button>
-                </Field>
+                </ButtonContainer>
               </FieldGroup>
             </CardContent>
           </Card>
-          <FieldGroup>
-            <Field orientation="responsive">
-              <Button type="submit">Save</Button>
-            </Field>
-          </FieldGroup>
+          <ButtonContainer alignment="right">
+            <Button type="submit">Save</Button>
+          </ButtonContainer>
         </div>
       </Form>
     </Page>
