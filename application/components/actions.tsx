@@ -17,7 +17,7 @@ const buttonContainerVariants = cva(
   },
 );
 
-export const ButtonContainer: FC<
+export const Actions: FC<
   ComponentProps<"div"> & VariantProps<typeof buttonContainerVariants>
 > = ({ className, alignment = "left", ...props }) => {
   return (

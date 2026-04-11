@@ -30,7 +30,7 @@ import {
   FieldSeparator,
   FieldSet,
 } from "~/components/field";
-import { ButtonContainer } from "~/components/button-container";
+import { Actions } from "~/components/actions";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -210,7 +210,7 @@ export default function CreateDough({ actionData }: Route.ComponentProps) {
                     </Fragment>
                   );
                 })}
-                <ButtonContainer>
+                <Actions>
                   <Button
                     {...form.insert.getButtonProps({
                       name: fields.recipeItems.name,
@@ -221,13 +221,13 @@ export default function CreateDough({ actionData }: Route.ComponentProps) {
                     <PlusIcon className="size-5 text-gray-600" />
                     <span>Add</span>
                   </Button>
-                </ButtonContainer>
+                </Actions>
               </FieldGroup>
             </CardContent>
           </Card>
-          <ButtonContainer alignment="right">
+          <Actions alignment="right">
             <Button type="submit">Save</Button>
-          </ButtonContainer>
+          </Actions>
         </div>
       </Form>
     </Page>
