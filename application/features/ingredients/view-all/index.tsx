@@ -40,6 +40,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "~/components/alert-dialog";
+import { Actions } from "~/components/actions";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -112,13 +113,13 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
         />
       </div>
       <div className="flex flex-col gap-4">
-        <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+        <Actions alignment="right">
           <Button
             render={
               <Link
                 to={{ pathname: "filter", search: searchParams.toString() }}
               >
-                <FilterIcon className="invisible sm:visible" /> Filter
+                <FilterIcon /> Filter
               </Link>
             }
             variant="outline"
@@ -126,7 +127,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
           <Button
             render={
               <Link to="/ingredients">
-                <ClearFilterIcon className="invisible sm:visible" /> Clear
+                <ClearFilterIcon /> Clear
               </Link>
             }
             variant="outline"
@@ -136,12 +137,12 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
               <Link
                 to={{ pathname: "create", search: searchParams.toString() }}
               >
-                <CreateIcon className="invisible sm:visible" /> Create
+                <CreateIcon /> Create
               </Link>
             }
             variant={visibleFilterForm ? "outline" : "default"}
           />
-        </div>
+        </Actions>
         <div>
           <Outlet />
         </div>

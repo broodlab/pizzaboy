@@ -23,6 +23,7 @@ import {
   FieldLabel,
   FieldSet,
 } from "~/components/field";
+import { Actions } from "~/components/actions";
 
 type IngredientFormProps = {
   formConfig: ReturnType<typeof useForm<z.infer<typeof ingredientSchema>>>;
@@ -78,7 +79,7 @@ export const IngredientForm: FC<IngredientFormProps> = ({
                 <Textarea {...getTextareaProps(fields.description)} />
                 <FieldError errors={fields.description.errors} />
               </Field>
-              <Field orientation="responsive">
+              <Actions alignment="right">
                 <Button
                   className="w-full sm:w-auto"
                   type="submit"
@@ -86,7 +87,7 @@ export const IngredientForm: FC<IngredientFormProps> = ({
                 >
                   Save
                 </Button>
-              </Field>
+              </Actions>
             </FieldGroup>
           </FieldSet>
         </FieldGroup>

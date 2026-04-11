@@ -22,6 +22,7 @@ import {
   FieldLabel,
   FieldSet,
 } from "~/components/field";
+import { Actions } from "~/components/actions";
 
 const schema = z.object({
   category: z
@@ -106,10 +107,7 @@ export default function FilterIngredients({
                   </Select>
                   <FieldError errors={fields.category.errors} />
                 </Field>
-                <Field orientation="responsive">
-                  <Button type="submit" variant="default">
-                    Apply
-                  </Button>
+                <Actions alignment="right">
                   <Button
                     render={
                       <Link
@@ -124,7 +122,10 @@ export default function FilterIngredients({
                     }
                     variant="outline"
                   />
-                </Field>
+                  <Button type="submit" variant="default">
+                    Apply
+                  </Button>
+                </Actions>
               </FieldGroup>
             </FieldSet>
           </FieldGroup>
