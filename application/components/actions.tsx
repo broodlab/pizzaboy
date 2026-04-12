@@ -3,7 +3,7 @@ import { cn } from "~/utils/create-class-name";
 import type { ComponentProps, FC } from "react";
 
 const buttonContainerVariants = cva(
-  "flex flex-col-reverse gap-2 sm:flex-row [&_svg]:invisible sm:[&_svg]:visible",
+  "flex flex-col-reverse gap-2 sm:flex-row [&_svg]:hidden sm:[&_svg]:inline",
   {
     defaultVariants: {
       alignment: "left",
