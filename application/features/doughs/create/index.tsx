@@ -31,6 +31,14 @@ import {
   FieldSet,
 } from "~/components/field";
 import { Actions } from "~/components/actions";
+import {
+  Combobox,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+} from "~/components/combobox";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -68,7 +76,14 @@ export const action = async ({ request }: Route.ActionArgs) => {
   }
 };
 
-export default function CreateDough({ actionData }: Route.ComponentProps) {
+export const loader = async ({ request }: Route.LoaderArgs) => {
+  return prisma.ingredient.findMany({ select: { id: true, name: true } });
+};
+
+export default function CreateDough({
+  actionData,
+  loaderData,
+}: Route.ComponentProps) {
   const [form, fields] = useForm({
     lastResult: actionData,
     onValidate: ({ formData }) =>
@@ -76,6 +91,7 @@ export default function CreateDough({ actionData }: Route.ComponentProps) {
     shouldValidate: "onBlur",
   });
   const recipeItemsFields = fields.recipeItems.getFieldList();
+  const ingredients = loaderData.map(({ id, name }) => ({ id, name }));
 
   return (
     <Page>
@@ -139,14 +155,29 @@ export default function CreateDough({ actionData }: Route.ComponentProps) {
                               <div className="flex flex-row items-end">
                                 <Field className="grid basis-2/3 gap-3">
                                   <FieldLabel required>Ingredient</FieldLabel>
-                                  <Input
-                                    {...getInputProps(
-                                      recipeItemFieldSet.ingredientId,
-                                      {
-                                        type: "text",
-                                      },
-                                    )}
-                                  />
+                                  <Combobox items={ingredients}>
+                                    <ComboboxInput
+                                      {...getInputProps(
+                                        recipeItemFieldSet.ingredientId,
+                                        {
+                                          type: "text",
+                                        },
+                                      )}
+                                      placeholder="Select an ingredient"
+                                    />
+                                    <ComboboxContent>
+                                      <ComboboxEmpty>
+                                        No ingredients found.
+                                      </ComboboxEmpty>
+                                      <ComboboxList>
+                                        {({ id, name }) => (
+                                          <ComboboxItem key={id} value={id}>
+                                            {name}
+                                          </ComboboxItem>
+                                        )}
+                                      </ComboboxList>
+                                    </ComboboxContent>
+                                  </Combobox>
                                   <FieldError
                                     errors={
                                       recipeItemFieldSet.ingredientId.errors
