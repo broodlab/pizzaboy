@@ -85,7 +85,7 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 
 export default function CreateDough({
   actionData,
-  loaderData,
+  loaderData: ingredients,
 }: Route.ComponentProps) {
   const [form, fields] = useForm({
     lastResult: actionData,
@@ -94,7 +94,6 @@ export default function CreateDough({
     shouldValidate: "onBlur",
   });
   const recipeItemsFields = fields.recipeItems.getFieldList();
-  const ingredients = loaderData.map(({ id, name }) => ({ id, name }));
 
   return (
     <Page>
