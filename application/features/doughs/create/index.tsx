@@ -77,7 +77,10 @@ export const action = async ({ request }: Route.ActionArgs) => {
 };
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
-  return prisma.ingredient.findMany({ select: { id: true, name: true } });
+  return prisma.ingredient.findMany({
+    orderBy: { name: "asc" },
+    select: { id: true, name: true },
+  });
 };
 
 export default function CreateDough({
