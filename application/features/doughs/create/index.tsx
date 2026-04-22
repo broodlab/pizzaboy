@@ -31,14 +31,7 @@ import {
   FieldSet,
 } from "~/components/field";
 import { Actions } from "~/components/actions";
-import {
-  Combobox,
-  ComboboxContent,
-  ComboboxEmpty,
-  ComboboxInput,
-  ComboboxItem,
-  ComboboxList,
-} from "~/components/combobox";
+import { IngredientsCombobox } from "~/features/doughs/common/components/ingredients-combobox";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -157,29 +150,10 @@ export default function CreateDough({
                               <div className="flex flex-row items-end">
                                 <Field className="grid basis-2/3 gap-3">
                                   <FieldLabel required>Ingredient</FieldLabel>
-                                  <Combobox items={ingredients}>
-                                    <ComboboxInput
-                                      {...getInputProps(
-                                        recipeItemFieldSet.ingredientId,
-                                        {
-                                          type: "text",
-                                        },
-                                      )}
-                                      placeholder="Select an ingredient"
-                                    />
-                                    <ComboboxContent>
-                                      <ComboboxEmpty>
-                                        No ingredients found.
-                                      </ComboboxEmpty>
-                                      <ComboboxList>
-                                        {({ id, name }) => (
-                                          <ComboboxItem key={id} value={id}>
-                                            {name}
-                                          </ComboboxItem>
-                                        )}
-                                      </ComboboxList>
-                                    </ComboboxContent>
-                                  </Combobox>
+                                  <IngredientsCombobox
+                                    ingredients={ingredients}
+                                    recipeItemFieldSet={recipeItemFieldSet}
+                                  />
                                   <FieldError
                                     errors={
                                       recipeItemFieldSet.ingredientId.errors

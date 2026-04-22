@@ -2,6 +2,7 @@ import { z } from "zod/v4";
 
 export const recipeItemSchema = z.object({
   ingredientId: z.string(),
+  name: z.string(),
   quantity: z.string().optional(),
 });
 
