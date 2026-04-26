@@ -1,4 +1,4 @@
-export type Entity = "ingredient";
+export type Entity = "dough" | "ingredient";
 
 export type EntityData = {
   entity: Entity;

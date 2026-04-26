@@ -2,7 +2,7 @@ import type { FC } from "react";
 import {
   type FieldMetadata,
   getInputProps,
-  useInputControl,
+  type useForm,
 } from "@conform-to/react";
 import {
   Combobox,
@@ -14,7 +14,6 @@ import {
 } from "~/components/combobox";
 import { z } from "zod/v4";
 import type { doughSchema } from "~/features/doughs/common/schemas";
-import type { Ingredient } from "~/prisma/client";
 
 type RecipeItemFieldMetadata = FieldMetadata<
   string,
@@ -23,14 +22,22 @@ type RecipeItemFieldMetadata = FieldMetadata<
 >;
 
 export const IngredientsCombobox: FC<{
+  form: ReturnType<typeof useForm<z.infer<typeof doughSchema>>>[0];
   recipeItemFieldSet: Required<{
     ingredientId: RecipeItemFieldMetadata;
     name: RecipeItemFieldMetadata;
     quantity?: RecipeItemFieldMetadata | undefined;
   }>;
   ingredients: Array<{ id: string; name: string }>;
-}> = ({ ingredients, recipeItemFieldSet }) => {
-  const idInputControl = useInputControl(recipeItemFieldSet.ingredientId);
+}> = ({ form, ingredients, recipeItemFieldSet }) => {
+  const defaultValue =
+    recipeItemFieldSet.ingredientId.defaultValue !== undefined &&
+    recipeItemFieldSet.name.defaultValue !== undefined
+      ? {
+          id: recipeItemFieldSet.ingredientId.defaultValue,
+          name: recipeItemFieldSet.name.defaultValue,
+        }
+      : undefined;
 
   return (
     <>
@@ -40,9 +47,15 @@ export const IngredientsCombobox: FC<{
         })}
       />
       <Combobox
+        defaultValue={defaultValue}
         items={ingredients}
-        itemToStringLabel={({ name }: Ingredient) => name}
-        onValueChange={(value) => idInputControl.change(value!.id)}
+        itemToStringLabel={({ name }: (typeof ingredients)[number]) => name}
+        onValueChange={(value) => {
+          form.update({
+            name: recipeItemFieldSet.ingredientId.name,
+            value: value!.id,
+          });
+        }}
       >
         <ComboboxInput
           {...getInputProps(recipeItemFieldSet.name, {

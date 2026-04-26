@@ -58,9 +58,8 @@ export const action = async ({ request }: Route.ActionArgs) => {
 export default function CreateIngredient({ actionData }: Route.ComponentProps) {
   const formConfig = useForm({
     lastResult: actionData,
-    onValidate({ formData }) {
-      return parseWithZod(formData, { schema: ingredientSchema });
-    },
+    onValidate: ({ formData }) =>
+      parseWithZod(formData, { schema: ingredientSchema }),
     shouldValidate: "onBlur",
   });
 
