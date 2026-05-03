@@ -48,8 +48,9 @@ export const IngredientsCombobox: FC<{
       />
       <Combobox
         defaultValue={defaultValue}
-        items={ingredients}
+        isItemEqualToValue={(item, value) => item.id === value.id}
         itemToStringLabel={({ name }: (typeof ingredients)[number]) => name}
+        items={ingredients}
         onValueChange={(value) => {
           form.update({
             name: recipeItemFieldSet.ingredientId.name,
