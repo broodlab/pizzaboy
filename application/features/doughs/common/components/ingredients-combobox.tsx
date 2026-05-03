@@ -39,6 +39,13 @@ export const IngredientsCombobox: FC<{
         }
       : undefined;
 
+  const inputProps = {
+    ...getInputProps(recipeItemFieldSet.name, {
+      type: "text",
+    }),
+    defaultValue: undefined, // Suppressing an error message with this assignment.
+  };
+
   return (
     <>
       <input
@@ -58,12 +65,7 @@ export const IngredientsCombobox: FC<{
           });
         }}
       >
-        <ComboboxInput
-          {...getInputProps(recipeItemFieldSet.name, {
-            type: "text",
-          })}
-          placeholder="Select an ingredient"
-        />
+        <ComboboxInput {...inputProps} placeholder="Select an ingredient" />
         <ComboboxContent>
           <ComboboxEmpty>No ingredients found.</ComboboxEmpty>
           <ComboboxList>
