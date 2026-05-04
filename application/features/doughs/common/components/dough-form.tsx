@@ -28,7 +28,13 @@ import {
   FieldSet,
 } from "~/components/field";
 import { Actions } from "~/components/actions";
-import { PlusIcon, SearchIcon, Trash2 as DeleteIcon } from "lucide-react";
+import {
+  CircleArrowDown as DownIcon,
+  CircleArrowUp as UpIcon,
+  PlusIcon,
+  SearchIcon,
+  Trash2 as DeleteIcon,
+} from "lucide-react";
 import { IngredientsCombobox } from "~/features/doughs/common/components/ingredients-combobox";
 
 type DoughFormProps = {
@@ -90,6 +96,8 @@ export const DoughForm: FC<DoughFormProps> = ({
             <FieldGroup>
               {recipeItemsFields.map((recipeItemsField, index) => {
                 const recipeItemFieldSet = recipeItemsField.getFieldset();
+                const isFirst = index === 0;
+                const isLast = index === recipeItemsFields.length - 1;
 
                 return (
                   <Fragment key={recipeItemsField.key}>
@@ -134,7 +142,7 @@ export const DoughForm: FC<DoughFormProps> = ({
                               />
                             </Field>
                           </div>
-                          <div className="col-span-12 sm:col-span-1 sm:flex sm:flex-row sm:items-center">
+                          <div className="col-span-12 sm:col-span-1 sm:flex sm:flex-col sm:justify-evenly">
                             <Button
                               {...form.remove.getButtonProps({
                                 name: fields.recipeItems.name,
@@ -155,7 +163,33 @@ export const DoughForm: FC<DoughFormProps> = ({
                               type="submit"
                               variant="ghost"
                             >
-                              <DeleteIcon className="hidden size-6 text-gray-600 sm:block md:size-5" />
+                              <DeleteIcon className="hidden size-6 text-gray-600 sm:block md:size-6" />
+                            </Button>
+                            <Button
+                              {...form.reorder.getButtonProps({
+                                name: fields.recipeItems.name,
+                                from: index,
+                                to: index - 1,
+                              })}
+                              className="hidden sm:block"
+                              disabled={isFirst}
+                              type="submit"
+                              variant="ghost"
+                            >
+                              <UpIcon className="hidden size-6 text-gray-600 sm:block md:size-6" />
+                            </Button>
+                            <Button
+                              {...form.reorder.getButtonProps({
+                                name: fields.recipeItems.name,
+                                from: index,
+                                to: index + 1,
+                              })}
+                              className="hidden sm:block"
+                              disabled={isLast}
+                              type="submit"
+                              variant="ghost"
+                            >
+                              <DownIcon className="hidden size-6 text-gray-600 sm:block md:size-6" />
                             </Button>
                           </div>
                         </div>
