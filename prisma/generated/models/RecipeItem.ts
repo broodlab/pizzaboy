@@ -20,13 +20,24 @@ export type RecipeItemModel =
 
 export type AggregateRecipeItem = {
   _count: RecipeItemCountAggregateOutputType | null;
+  _avg: RecipeItemAvgAggregateOutputType | null;
+  _sum: RecipeItemSumAggregateOutputType | null;
   _min: RecipeItemMinAggregateOutputType | null;
   _max: RecipeItemMaxAggregateOutputType | null;
+};
+
+export type RecipeItemAvgAggregateOutputType = {
+  index: number | null;
+};
+
+export type RecipeItemSumAggregateOutputType = {
+  index: number | null;
 };
 
 export type RecipeItemMinAggregateOutputType = {
   id: string | null;
   quantity: string | null;
+  index: number | null;
   createdAt: Date | null;
   updatedAt: Date | null;
   doughId: string | null;
@@ -37,6 +48,7 @@ export type RecipeItemMinAggregateOutputType = {
 export type RecipeItemMaxAggregateOutputType = {
   id: string | null;
   quantity: string | null;
+  index: number | null;
   createdAt: Date | null;
   updatedAt: Date | null;
   doughId: string | null;
@@ -47,6 +59,7 @@ export type RecipeItemMaxAggregateOutputType = {
 export type RecipeItemCountAggregateOutputType = {
   id: number;
   quantity: number;
+  index: number;
   createdAt: number;
   updatedAt: number;
   doughId: number;
@@ -55,9 +68,18 @@ export type RecipeItemCountAggregateOutputType = {
   _all: number;
 };
 
+export type RecipeItemAvgAggregateInputType = {
+  index?: true;
+};
+
+export type RecipeItemSumAggregateInputType = {
+  index?: true;
+};
+
 export type RecipeItemMinAggregateInputType = {
   id?: true;
   quantity?: true;
+  index?: true;
   createdAt?: true;
   updatedAt?: true;
   doughId?: true;
@@ -68,6 +90,7 @@ export type RecipeItemMinAggregateInputType = {
 export type RecipeItemMaxAggregateInputType = {
   id?: true;
   quantity?: true;
+  index?: true;
   createdAt?: true;
   updatedAt?: true;
   doughId?: true;
@@ -78,6 +101,7 @@ export type RecipeItemMaxAggregateInputType = {
 export type RecipeItemCountAggregateInputType = {
   id?: true;
   quantity?: true;
+  index?: true;
   createdAt?: true;
   updatedAt?: true;
   doughId?: true;
@@ -129,6 +153,18 @@ export type RecipeItemAggregateArgs<
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
+   * Select which fields to average
+   **/
+  _avg?: RecipeItemAvgAggregateInputType;
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   *
+   * Select which fields to sum
+   **/
+  _sum?: RecipeItemSumAggregateInputType;
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   *
    * Select which fields to find the minimum value
    **/
   _min?: RecipeItemMinAggregateInputType;
@@ -161,6 +197,8 @@ export type RecipeItemGroupByArgs<
   take?: number;
   skip?: number;
   _count?: RecipeItemCountAggregateInputType | true;
+  _avg?: RecipeItemAvgAggregateInputType;
+  _sum?: RecipeItemSumAggregateInputType;
   _min?: RecipeItemMinAggregateInputType;
   _max?: RecipeItemMaxAggregateInputType;
 };
@@ -168,12 +206,15 @@ export type RecipeItemGroupByArgs<
 export type RecipeItemGroupByOutputType = {
   id: string;
   quantity: string | null;
+  index: number;
   createdAt: Date;
   updatedAt: Date;
   doughId: string | null;
   ingredientId: string;
   pizzaId: string | null;
   _count: RecipeItemCountAggregateOutputType | null;
+  _avg: RecipeItemAvgAggregateOutputType | null;
+  _sum: RecipeItemSumAggregateOutputType | null;
   _min: RecipeItemMinAggregateOutputType | null;
   _max: RecipeItemMaxAggregateOutputType | null;
 };
@@ -197,6 +238,7 @@ export type RecipeItemWhereInput = {
   NOT?: Prisma.RecipeItemWhereInput | Prisma.RecipeItemWhereInput[];
   id?: Prisma.StringFilter<"RecipeItem"> | string;
   quantity?: Prisma.StringNullableFilter<"RecipeItem"> | string | null;
+  index?: Prisma.IntFilter<"RecipeItem"> | number;
   createdAt?: Prisma.DateTimeFilter<"RecipeItem"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"RecipeItem"> | Date | string;
   doughId?: Prisma.StringNullableFilter<"RecipeItem"> | string | null;
@@ -219,6 +261,7 @@ export type RecipeItemWhereInput = {
 export type RecipeItemOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
   quantity?: Prisma.SortOrderInput | Prisma.SortOrder;
+  index?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   doughId?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -236,6 +279,7 @@ export type RecipeItemWhereUniqueInput = Prisma.AtLeast<
     OR?: Prisma.RecipeItemWhereInput[];
     NOT?: Prisma.RecipeItemWhereInput | Prisma.RecipeItemWhereInput[];
     quantity?: Prisma.StringNullableFilter<"RecipeItem"> | string | null;
+    index?: Prisma.IntFilter<"RecipeItem"> | number;
     createdAt?: Prisma.DateTimeFilter<"RecipeItem"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"RecipeItem"> | Date | string;
     doughId?: Prisma.StringNullableFilter<"RecipeItem"> | string | null;
@@ -260,14 +304,17 @@ export type RecipeItemWhereUniqueInput = Prisma.AtLeast<
 export type RecipeItemOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
   quantity?: Prisma.SortOrderInput | Prisma.SortOrder;
+  index?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   doughId?: Prisma.SortOrderInput | Prisma.SortOrder;
   ingredientId?: Prisma.SortOrder;
   pizzaId?: Prisma.SortOrderInput | Prisma.SortOrder;
   _count?: Prisma.RecipeItemCountOrderByAggregateInput;
+  _avg?: Prisma.RecipeItemAvgOrderByAggregateInput;
   _max?: Prisma.RecipeItemMaxOrderByAggregateInput;
   _min?: Prisma.RecipeItemMinOrderByAggregateInput;
+  _sum?: Prisma.RecipeItemSumOrderByAggregateInput;
 };
 
 export type RecipeItemScalarWhereWithAggregatesInput = {
@@ -283,6 +330,7 @@ export type RecipeItemScalarWhereWithAggregatesInput = {
     | Prisma.StringNullableWithAggregatesFilter<"RecipeItem">
     | string
     | null;
+  index?: Prisma.IntWithAggregatesFilter<"RecipeItem"> | number;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"RecipeItem"> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"RecipeItem"> | Date | string;
   doughId?:
@@ -299,6 +347,7 @@ export type RecipeItemScalarWhereWithAggregatesInput = {
 export type RecipeItemCreateInput = {
   id?: string;
   quantity?: string | null;
+  index?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   dough?: Prisma.DoughCreateNestedOneWithoutRecipeItemsInput;
@@ -309,6 +358,7 @@ export type RecipeItemCreateInput = {
 export type RecipeItemUncheckedCreateInput = {
   id?: string;
   quantity?: string | null;
+  index?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   doughId?: string | null;
@@ -319,6 +369,7 @@ export type RecipeItemUncheckedCreateInput = {
 export type RecipeItemUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  index?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dough?: Prisma.DoughUpdateOneWithoutRecipeItemsNestedInput;
@@ -329,6 +380,7 @@ export type RecipeItemUpdateInput = {
 export type RecipeItemUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  index?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -339,6 +391,7 @@ export type RecipeItemUncheckedUpdateInput = {
 export type RecipeItemCreateManyInput = {
   id?: string;
   quantity?: string | null;
+  index?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   doughId?: string | null;
@@ -349,6 +402,7 @@ export type RecipeItemCreateManyInput = {
 export type RecipeItemUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  index?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -356,6 +410,7 @@ export type RecipeItemUpdateManyMutationInput = {
 export type RecipeItemUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  index?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -376,6 +431,7 @@ export type RecipeItemOrderByRelationAggregateInput = {
 export type RecipeItemCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   quantity?: Prisma.SortOrder;
+  index?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   doughId?: Prisma.SortOrder;
@@ -383,9 +439,14 @@ export type RecipeItemCountOrderByAggregateInput = {
   pizzaId?: Prisma.SortOrder;
 };
 
+export type RecipeItemAvgOrderByAggregateInput = {
+  index?: Prisma.SortOrder;
+};
+
 export type RecipeItemMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   quantity?: Prisma.SortOrder;
+  index?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   doughId?: Prisma.SortOrder;
@@ -396,11 +457,16 @@ export type RecipeItemMaxOrderByAggregateInput = {
 export type RecipeItemMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   quantity?: Prisma.SortOrder;
+  index?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   doughId?: Prisma.SortOrder;
   ingredientId?: Prisma.SortOrder;
   pizzaId?: Prisma.SortOrder;
+};
+
+export type RecipeItemSumOrderByAggregateInput = {
+  index?: Prisma.SortOrder;
 };
 
 export type RecipeItemCreateNestedManyWithoutPizzaInput = {
@@ -724,6 +790,7 @@ export type RecipeItemUncheckedUpdateManyWithoutIngredientNestedInput = {
 export type RecipeItemCreateWithoutPizzaInput = {
   id?: string;
   quantity?: string | null;
+  index?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   dough?: Prisma.DoughCreateNestedOneWithoutRecipeItemsInput;
@@ -733,6 +800,7 @@ export type RecipeItemCreateWithoutPizzaInput = {
 export type RecipeItemUncheckedCreateWithoutPizzaInput = {
   id?: string;
   quantity?: string | null;
+  index?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   doughId?: string | null;
@@ -787,6 +855,7 @@ export type RecipeItemScalarWhereInput = {
   NOT?: Prisma.RecipeItemScalarWhereInput | Prisma.RecipeItemScalarWhereInput[];
   id?: Prisma.StringFilter<"RecipeItem"> | string;
   quantity?: Prisma.StringNullableFilter<"RecipeItem"> | string | null;
+  index?: Prisma.IntFilter<"RecipeItem"> | number;
   createdAt?: Prisma.DateTimeFilter<"RecipeItem"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"RecipeItem"> | Date | string;
   doughId?: Prisma.StringNullableFilter<"RecipeItem"> | string | null;
@@ -797,6 +866,7 @@ export type RecipeItemScalarWhereInput = {
 export type RecipeItemCreateWithoutDoughInput = {
   id?: string;
   quantity?: string | null;
+  index?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   ingredient: Prisma.IngredientCreateNestedOneWithoutRecipeItemsInput;
@@ -806,6 +876,7 @@ export type RecipeItemCreateWithoutDoughInput = {
 export type RecipeItemUncheckedCreateWithoutDoughInput = {
   id?: string;
   quantity?: string | null;
+  index?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   ingredientId: string;
@@ -857,6 +928,7 @@ export type RecipeItemUpdateManyWithWhereWithoutDoughInput = {
 export type RecipeItemCreateWithoutIngredientInput = {
   id?: string;
   quantity?: string | null;
+  index?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   dough?: Prisma.DoughCreateNestedOneWithoutRecipeItemsInput;
@@ -866,6 +938,7 @@ export type RecipeItemCreateWithoutIngredientInput = {
 export type RecipeItemUncheckedCreateWithoutIngredientInput = {
   id?: string;
   quantity?: string | null;
+  index?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   doughId?: string | null;
@@ -917,6 +990,7 @@ export type RecipeItemUpdateManyWithWhereWithoutIngredientInput = {
 export type RecipeItemCreateManyPizzaInput = {
   id?: string;
   quantity?: string | null;
+  index?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   doughId?: string | null;
@@ -926,6 +1000,7 @@ export type RecipeItemCreateManyPizzaInput = {
 export type RecipeItemUpdateWithoutPizzaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  index?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dough?: Prisma.DoughUpdateOneWithoutRecipeItemsNestedInput;
@@ -935,6 +1010,7 @@ export type RecipeItemUpdateWithoutPizzaInput = {
 export type RecipeItemUncheckedUpdateWithoutPizzaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  index?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -944,6 +1020,7 @@ export type RecipeItemUncheckedUpdateWithoutPizzaInput = {
 export type RecipeItemUncheckedUpdateManyWithoutPizzaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  index?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -953,6 +1030,7 @@ export type RecipeItemUncheckedUpdateManyWithoutPizzaInput = {
 export type RecipeItemCreateManyDoughInput = {
   id?: string;
   quantity?: string | null;
+  index?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   ingredientId: string;
@@ -962,6 +1040,7 @@ export type RecipeItemCreateManyDoughInput = {
 export type RecipeItemUpdateWithoutDoughInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  index?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   ingredient?: Prisma.IngredientUpdateOneRequiredWithoutRecipeItemsNestedInput;
@@ -971,6 +1050,7 @@ export type RecipeItemUpdateWithoutDoughInput = {
 export type RecipeItemUncheckedUpdateWithoutDoughInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  index?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   ingredientId?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -980,6 +1060,7 @@ export type RecipeItemUncheckedUpdateWithoutDoughInput = {
 export type RecipeItemUncheckedUpdateManyWithoutDoughInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  index?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   ingredientId?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -989,6 +1070,7 @@ export type RecipeItemUncheckedUpdateManyWithoutDoughInput = {
 export type RecipeItemCreateManyIngredientInput = {
   id?: string;
   quantity?: string | null;
+  index?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   doughId?: string | null;
@@ -998,6 +1080,7 @@ export type RecipeItemCreateManyIngredientInput = {
 export type RecipeItemUpdateWithoutIngredientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  index?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dough?: Prisma.DoughUpdateOneWithoutRecipeItemsNestedInput;
@@ -1007,6 +1090,7 @@ export type RecipeItemUpdateWithoutIngredientInput = {
 export type RecipeItemUncheckedUpdateWithoutIngredientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  index?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1016,6 +1100,7 @@ export type RecipeItemUncheckedUpdateWithoutIngredientInput = {
 export type RecipeItemUncheckedUpdateManyWithoutIngredientInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   quantity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  index?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -1029,6 +1114,7 @@ export type RecipeItemSelect<
   {
     id?: boolean;
     quantity?: boolean;
+    index?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     doughId?: boolean;
@@ -1048,6 +1134,7 @@ export type RecipeItemSelectCreateManyAndReturn<
   {
     id?: boolean;
     quantity?: boolean;
+    index?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     doughId?: boolean;
@@ -1067,6 +1154,7 @@ export type RecipeItemSelectUpdateManyAndReturn<
   {
     id?: boolean;
     quantity?: boolean;
+    index?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     doughId?: boolean;
@@ -1082,6 +1170,7 @@ export type RecipeItemSelectUpdateManyAndReturn<
 export type RecipeItemSelectScalar = {
   id?: boolean;
   quantity?: boolean;
+  index?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
   doughId?: boolean;
@@ -1095,6 +1184,7 @@ export type RecipeItemOmit<
 > = runtime.Types.Extensions.GetOmit<
   | "id"
   | "quantity"
+  | "index"
   | "createdAt"
   | "updatedAt"
   | "doughId"
@@ -1141,6 +1231,7 @@ export type $RecipeItemPayload<
     {
       id: string;
       quantity: string | null;
+      index: number;
       createdAt: Date;
       updatedAt: Date;
       doughId: string | null;
@@ -1780,6 +1871,7 @@ export interface Prisma__RecipeItemClient<
 export interface RecipeItemFieldRefs {
   readonly id: Prisma.FieldRef<"RecipeItem", "String">;
   readonly quantity: Prisma.FieldRef<"RecipeItem", "String">;
+  readonly index: Prisma.FieldRef<"RecipeItem", "Int">;
   readonly createdAt: Prisma.FieldRef<"RecipeItem", "DateTime">;
   readonly updatedAt: Prisma.FieldRef<"RecipeItem", "DateTime">;
   readonly doughId: Prisma.FieldRef<"RecipeItem", "String">;

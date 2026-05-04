@@ -27,7 +27,8 @@ export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
         description,
         name,
         recipeItems: {
-          create: recipeItems.map(({ ingredientId, quantity }) => ({
+          create: recipeItems.map(({ ingredientId, quantity }, index) => ({
+            index,
             ingredient: { connect: { id: ingredientId } },
             quantity,
           })),
@@ -48,7 +49,9 @@ export const loader = async ({ params: { id } }: Route.LoaderArgs) => {
         description: true,
         name: true,
         recipeItems: {
+          orderBy: { index: "asc" },
           select: {
+            index: true,
             ingredientId: true,
             ingredient: {
               select: { id: true, name: true },

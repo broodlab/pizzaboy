@@ -26,7 +26,8 @@ export const action = async ({ request }: Route.ActionArgs) => {
         description,
         name,
         recipeItems: {
-          create: recipeItems.map(({ ingredientId, quantity }) => ({
+          create: recipeItems.map(({ ingredientId, quantity }, index) => ({
+            index,
             ingredient: { connect: { id: ingredientId } },
             quantity,
           })),
