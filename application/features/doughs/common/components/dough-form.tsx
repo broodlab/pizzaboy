@@ -142,24 +142,13 @@ export const DoughForm: FC<DoughFormProps> = ({
                               />
                             </Field>
                           </div>
-                          <div className="col-span-12 sm:col-span-1 sm:flex sm:flex-col sm:justify-evenly">
+                          <div className="col-span-12 flex flex-row gap-1 sm:col-span-1 sm:flex-col sm:justify-evenly">
                             <Button
                               {...form.remove.getButtonProps({
                                 name: fields.recipeItems.name,
                                 index,
                               })}
-                              className="block w-full sm:hidden"
-                              type="submit"
-                              variant="outline"
-                            >
-                              Delete
-                            </Button>
-                            <Button
-                              {...form.remove.getButtonProps({
-                                name: fields.recipeItems.name,
-                                index,
-                              })}
-                              className="hidden sm:block"
+                              className="hidden flex-1 sm:flex"
                               type="submit"
                               variant="ghost"
                             >
@@ -171,7 +160,7 @@ export const DoughForm: FC<DoughFormProps> = ({
                                 from: index,
                                 to: index - 1,
                               })}
-                              className="hidden sm:block"
+                              className="hidden flex-1 sm:flex"
                               disabled={isFirst}
                               type="submit"
                               variant="ghost"
@@ -184,12 +173,49 @@ export const DoughForm: FC<DoughFormProps> = ({
                                 from: index,
                                 to: index + 1,
                               })}
-                              className="hidden sm:block"
+                              className="hidden flex-1 sm:flex"
                               disabled={isLast}
                               type="submit"
                               variant="ghost"
                             >
                               <DownIcon className="hidden size-6 text-gray-600 sm:block md:size-6" />
+                            </Button>
+                            <Button
+                              {...form.reorder.getButtonProps({
+                                name: fields.recipeItems.name,
+                                from: index,
+                                to: index - 1,
+                              })}
+                              className="flex-1 sm:hidden"
+                              disabled={isFirst}
+                              type="submit"
+                              variant="outline"
+                            >
+                              Move Up
+                            </Button>
+                            <Button
+                              {...form.reorder.getButtonProps({
+                                name: fields.recipeItems.name,
+                                from: index,
+                                to: index + 1,
+                              })}
+                              className="flex-1 sm:hidden"
+                              disabled={isLast}
+                              type="submit"
+                              variant="outline"
+                            >
+                              Move Down
+                            </Button>
+                            <Button
+                              {...form.remove.getButtonProps({
+                                name: fields.recipeItems.name,
+                                index,
+                              })}
+                              className="flex-1 sm:hidden"
+                              type="submit"
+                              variant="outline"
+                            >
+                              Delete
                             </Button>
                           </div>
                         </div>
