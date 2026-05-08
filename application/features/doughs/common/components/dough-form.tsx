@@ -152,7 +152,7 @@ export const DoughForm: FC<DoughFormProps> = ({
                               type="submit"
                               variant="ghost"
                             >
-                              <DeleteIcon className="hidden size-6 text-gray-600 sm:block md:size-6" />
+                              <DeleteIcon className="hidden size-6 text-red-400 sm:block md:size-6" />
                             </Button>
                             <Button
                               {...form.reorder.getButtonProps({
@@ -213,7 +213,7 @@ export const DoughForm: FC<DoughFormProps> = ({
                               })}
                               className="flex-1 sm:hidden"
                               type="submit"
-                              variant="outline"
+                              variant="destructive"
                             >
                               Delete
                             </Button>
