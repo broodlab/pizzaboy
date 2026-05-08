@@ -221,7 +221,7 @@ export const DoughForm: FC<DoughFormProps> = ({
                         </div>
                       </FieldGroup>
                     </FieldSet>
-                    <FieldSeparator />
+                    <FieldSeparator className={isLast ? "" : "mb-2"} />
                   </Fragment>
                 );
               })}
