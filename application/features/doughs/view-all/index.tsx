@@ -1,8 +1,9 @@
 import prisma from "~/utils/prisma.server";
 import type { Route } from "./+types";
-import { Form, Link, Outlet, useLocation } from "react-router";
+import { Form, Link, Outlet, redirect, useLocation } from "react-router";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
 import {
+  enhanceWithDeletionSuccessSearchParams,
   Notifications,
   useNotificationlessSearchParams,
 } from "~/utils/notifications";
@@ -39,9 +40,38 @@ import {
   AlertDialogTrigger,
 } from "~/components/alert-dialog";
 
-export const loader = () => {
+export const action = async ({ request }: Route.ActionArgs) => {
+  const formData = await request.formData();
+  const id = formData.get("id") as string;
+
+  const dough = await prisma.dough.findFirst({
+    select: { name: true },
+    where: { id },
+  });
+
+  await prisma.dough.delete({
+    where: { id },
+  });
+
+  const searchParams = enhanceWithDeletionSuccessSearchParams(dough!.name);
+  return redirect(`/doughs?${searchParams.toString()}`);
+};
+
+export const loader = ({ request }: Route.ActionArgs) => {
+  const searchParams = new URLSearchParams(new URL(request.url).search);
+
+  let name: undefined | string;
+  if (searchParams.has("name")) {
+    name = searchParams.get("name") as string;
+  }
+
   return prisma.dough.findMany({
     select: { id: true, name: true, pizzas: { select: { id: true } } },
+    where: {
+      name: {
+        contains: name,
+      },
+    },
   });
 };
 
@@ -73,7 +103,7 @@ export default function Doughs({ loaderData }: Route.ComponentProps) {
           />
           <Button
             render={
-              <Link to="/ingredients">
+              <Link to="/doughs">
                 <ClearFilterIcon /> Clear
               </Link>
             }
