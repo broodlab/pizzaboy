@@ -6,6 +6,7 @@ import { doughSchema } from "~/features/doughs/common/schemas";
 import { DoughForm } from "~/features/doughs/common/components/dough-form";
 import type { Route } from "./+types";
 import prisma from "~/utils/prisma.server";
+import { enhanceWithCreationSuccessSearchParams } from "~/utils/notifications";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -40,7 +41,12 @@ export const action = async ({ request }: Route.ActionArgs) => {
       },
     });
 
-    return redirect("/doughs");
+    const searchParams = enhanceWithCreationSuccessSearchParams(
+      id,
+      name,
+      new URL(request.url).searchParams,
+    );
+    return redirect(`/doughs?${searchParams.toString()}`);
   }
 };
 
