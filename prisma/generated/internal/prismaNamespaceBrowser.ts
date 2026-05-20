@@ -102,6 +102,7 @@ export const OrderItemScalarFieldEnum = {
   amount: "amount",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
+  doughId: "doughId",
   orderId: "orderId",
   pizzaId: "pizzaId",
 } as const;
@@ -115,7 +116,6 @@ export const PizzaScalarFieldEnum = {
   description: "description",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
-  doughId: "doughId",
   userId: "userId",
 } as const;
 

@@ -39,6 +39,8 @@ model OrderItem {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  dough   Dough?  @relation(fields: [doughId], references: [id], onDelete: SetNull)
+  doughId String?
   order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   orderId String
   pizza   Pizza?  @relation(fields: [pizzaId], references: [id], onDelete: SetNull)
@@ -53,8 +55,6 @@ model Pizza {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  dough       Dough        @relation(fields: [doughId], references: [id], onDelete: NoAction)
-  doughId     String
   orderItems  OrderItem[]
   recipeItems RecipeItem[]
   user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -69,7 +69,7 @@ model Dough {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  pizzas      Pizza[]
+  orderItems  OrderItem[]
   recipeItems RecipeItem[]
   user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String

@@ -30,7 +30,6 @@ export type PizzaMinAggregateOutputType = {
   description: string | null;
   createdAt: Date | null;
   updatedAt: Date | null;
-  doughId: string | null;
   userId: string | null;
 };
 
@@ -40,7 +39,6 @@ export type PizzaMaxAggregateOutputType = {
   description: string | null;
   createdAt: Date | null;
   updatedAt: Date | null;
-  doughId: string | null;
   userId: string | null;
 };
 
@@ -50,7 +48,6 @@ export type PizzaCountAggregateOutputType = {
   description: number;
   createdAt: number;
   updatedAt: number;
-  doughId: number;
   userId: number;
   _all: number;
 };
@@ -61,7 +58,6 @@ export type PizzaMinAggregateInputType = {
   description?: true;
   createdAt?: true;
   updatedAt?: true;
-  doughId?: true;
   userId?: true;
 };
 
@@ -71,7 +67,6 @@ export type PizzaMaxAggregateInputType = {
   description?: true;
   createdAt?: true;
   updatedAt?: true;
-  doughId?: true;
   userId?: true;
 };
 
@@ -81,7 +76,6 @@ export type PizzaCountAggregateInputType = {
   description?: true;
   createdAt?: true;
   updatedAt?: true;
-  doughId?: true;
   userId?: true;
   _all?: true;
 };
@@ -171,7 +165,6 @@ export type PizzaGroupByOutputType = {
   description: string | null;
   createdAt: Date;
   updatedAt: Date;
-  doughId: string;
   userId: string;
   _count: PizzaCountAggregateOutputType | null;
   _min: PizzaMinAggregateOutputType | null;
@@ -200,9 +193,7 @@ export type PizzaWhereInput = {
   description?: Prisma.StringNullableFilter<"Pizza"> | string | null;
   createdAt?: Prisma.DateTimeFilter<"Pizza"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Pizza"> | Date | string;
-  doughId?: Prisma.StringFilter<"Pizza"> | string;
   userId?: Prisma.StringFilter<"Pizza"> | string;
-  dough?: Prisma.XOR<Prisma.DoughScalarRelationFilter, Prisma.DoughWhereInput>;
   orderItems?: Prisma.OrderItemListRelationFilter;
   recipeItems?: Prisma.RecipeItemListRelationFilter;
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
@@ -214,9 +205,7 @@ export type PizzaOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
-  doughId?: Prisma.SortOrder;
   userId?: Prisma.SortOrder;
-  dough?: Prisma.DoughOrderByWithRelationInput;
   orderItems?: Prisma.OrderItemOrderByRelationAggregateInput;
   recipeItems?: Prisma.RecipeItemOrderByRelationAggregateInput;
   user?: Prisma.UserOrderByWithRelationInput;
@@ -232,12 +221,7 @@ export type PizzaWhereUniqueInput = Prisma.AtLeast<
     description?: Prisma.StringNullableFilter<"Pizza"> | string | null;
     createdAt?: Prisma.DateTimeFilter<"Pizza"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Pizza"> | Date | string;
-    doughId?: Prisma.StringFilter<"Pizza"> | string;
     userId?: Prisma.StringFilter<"Pizza"> | string;
-    dough?: Prisma.XOR<
-      Prisma.DoughScalarRelationFilter,
-      Prisma.DoughWhereInput
-    >;
     orderItems?: Prisma.OrderItemListRelationFilter;
     recipeItems?: Prisma.RecipeItemListRelationFilter;
     user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
@@ -251,7 +235,6 @@ export type PizzaOrderByWithAggregationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
-  doughId?: Prisma.SortOrder;
   userId?: Prisma.SortOrder;
   _count?: Prisma.PizzaCountOrderByAggregateInput;
   _max?: Prisma.PizzaMaxOrderByAggregateInput;
@@ -274,7 +257,6 @@ export type PizzaScalarWhereWithAggregatesInput = {
     | null;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Pizza"> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Pizza"> | Date | string;
-  doughId?: Prisma.StringWithAggregatesFilter<"Pizza"> | string;
   userId?: Prisma.StringWithAggregatesFilter<"Pizza"> | string;
 };
 
@@ -284,7 +266,6 @@ export type PizzaCreateInput = {
   description?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  dough: Prisma.DoughCreateNestedOneWithoutPizzasInput;
   orderItems?: Prisma.OrderItemCreateNestedManyWithoutPizzaInput;
   recipeItems?: Prisma.RecipeItemCreateNestedManyWithoutPizzaInput;
   user: Prisma.UserCreateNestedOneWithoutPizzasInput;
@@ -296,7 +277,6 @@ export type PizzaUncheckedCreateInput = {
   description?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  doughId: string;
   userId: string;
   orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutPizzaInput;
   recipeItems?: Prisma.RecipeItemUncheckedCreateNestedManyWithoutPizzaInput;
@@ -308,7 +288,6 @@ export type PizzaUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  dough?: Prisma.DoughUpdateOneRequiredWithoutPizzasNestedInput;
   orderItems?: Prisma.OrderItemUpdateManyWithoutPizzaNestedInput;
   recipeItems?: Prisma.RecipeItemUpdateManyWithoutPizzaNestedInput;
   user?: Prisma.UserUpdateOneRequiredWithoutPizzasNestedInput;
@@ -320,7 +299,6 @@ export type PizzaUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  doughId?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
   orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutPizzaNestedInput;
   recipeItems?: Prisma.RecipeItemUncheckedUpdateManyWithoutPizzaNestedInput;
@@ -332,7 +310,6 @@ export type PizzaCreateManyInput = {
   description?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  doughId: string;
   userId: string;
 };
 
@@ -350,7 +327,6 @@ export type PizzaUncheckedUpdateManyInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  doughId?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 
@@ -375,7 +351,6 @@ export type PizzaCountOrderByAggregateInput = {
   description?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
-  doughId?: Prisma.SortOrder;
   userId?: Prisma.SortOrder;
 };
 
@@ -385,7 +360,6 @@ export type PizzaMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
-  doughId?: Prisma.SortOrder;
   userId?: Prisma.SortOrder;
 };
 
@@ -395,7 +369,6 @@ export type PizzaMinOrderByAggregateInput = {
   description?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
-  doughId?: Prisma.SortOrder;
   userId?: Prisma.SortOrder;
 };
 
@@ -513,92 +486,6 @@ export type PizzaUpdateOneWithoutOrderItemsNestedInput = {
   >;
 };
 
-export type PizzaCreateNestedManyWithoutDoughInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.PizzaCreateWithoutDoughInput,
-        Prisma.PizzaUncheckedCreateWithoutDoughInput
-      >
-    | Prisma.PizzaCreateWithoutDoughInput[]
-    | Prisma.PizzaUncheckedCreateWithoutDoughInput[];
-  connectOrCreate?:
-    | Prisma.PizzaCreateOrConnectWithoutDoughInput
-    | Prisma.PizzaCreateOrConnectWithoutDoughInput[];
-  createMany?: Prisma.PizzaCreateManyDoughInputEnvelope;
-  connect?: Prisma.PizzaWhereUniqueInput | Prisma.PizzaWhereUniqueInput[];
-};
-
-export type PizzaUncheckedCreateNestedManyWithoutDoughInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.PizzaCreateWithoutDoughInput,
-        Prisma.PizzaUncheckedCreateWithoutDoughInput
-      >
-    | Prisma.PizzaCreateWithoutDoughInput[]
-    | Prisma.PizzaUncheckedCreateWithoutDoughInput[];
-  connectOrCreate?:
-    | Prisma.PizzaCreateOrConnectWithoutDoughInput
-    | Prisma.PizzaCreateOrConnectWithoutDoughInput[];
-  createMany?: Prisma.PizzaCreateManyDoughInputEnvelope;
-  connect?: Prisma.PizzaWhereUniqueInput | Prisma.PizzaWhereUniqueInput[];
-};
-
-export type PizzaUpdateManyWithoutDoughNestedInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.PizzaCreateWithoutDoughInput,
-        Prisma.PizzaUncheckedCreateWithoutDoughInput
-      >
-    | Prisma.PizzaCreateWithoutDoughInput[]
-    | Prisma.PizzaUncheckedCreateWithoutDoughInput[];
-  connectOrCreate?:
-    | Prisma.PizzaCreateOrConnectWithoutDoughInput
-    | Prisma.PizzaCreateOrConnectWithoutDoughInput[];
-  upsert?:
-    | Prisma.PizzaUpsertWithWhereUniqueWithoutDoughInput
-    | Prisma.PizzaUpsertWithWhereUniqueWithoutDoughInput[];
-  createMany?: Prisma.PizzaCreateManyDoughInputEnvelope;
-  set?: Prisma.PizzaWhereUniqueInput | Prisma.PizzaWhereUniqueInput[];
-  disconnect?: Prisma.PizzaWhereUniqueInput | Prisma.PizzaWhereUniqueInput[];
-  delete?: Prisma.PizzaWhereUniqueInput | Prisma.PizzaWhereUniqueInput[];
-  connect?: Prisma.PizzaWhereUniqueInput | Prisma.PizzaWhereUniqueInput[];
-  update?:
-    | Prisma.PizzaUpdateWithWhereUniqueWithoutDoughInput
-    | Prisma.PizzaUpdateWithWhereUniqueWithoutDoughInput[];
-  updateMany?:
-    | Prisma.PizzaUpdateManyWithWhereWithoutDoughInput
-    | Prisma.PizzaUpdateManyWithWhereWithoutDoughInput[];
-  deleteMany?: Prisma.PizzaScalarWhereInput | Prisma.PizzaScalarWhereInput[];
-};
-
-export type PizzaUncheckedUpdateManyWithoutDoughNestedInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.PizzaCreateWithoutDoughInput,
-        Prisma.PizzaUncheckedCreateWithoutDoughInput
-      >
-    | Prisma.PizzaCreateWithoutDoughInput[]
-    | Prisma.PizzaUncheckedCreateWithoutDoughInput[];
-  connectOrCreate?:
-    | Prisma.PizzaCreateOrConnectWithoutDoughInput
-    | Prisma.PizzaCreateOrConnectWithoutDoughInput[];
-  upsert?:
-    | Prisma.PizzaUpsertWithWhereUniqueWithoutDoughInput
-    | Prisma.PizzaUpsertWithWhereUniqueWithoutDoughInput[];
-  createMany?: Prisma.PizzaCreateManyDoughInputEnvelope;
-  set?: Prisma.PizzaWhereUniqueInput | Prisma.PizzaWhereUniqueInput[];
-  disconnect?: Prisma.PizzaWhereUniqueInput | Prisma.PizzaWhereUniqueInput[];
-  delete?: Prisma.PizzaWhereUniqueInput | Prisma.PizzaWhereUniqueInput[];
-  connect?: Prisma.PizzaWhereUniqueInput | Prisma.PizzaWhereUniqueInput[];
-  update?:
-    | Prisma.PizzaUpdateWithWhereUniqueWithoutDoughInput
-    | Prisma.PizzaUpdateWithWhereUniqueWithoutDoughInput[];
-  updateMany?:
-    | Prisma.PizzaUpdateManyWithWhereWithoutDoughInput
-    | Prisma.PizzaUpdateManyWithWhereWithoutDoughInput[];
-  deleteMany?: Prisma.PizzaScalarWhereInput | Prisma.PizzaScalarWhereInput[];
-};
-
 export type PizzaCreateNestedOneWithoutRecipeItemsInput = {
   create?: Prisma.XOR<
     Prisma.PizzaCreateWithoutRecipeItemsInput,
@@ -633,7 +520,6 @@ export type PizzaCreateWithoutUserInput = {
   description?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  dough: Prisma.DoughCreateNestedOneWithoutPizzasInput;
   orderItems?: Prisma.OrderItemCreateNestedManyWithoutPizzaInput;
   recipeItems?: Prisma.RecipeItemCreateNestedManyWithoutPizzaInput;
 };
@@ -644,7 +530,6 @@ export type PizzaUncheckedCreateWithoutUserInput = {
   description?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  doughId: string;
   orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutPizzaInput;
   recipeItems?: Prisma.RecipeItemUncheckedCreateNestedManyWithoutPizzaInput;
 };
@@ -698,7 +583,6 @@ export type PizzaScalarWhereInput = {
   description?: Prisma.StringNullableFilter<"Pizza"> | string | null;
   createdAt?: Prisma.DateTimeFilter<"Pizza"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Pizza"> | Date | string;
-  doughId?: Prisma.StringFilter<"Pizza"> | string;
   userId?: Prisma.StringFilter<"Pizza"> | string;
 };
 
@@ -708,7 +592,6 @@ export type PizzaCreateWithoutOrderItemsInput = {
   description?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  dough: Prisma.DoughCreateNestedOneWithoutPizzasInput;
   recipeItems?: Prisma.RecipeItemCreateNestedManyWithoutPizzaInput;
   user: Prisma.UserCreateNestedOneWithoutPizzasInput;
 };
@@ -719,7 +602,6 @@ export type PizzaUncheckedCreateWithoutOrderItemsInput = {
   description?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  doughId: string;
   userId: string;
   recipeItems?: Prisma.RecipeItemUncheckedCreateNestedManyWithoutPizzaInput;
 };
@@ -758,7 +640,6 @@ export type PizzaUpdateWithoutOrderItemsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  dough?: Prisma.DoughUpdateOneRequiredWithoutPizzasNestedInput;
   recipeItems?: Prisma.RecipeItemUpdateManyWithoutPizzaNestedInput;
   user?: Prisma.UserUpdateOneRequiredWithoutPizzasNestedInput;
 };
@@ -769,71 +650,8 @@ export type PizzaUncheckedUpdateWithoutOrderItemsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  doughId?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
   recipeItems?: Prisma.RecipeItemUncheckedUpdateManyWithoutPizzaNestedInput;
-};
-
-export type PizzaCreateWithoutDoughInput = {
-  id?: string;
-  name: string;
-  description?: string | null;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  orderItems?: Prisma.OrderItemCreateNestedManyWithoutPizzaInput;
-  recipeItems?: Prisma.RecipeItemCreateNestedManyWithoutPizzaInput;
-  user: Prisma.UserCreateNestedOneWithoutPizzasInput;
-};
-
-export type PizzaUncheckedCreateWithoutDoughInput = {
-  id?: string;
-  name: string;
-  description?: string | null;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  userId: string;
-  orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutPizzaInput;
-  recipeItems?: Prisma.RecipeItemUncheckedCreateNestedManyWithoutPizzaInput;
-};
-
-export type PizzaCreateOrConnectWithoutDoughInput = {
-  where: Prisma.PizzaWhereUniqueInput;
-  create: Prisma.XOR<
-    Prisma.PizzaCreateWithoutDoughInput,
-    Prisma.PizzaUncheckedCreateWithoutDoughInput
-  >;
-};
-
-export type PizzaCreateManyDoughInputEnvelope = {
-  data: Prisma.PizzaCreateManyDoughInput | Prisma.PizzaCreateManyDoughInput[];
-};
-
-export type PizzaUpsertWithWhereUniqueWithoutDoughInput = {
-  where: Prisma.PizzaWhereUniqueInput;
-  update: Prisma.XOR<
-    Prisma.PizzaUpdateWithoutDoughInput,
-    Prisma.PizzaUncheckedUpdateWithoutDoughInput
-  >;
-  create: Prisma.XOR<
-    Prisma.PizzaCreateWithoutDoughInput,
-    Prisma.PizzaUncheckedCreateWithoutDoughInput
-  >;
-};
-
-export type PizzaUpdateWithWhereUniqueWithoutDoughInput = {
-  where: Prisma.PizzaWhereUniqueInput;
-  data: Prisma.XOR<
-    Prisma.PizzaUpdateWithoutDoughInput,
-    Prisma.PizzaUncheckedUpdateWithoutDoughInput
-  >;
-};
-
-export type PizzaUpdateManyWithWhereWithoutDoughInput = {
-  where: Prisma.PizzaScalarWhereInput;
-  data: Prisma.XOR<
-    Prisma.PizzaUpdateManyMutationInput,
-    Prisma.PizzaUncheckedUpdateManyWithoutDoughInput
-  >;
 };
 
 export type PizzaCreateWithoutRecipeItemsInput = {
@@ -842,7 +660,6 @@ export type PizzaCreateWithoutRecipeItemsInput = {
   description?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  dough: Prisma.DoughCreateNestedOneWithoutPizzasInput;
   orderItems?: Prisma.OrderItemCreateNestedManyWithoutPizzaInput;
   user: Prisma.UserCreateNestedOneWithoutPizzasInput;
 };
@@ -853,7 +670,6 @@ export type PizzaUncheckedCreateWithoutRecipeItemsInput = {
   description?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  doughId: string;
   userId: string;
   orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutPizzaInput;
 };
@@ -892,7 +708,6 @@ export type PizzaUpdateWithoutRecipeItemsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  dough?: Prisma.DoughUpdateOneRequiredWithoutPizzasNestedInput;
   orderItems?: Prisma.OrderItemUpdateManyWithoutPizzaNestedInput;
   user?: Prisma.UserUpdateOneRequiredWithoutPizzasNestedInput;
 };
@@ -903,7 +718,6 @@ export type PizzaUncheckedUpdateWithoutRecipeItemsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  doughId?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
   orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutPizzaNestedInput;
 };
@@ -914,7 +728,6 @@ export type PizzaCreateManyUserInput = {
   description?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  doughId: string;
 };
 
 export type PizzaUpdateWithoutUserInput = {
@@ -923,7 +736,6 @@ export type PizzaUpdateWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  dough?: Prisma.DoughUpdateOneRequiredWithoutPizzasNestedInput;
   orderItems?: Prisma.OrderItemUpdateManyWithoutPizzaNestedInput;
   recipeItems?: Prisma.RecipeItemUpdateManyWithoutPizzaNestedInput;
 };
@@ -934,7 +746,6 @@ export type PizzaUncheckedUpdateWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  doughId?: Prisma.StringFieldUpdateOperationsInput | string;
   orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutPizzaNestedInput;
   recipeItems?: Prisma.RecipeItemUncheckedUpdateManyWithoutPizzaNestedInput;
 };
@@ -945,47 +756,6 @@ export type PizzaUncheckedUpdateManyWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  doughId?: Prisma.StringFieldUpdateOperationsInput | string;
-};
-
-export type PizzaCreateManyDoughInput = {
-  id?: string;
-  name: string;
-  description?: string | null;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  userId: string;
-};
-
-export type PizzaUpdateWithoutDoughInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  name?: Prisma.StringFieldUpdateOperationsInput | string;
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  orderItems?: Prisma.OrderItemUpdateManyWithoutPizzaNestedInput;
-  recipeItems?: Prisma.RecipeItemUpdateManyWithoutPizzaNestedInput;
-  user?: Prisma.UserUpdateOneRequiredWithoutPizzasNestedInput;
-};
-
-export type PizzaUncheckedUpdateWithoutDoughInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  name?: Prisma.StringFieldUpdateOperationsInput | string;
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  userId?: Prisma.StringFieldUpdateOperationsInput | string;
-  orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutPizzaNestedInput;
-  recipeItems?: Prisma.RecipeItemUncheckedUpdateManyWithoutPizzaNestedInput;
-};
-
-export type PizzaUncheckedUpdateManyWithoutDoughInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  name?: Prisma.StringFieldUpdateOperationsInput | string;
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  userId?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 
 /**
@@ -1048,9 +818,7 @@ export type PizzaSelect<
     description?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    doughId?: boolean;
     userId?: boolean;
-    dough?: boolean | Prisma.DoughDefaultArgs<ExtArgs>;
     orderItems?: boolean | Prisma.Pizza$orderItemsArgs<ExtArgs>;
     recipeItems?: boolean | Prisma.Pizza$recipeItemsArgs<ExtArgs>;
     user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
@@ -1069,9 +837,7 @@ export type PizzaSelectCreateManyAndReturn<
     description?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    doughId?: boolean;
     userId?: boolean;
-    dough?: boolean | Prisma.DoughDefaultArgs<ExtArgs>;
     user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
   },
   ExtArgs["result"]["pizza"]
@@ -1087,9 +853,7 @@ export type PizzaSelectUpdateManyAndReturn<
     description?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    doughId?: boolean;
     userId?: boolean;
-    dough?: boolean | Prisma.DoughDefaultArgs<ExtArgs>;
     user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
   },
   ExtArgs["result"]["pizza"]
@@ -1101,7 +865,6 @@ export type PizzaSelectScalar = {
   description?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
-  doughId?: boolean;
   userId?: boolean;
 };
 
@@ -1109,20 +872,13 @@ export type PizzaOmit<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-  | "id"
-  | "name"
-  | "description"
-  | "createdAt"
-  | "updatedAt"
-  | "doughId"
-  | "userId",
+  "id" | "name" | "description" | "createdAt" | "updatedAt" | "userId",
   ExtArgs["result"]["pizza"]
 >;
 export type PizzaInclude<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  dough?: boolean | Prisma.DoughDefaultArgs<ExtArgs>;
   orderItems?: boolean | Prisma.Pizza$orderItemsArgs<ExtArgs>;
   recipeItems?: boolean | Prisma.Pizza$recipeItemsArgs<ExtArgs>;
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
@@ -1132,14 +888,12 @@ export type PizzaIncludeCreateManyAndReturn<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  dough?: boolean | Prisma.DoughDefaultArgs<ExtArgs>;
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 };
 export type PizzaIncludeUpdateManyAndReturn<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  dough?: boolean | Prisma.DoughDefaultArgs<ExtArgs>;
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
 };
 
@@ -1149,7 +903,6 @@ export type $PizzaPayload<
 > = {
   name: "Pizza";
   objects: {
-    dough: Prisma.$DoughPayload<ExtArgs>;
     orderItems: Prisma.$OrderItemPayload<ExtArgs>[];
     recipeItems: Prisma.$RecipeItemPayload<ExtArgs>[];
     user: Prisma.$UserPayload<ExtArgs>;
@@ -1161,7 +914,6 @@ export type $PizzaPayload<
       description: string | null;
       createdAt: Date;
       updatedAt: Date;
-      doughId: string;
       userId: string;
     },
     ExtArgs["result"]["pizza"]
@@ -1713,20 +1465,6 @@ export interface Prisma__PizzaClient<
   GlobalOmitOptions = {},
 > extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise";
-  dough<T extends Prisma.DoughDefaultArgs<ExtArgs> = {}>(
-    args?: Prisma.Subset<T, Prisma.DoughDefaultArgs<ExtArgs>>,
-  ): Prisma.Prisma__DoughClient<
-    | runtime.Types.Result.GetResult<
-        Prisma.$DoughPayload<ExtArgs>,
-        T,
-        "findUniqueOrThrow",
-        GlobalOmitOptions
-      >
-    | Null,
-    Null,
-    ExtArgs,
-    GlobalOmitOptions
-  >;
   orderItems<T extends Prisma.Pizza$orderItemsArgs<ExtArgs> = {}>(
     args?: Prisma.Subset<T, Prisma.Pizza$orderItemsArgs<ExtArgs>>,
   ): Prisma.PrismaPromise<
@@ -1810,7 +1548,6 @@ export interface PizzaFieldRefs {
   readonly description: Prisma.FieldRef<"Pizza", "String">;
   readonly createdAt: Prisma.FieldRef<"Pizza", "DateTime">;
   readonly updatedAt: Prisma.FieldRef<"Pizza", "DateTime">;
-  readonly doughId: Prisma.FieldRef<"Pizza", "String">;
   readonly userId: Prisma.FieldRef<"Pizza", "String">;
 }
 
