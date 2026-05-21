@@ -44,17 +44,17 @@ export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
   const id = formData.get("id") as string;
 
-  const dough = await prisma.dough.findFirst({
+  const pizza = await prisma.pizza.findFirst({
     select: { name: true },
     where: { id },
   });
 
-  await prisma.dough.delete({
+  await prisma.pizza.delete({
     where: { id },
   });
 
-  const searchParams = enhanceWithDeletionSuccessSearchParams(dough!.name);
-  return redirect(`/doughs?${searchParams.toString()}`);
+  const searchParams = enhanceWithDeletionSuccessSearchParams(pizza!.name);
+  return redirect(`/pizzas?${searchParams.toString()}`);
 };
 
 export const loader = ({ request }: Route.ActionArgs) => {
@@ -65,7 +65,7 @@ export const loader = ({ request }: Route.ActionArgs) => {
     name = searchParams.get("name") as string;
   }
 
-  return prisma.dough.findMany({
+  return prisma.pizza.findMany({
     select: { id: true, name: true, orderItems: { select: { id: true } } },
     where: {
       name: {
@@ -75,7 +75,7 @@ export const loader = ({ request }: Route.ActionArgs) => {
   });
 };
 
-export default function Doughs({ loaderData }: Route.ComponentProps) {
+export default function Pizzas({ loaderData }: Route.ComponentProps) {
   const location = useLocation();
   const visibleFilterForm = location.pathname.includes("/filter");
   const [searchParams] = useNotificationlessSearchParams();
@@ -83,11 +83,11 @@ export default function Doughs({ loaderData }: Route.ComponentProps) {
   return (
     <Page>
       <PageHeader>
-        <PageTitle>Doughs</PageTitle>
-        <PageIntro>Search and manage your doughs.</PageIntro>
+        <PageTitle>Pizzas</PageTitle>
+        <PageIntro>Search and manage your pizzas.</PageIntro>
       </PageHeader>
       <div>
-        <Notifications editionPath="/doughs/:id/edit" entity="dough" />
+        <Notifications editionPath="/pizzas/:id/edit" entity="pizza" />
       </div>
       <div className="flex flex-col gap-4">
         <Actions alignment="right">
@@ -103,7 +103,7 @@ export default function Doughs({ loaderData }: Route.ComponentProps) {
           />
           <Button
             render={
-              <Link to="/doughs">
+              <Link to="/pizzas">
                 <ClearFilterIcon /> Clear
               </Link>
             }
@@ -139,7 +139,7 @@ export default function Doughs({ loaderData }: Route.ComponentProps) {
                     <TableCell colSpan={3}>
                       <div className="items-top flex flex-row gap-2">
                         <InfoIcon className="size-5 text-blue-500" />
-                        <span>No doughs or no matching filter(s).</span>
+                        <span>No pizzas or no matching filter(s).</span>
                       </div>
                     </TableCell>
                   </TableRow>
@@ -213,9 +213,9 @@ const ActionLinks: FC<{ deletable: boolean; id: string; name: string }> = ({
         ></AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Delete Dough</AlertDialogTitle>
+            <AlertDialogTitle>Delete Pizza</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to delete dough{" "}
+              Are you sure you want to delete pizza{" "}
               <span className="font-bold">{name}</span>? This action cannot be
               undone.
             </AlertDialogDescription>

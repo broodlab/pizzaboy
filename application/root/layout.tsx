@@ -24,6 +24,11 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
+                <Link to="/pizzas">Pizzas</Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
                 <Link to="/doughs">Doughs</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
