@@ -1,4 +1,4 @@
-import { PrismaClient } from "../generated/client";
+import { PrismaClient } from "~/prisma/client";
 
 export const cleanup = async (prisma: PrismaClient) => {
   console.time("🧹 Cleaned up the database...");

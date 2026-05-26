@@ -10,6 +10,7 @@
 export type * from "./models/User";
 export type * from "./models/Order";
 export type * from "./models/OrderItem";
+export type * from "./models/Size";
 export type * from "./models/Pizza";
 export type * from "./models/Dough";
 export type * from "./models/RecipeItem";

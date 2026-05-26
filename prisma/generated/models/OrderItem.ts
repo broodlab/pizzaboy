@@ -42,6 +42,7 @@ export type OrderItemMinAggregateOutputType = {
   doughId: string | null;
   orderId: string | null;
   pizzaId: string | null;
+  sizeId: string | null;
 };
 
 export type OrderItemMaxAggregateOutputType = {
@@ -52,6 +53,7 @@ export type OrderItemMaxAggregateOutputType = {
   doughId: string | null;
   orderId: string | null;
   pizzaId: string | null;
+  sizeId: string | null;
 };
 
 export type OrderItemCountAggregateOutputType = {
@@ -62,6 +64,7 @@ export type OrderItemCountAggregateOutputType = {
   doughId: number;
   orderId: number;
   pizzaId: number;
+  sizeId: number;
   _all: number;
 };
 
@@ -81,6 +84,7 @@ export type OrderItemMinAggregateInputType = {
   doughId?: true;
   orderId?: true;
   pizzaId?: true;
+  sizeId?: true;
 };
 
 export type OrderItemMaxAggregateInputType = {
@@ -91,6 +95,7 @@ export type OrderItemMaxAggregateInputType = {
   doughId?: true;
   orderId?: true;
   pizzaId?: true;
+  sizeId?: true;
 };
 
 export type OrderItemCountAggregateInputType = {
@@ -101,6 +106,7 @@ export type OrderItemCountAggregateInputType = {
   doughId?: true;
   orderId?: true;
   pizzaId?: true;
+  sizeId?: true;
   _all?: true;
 };
 
@@ -205,6 +211,7 @@ export type OrderItemGroupByOutputType = {
   doughId: string | null;
   orderId: string;
   pizzaId: string | null;
+  sizeId: string | null;
   _count: OrderItemCountAggregateOutputType | null;
   _avg: OrderItemAvgAggregateOutputType | null;
   _sum: OrderItemSumAggregateOutputType | null;
@@ -236,6 +243,7 @@ export type OrderItemWhereInput = {
   doughId?: Prisma.StringNullableFilter<"OrderItem"> | string | null;
   orderId?: Prisma.StringFilter<"OrderItem"> | string;
   pizzaId?: Prisma.StringNullableFilter<"OrderItem"> | string | null;
+  sizeId?: Prisma.StringNullableFilter<"OrderItem"> | string | null;
   dough?: Prisma.XOR<
     Prisma.DoughNullableScalarRelationFilter,
     Prisma.DoughWhereInput
@@ -244,6 +252,10 @@ export type OrderItemWhereInput = {
   pizza?: Prisma.XOR<
     Prisma.PizzaNullableScalarRelationFilter,
     Prisma.PizzaWhereInput
+  > | null;
+  size?: Prisma.XOR<
+    Prisma.SizeNullableScalarRelationFilter,
+    Prisma.SizeWhereInput
   > | null;
 };
 
@@ -255,9 +267,11 @@ export type OrderItemOrderByWithRelationInput = {
   doughId?: Prisma.SortOrderInput | Prisma.SortOrder;
   orderId?: Prisma.SortOrder;
   pizzaId?: Prisma.SortOrderInput | Prisma.SortOrder;
+  sizeId?: Prisma.SortOrderInput | Prisma.SortOrder;
   dough?: Prisma.DoughOrderByWithRelationInput;
   order?: Prisma.OrderOrderByWithRelationInput;
   pizza?: Prisma.PizzaOrderByWithRelationInput;
+  size?: Prisma.SizeOrderByWithRelationInput;
 };
 
 export type OrderItemWhereUniqueInput = Prisma.AtLeast<
@@ -272,6 +286,7 @@ export type OrderItemWhereUniqueInput = Prisma.AtLeast<
     doughId?: Prisma.StringNullableFilter<"OrderItem"> | string | null;
     orderId?: Prisma.StringFilter<"OrderItem"> | string;
     pizzaId?: Prisma.StringNullableFilter<"OrderItem"> | string | null;
+    sizeId?: Prisma.StringNullableFilter<"OrderItem"> | string | null;
     dough?: Prisma.XOR<
       Prisma.DoughNullableScalarRelationFilter,
       Prisma.DoughWhereInput
@@ -283,6 +298,10 @@ export type OrderItemWhereUniqueInput = Prisma.AtLeast<
     pizza?: Prisma.XOR<
       Prisma.PizzaNullableScalarRelationFilter,
       Prisma.PizzaWhereInput
+    > | null;
+    size?: Prisma.XOR<
+      Prisma.SizeNullableScalarRelationFilter,
+      Prisma.SizeWhereInput
     > | null;
   },
   "id"
@@ -296,6 +315,7 @@ export type OrderItemOrderByWithAggregationInput = {
   doughId?: Prisma.SortOrderInput | Prisma.SortOrder;
   orderId?: Prisma.SortOrder;
   pizzaId?: Prisma.SortOrderInput | Prisma.SortOrder;
+  sizeId?: Prisma.SortOrderInput | Prisma.SortOrder;
   _count?: Prisma.OrderItemCountOrderByAggregateInput;
   _avg?: Prisma.OrderItemAvgOrderByAggregateInput;
   _max?: Prisma.OrderItemMaxOrderByAggregateInput;
@@ -324,6 +344,10 @@ export type OrderItemScalarWhereWithAggregatesInput = {
     | Prisma.StringNullableWithAggregatesFilter<"OrderItem">
     | string
     | null;
+  sizeId?:
+    | Prisma.StringNullableWithAggregatesFilter<"OrderItem">
+    | string
+    | null;
 };
 
 export type OrderItemCreateInput = {
@@ -334,6 +358,7 @@ export type OrderItemCreateInput = {
   dough?: Prisma.DoughCreateNestedOneWithoutOrderItemsInput;
   order: Prisma.OrderCreateNestedOneWithoutOrderItemsInput;
   pizza?: Prisma.PizzaCreateNestedOneWithoutOrderItemsInput;
+  size?: Prisma.SizeCreateNestedOneWithoutOrderItemsInput;
 };
 
 export type OrderItemUncheckedCreateInput = {
@@ -344,6 +369,7 @@ export type OrderItemUncheckedCreateInput = {
   doughId?: string | null;
   orderId: string;
   pizzaId?: string | null;
+  sizeId?: string | null;
 };
 
 export type OrderItemUpdateInput = {
@@ -354,6 +380,7 @@ export type OrderItemUpdateInput = {
   dough?: Prisma.DoughUpdateOneWithoutOrderItemsNestedInput;
   order?: Prisma.OrderUpdateOneRequiredWithoutOrderItemsNestedInput;
   pizza?: Prisma.PizzaUpdateOneWithoutOrderItemsNestedInput;
+  size?: Prisma.SizeUpdateOneWithoutOrderItemsNestedInput;
 };
 
 export type OrderItemUncheckedUpdateInput = {
@@ -364,6 +391,7 @@ export type OrderItemUncheckedUpdateInput = {
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   orderId?: Prisma.StringFieldUpdateOperationsInput | string;
   pizzaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  sizeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 
 export type OrderItemCreateManyInput = {
@@ -374,6 +402,7 @@ export type OrderItemCreateManyInput = {
   doughId?: string | null;
   orderId: string;
   pizzaId?: string | null;
+  sizeId?: string | null;
 };
 
 export type OrderItemUpdateManyMutationInput = {
@@ -391,6 +420,7 @@ export type OrderItemUncheckedUpdateManyInput = {
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   orderId?: Prisma.StringFieldUpdateOperationsInput | string;
   pizzaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  sizeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 
 export type OrderItemListRelationFilter = {
@@ -411,6 +441,7 @@ export type OrderItemCountOrderByAggregateInput = {
   doughId?: Prisma.SortOrder;
   orderId?: Prisma.SortOrder;
   pizzaId?: Prisma.SortOrder;
+  sizeId?: Prisma.SortOrder;
 };
 
 export type OrderItemAvgOrderByAggregateInput = {
@@ -425,6 +456,7 @@ export type OrderItemMaxOrderByAggregateInput = {
   doughId?: Prisma.SortOrder;
   orderId?: Prisma.SortOrder;
   pizzaId?: Prisma.SortOrder;
+  sizeId?: Prisma.SortOrder;
 };
 
 export type OrderItemMinOrderByAggregateInput = {
@@ -435,6 +467,7 @@ export type OrderItemMinOrderByAggregateInput = {
   doughId?: Prisma.SortOrder;
   orderId?: Prisma.SortOrder;
   pizzaId?: Prisma.SortOrder;
+  sizeId?: Prisma.SortOrder;
 };
 
 export type OrderItemSumOrderByAggregateInput = {
@@ -557,6 +590,112 @@ export type IntFieldUpdateOperationsInput = {
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null;
+};
+
+export type OrderItemCreateNestedManyWithoutSizeInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.OrderItemCreateWithoutSizeInput,
+        Prisma.OrderItemUncheckedCreateWithoutSizeInput
+      >
+    | Prisma.OrderItemCreateWithoutSizeInput[]
+    | Prisma.OrderItemUncheckedCreateWithoutSizeInput[];
+  connectOrCreate?:
+    | Prisma.OrderItemCreateOrConnectWithoutSizeInput
+    | Prisma.OrderItemCreateOrConnectWithoutSizeInput[];
+  createMany?: Prisma.OrderItemCreateManySizeInputEnvelope;
+  connect?:
+    | Prisma.OrderItemWhereUniqueInput
+    | Prisma.OrderItemWhereUniqueInput[];
+};
+
+export type OrderItemUncheckedCreateNestedManyWithoutSizeInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.OrderItemCreateWithoutSizeInput,
+        Prisma.OrderItemUncheckedCreateWithoutSizeInput
+      >
+    | Prisma.OrderItemCreateWithoutSizeInput[]
+    | Prisma.OrderItemUncheckedCreateWithoutSizeInput[];
+  connectOrCreate?:
+    | Prisma.OrderItemCreateOrConnectWithoutSizeInput
+    | Prisma.OrderItemCreateOrConnectWithoutSizeInput[];
+  createMany?: Prisma.OrderItemCreateManySizeInputEnvelope;
+  connect?:
+    | Prisma.OrderItemWhereUniqueInput
+    | Prisma.OrderItemWhereUniqueInput[];
+};
+
+export type OrderItemUpdateManyWithoutSizeNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.OrderItemCreateWithoutSizeInput,
+        Prisma.OrderItemUncheckedCreateWithoutSizeInput
+      >
+    | Prisma.OrderItemCreateWithoutSizeInput[]
+    | Prisma.OrderItemUncheckedCreateWithoutSizeInput[];
+  connectOrCreate?:
+    | Prisma.OrderItemCreateOrConnectWithoutSizeInput
+    | Prisma.OrderItemCreateOrConnectWithoutSizeInput[];
+  upsert?:
+    | Prisma.OrderItemUpsertWithWhereUniqueWithoutSizeInput
+    | Prisma.OrderItemUpsertWithWhereUniqueWithoutSizeInput[];
+  createMany?: Prisma.OrderItemCreateManySizeInputEnvelope;
+  set?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[];
+  disconnect?:
+    | Prisma.OrderItemWhereUniqueInput
+    | Prisma.OrderItemWhereUniqueInput[];
+  delete?:
+    | Prisma.OrderItemWhereUniqueInput
+    | Prisma.OrderItemWhereUniqueInput[];
+  connect?:
+    | Prisma.OrderItemWhereUniqueInput
+    | Prisma.OrderItemWhereUniqueInput[];
+  update?:
+    | Prisma.OrderItemUpdateWithWhereUniqueWithoutSizeInput
+    | Prisma.OrderItemUpdateWithWhereUniqueWithoutSizeInput[];
+  updateMany?:
+    | Prisma.OrderItemUpdateManyWithWhereWithoutSizeInput
+    | Prisma.OrderItemUpdateManyWithWhereWithoutSizeInput[];
+  deleteMany?:
+    | Prisma.OrderItemScalarWhereInput
+    | Prisma.OrderItemScalarWhereInput[];
+};
+
+export type OrderItemUncheckedUpdateManyWithoutSizeNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.OrderItemCreateWithoutSizeInput,
+        Prisma.OrderItemUncheckedCreateWithoutSizeInput
+      >
+    | Prisma.OrderItemCreateWithoutSizeInput[]
+    | Prisma.OrderItemUncheckedCreateWithoutSizeInput[];
+  connectOrCreate?:
+    | Prisma.OrderItemCreateOrConnectWithoutSizeInput
+    | Prisma.OrderItemCreateOrConnectWithoutSizeInput[];
+  upsert?:
+    | Prisma.OrderItemUpsertWithWhereUniqueWithoutSizeInput
+    | Prisma.OrderItemUpsertWithWhereUniqueWithoutSizeInput[];
+  createMany?: Prisma.OrderItemCreateManySizeInputEnvelope;
+  set?: Prisma.OrderItemWhereUniqueInput | Prisma.OrderItemWhereUniqueInput[];
+  disconnect?:
+    | Prisma.OrderItemWhereUniqueInput
+    | Prisma.OrderItemWhereUniqueInput[];
+  delete?:
+    | Prisma.OrderItemWhereUniqueInput
+    | Prisma.OrderItemWhereUniqueInput[];
+  connect?:
+    | Prisma.OrderItemWhereUniqueInput
+    | Prisma.OrderItemWhereUniqueInput[];
+  update?:
+    | Prisma.OrderItemUpdateWithWhereUniqueWithoutSizeInput
+    | Prisma.OrderItemUpdateWithWhereUniqueWithoutSizeInput[];
+  updateMany?:
+    | Prisma.OrderItemUpdateManyWithWhereWithoutSizeInput
+    | Prisma.OrderItemUpdateManyWithWhereWithoutSizeInput[];
+  deleteMany?:
+    | Prisma.OrderItemScalarWhereInput
+    | Prisma.OrderItemScalarWhereInput[];
 };
 
 export type OrderItemCreateNestedManyWithoutPizzaInput = {
@@ -778,6 +917,7 @@ export type OrderItemCreateWithoutOrderInput = {
   updatedAt?: Date | string;
   dough?: Prisma.DoughCreateNestedOneWithoutOrderItemsInput;
   pizza?: Prisma.PizzaCreateNestedOneWithoutOrderItemsInput;
+  size?: Prisma.SizeCreateNestedOneWithoutOrderItemsInput;
 };
 
 export type OrderItemUncheckedCreateWithoutOrderInput = {
@@ -787,6 +927,7 @@ export type OrderItemUncheckedCreateWithoutOrderInput = {
   updatedAt?: Date | string;
   doughId?: string | null;
   pizzaId?: string | null;
+  sizeId?: string | null;
 };
 
 export type OrderItemCreateOrConnectWithoutOrderInput = {
@@ -842,6 +983,69 @@ export type OrderItemScalarWhereInput = {
   doughId?: Prisma.StringNullableFilter<"OrderItem"> | string | null;
   orderId?: Prisma.StringFilter<"OrderItem"> | string;
   pizzaId?: Prisma.StringNullableFilter<"OrderItem"> | string | null;
+  sizeId?: Prisma.StringNullableFilter<"OrderItem"> | string | null;
+};
+
+export type OrderItemCreateWithoutSizeInput = {
+  id?: string;
+  amount?: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  dough?: Prisma.DoughCreateNestedOneWithoutOrderItemsInput;
+  order: Prisma.OrderCreateNestedOneWithoutOrderItemsInput;
+  pizza?: Prisma.PizzaCreateNestedOneWithoutOrderItemsInput;
+};
+
+export type OrderItemUncheckedCreateWithoutSizeInput = {
+  id?: string;
+  amount?: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  doughId?: string | null;
+  orderId: string;
+  pizzaId?: string | null;
+};
+
+export type OrderItemCreateOrConnectWithoutSizeInput = {
+  where: Prisma.OrderItemWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.OrderItemCreateWithoutSizeInput,
+    Prisma.OrderItemUncheckedCreateWithoutSizeInput
+  >;
+};
+
+export type OrderItemCreateManySizeInputEnvelope = {
+  data:
+    | Prisma.OrderItemCreateManySizeInput
+    | Prisma.OrderItemCreateManySizeInput[];
+};
+
+export type OrderItemUpsertWithWhereUniqueWithoutSizeInput = {
+  where: Prisma.OrderItemWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.OrderItemUpdateWithoutSizeInput,
+    Prisma.OrderItemUncheckedUpdateWithoutSizeInput
+  >;
+  create: Prisma.XOR<
+    Prisma.OrderItemCreateWithoutSizeInput,
+    Prisma.OrderItemUncheckedCreateWithoutSizeInput
+  >;
+};
+
+export type OrderItemUpdateWithWhereUniqueWithoutSizeInput = {
+  where: Prisma.OrderItemWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.OrderItemUpdateWithoutSizeInput,
+    Prisma.OrderItemUncheckedUpdateWithoutSizeInput
+  >;
+};
+
+export type OrderItemUpdateManyWithWhereWithoutSizeInput = {
+  where: Prisma.OrderItemScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.OrderItemUpdateManyMutationInput,
+    Prisma.OrderItemUncheckedUpdateManyWithoutSizeInput
+  >;
 };
 
 export type OrderItemCreateWithoutPizzaInput = {
@@ -851,6 +1055,7 @@ export type OrderItemCreateWithoutPizzaInput = {
   updatedAt?: Date | string;
   dough?: Prisma.DoughCreateNestedOneWithoutOrderItemsInput;
   order: Prisma.OrderCreateNestedOneWithoutOrderItemsInput;
+  size?: Prisma.SizeCreateNestedOneWithoutOrderItemsInput;
 };
 
 export type OrderItemUncheckedCreateWithoutPizzaInput = {
@@ -860,6 +1065,7 @@ export type OrderItemUncheckedCreateWithoutPizzaInput = {
   updatedAt?: Date | string;
   doughId?: string | null;
   orderId: string;
+  sizeId?: string | null;
 };
 
 export type OrderItemCreateOrConnectWithoutPizzaInput = {
@@ -911,6 +1117,7 @@ export type OrderItemCreateWithoutDoughInput = {
   updatedAt?: Date | string;
   order: Prisma.OrderCreateNestedOneWithoutOrderItemsInput;
   pizza?: Prisma.PizzaCreateNestedOneWithoutOrderItemsInput;
+  size?: Prisma.SizeCreateNestedOneWithoutOrderItemsInput;
 };
 
 export type OrderItemUncheckedCreateWithoutDoughInput = {
@@ -920,6 +1127,7 @@ export type OrderItemUncheckedCreateWithoutDoughInput = {
   updatedAt?: Date | string;
   orderId: string;
   pizzaId?: string | null;
+  sizeId?: string | null;
 };
 
 export type OrderItemCreateOrConnectWithoutDoughInput = {
@@ -971,6 +1179,7 @@ export type OrderItemCreateManyOrderInput = {
   updatedAt?: Date | string;
   doughId?: string | null;
   pizzaId?: string | null;
+  sizeId?: string | null;
 };
 
 export type OrderItemUpdateWithoutOrderInput = {
@@ -980,6 +1189,7 @@ export type OrderItemUpdateWithoutOrderInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dough?: Prisma.DoughUpdateOneWithoutOrderItemsNestedInput;
   pizza?: Prisma.PizzaUpdateOneWithoutOrderItemsNestedInput;
+  size?: Prisma.SizeUpdateOneWithoutOrderItemsNestedInput;
 };
 
 export type OrderItemUncheckedUpdateWithoutOrderInput = {
@@ -989,6 +1199,7 @@ export type OrderItemUncheckedUpdateWithoutOrderInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   pizzaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  sizeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 
 export type OrderItemUncheckedUpdateManyWithoutOrderInput = {
@@ -997,6 +1208,47 @@ export type OrderItemUncheckedUpdateManyWithoutOrderInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  pizzaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  sizeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+};
+
+export type OrderItemCreateManySizeInput = {
+  id?: string;
+  amount?: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  doughId?: string | null;
+  orderId: string;
+  pizzaId?: string | null;
+};
+
+export type OrderItemUpdateWithoutSizeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  amount?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  dough?: Prisma.DoughUpdateOneWithoutOrderItemsNestedInput;
+  order?: Prisma.OrderUpdateOneRequiredWithoutOrderItemsNestedInput;
+  pizza?: Prisma.PizzaUpdateOneWithoutOrderItemsNestedInput;
+};
+
+export type OrderItemUncheckedUpdateWithoutSizeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  amount?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string;
+  pizzaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+};
+
+export type OrderItemUncheckedUpdateManyWithoutSizeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  amount?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string;
   pizzaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 
@@ -1007,6 +1259,7 @@ export type OrderItemCreateManyPizzaInput = {
   updatedAt?: Date | string;
   doughId?: string | null;
   orderId: string;
+  sizeId?: string | null;
 };
 
 export type OrderItemUpdateWithoutPizzaInput = {
@@ -1016,6 +1269,7 @@ export type OrderItemUpdateWithoutPizzaInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   dough?: Prisma.DoughUpdateOneWithoutOrderItemsNestedInput;
   order?: Prisma.OrderUpdateOneRequiredWithoutOrderItemsNestedInput;
+  size?: Prisma.SizeUpdateOneWithoutOrderItemsNestedInput;
 };
 
 export type OrderItemUncheckedUpdateWithoutPizzaInput = {
@@ -1025,6 +1279,7 @@ export type OrderItemUncheckedUpdateWithoutPizzaInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   orderId?: Prisma.StringFieldUpdateOperationsInput | string;
+  sizeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 
 export type OrderItemUncheckedUpdateManyWithoutPizzaInput = {
@@ -1034,6 +1289,7 @@ export type OrderItemUncheckedUpdateManyWithoutPizzaInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   doughId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   orderId?: Prisma.StringFieldUpdateOperationsInput | string;
+  sizeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 
 export type OrderItemCreateManyDoughInput = {
@@ -1043,6 +1299,7 @@ export type OrderItemCreateManyDoughInput = {
   updatedAt?: Date | string;
   orderId: string;
   pizzaId?: string | null;
+  sizeId?: string | null;
 };
 
 export type OrderItemUpdateWithoutDoughInput = {
@@ -1052,6 +1309,7 @@ export type OrderItemUpdateWithoutDoughInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   order?: Prisma.OrderUpdateOneRequiredWithoutOrderItemsNestedInput;
   pizza?: Prisma.PizzaUpdateOneWithoutOrderItemsNestedInput;
+  size?: Prisma.SizeUpdateOneWithoutOrderItemsNestedInput;
 };
 
 export type OrderItemUncheckedUpdateWithoutDoughInput = {
@@ -1061,6 +1319,7 @@ export type OrderItemUncheckedUpdateWithoutDoughInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   orderId?: Prisma.StringFieldUpdateOperationsInput | string;
   pizzaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  sizeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 
 export type OrderItemUncheckedUpdateManyWithoutDoughInput = {
@@ -1070,6 +1329,7 @@ export type OrderItemUncheckedUpdateManyWithoutDoughInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   orderId?: Prisma.StringFieldUpdateOperationsInput | string;
   pizzaId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  sizeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 
 export type OrderItemSelect<
@@ -1084,9 +1344,11 @@ export type OrderItemSelect<
     doughId?: boolean;
     orderId?: boolean;
     pizzaId?: boolean;
+    sizeId?: boolean;
     dough?: boolean | Prisma.OrderItem$doughArgs<ExtArgs>;
     order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>;
     pizza?: boolean | Prisma.OrderItem$pizzaArgs<ExtArgs>;
+    size?: boolean | Prisma.OrderItem$sizeArgs<ExtArgs>;
   },
   ExtArgs["result"]["orderItem"]
 >;
@@ -1103,9 +1365,11 @@ export type OrderItemSelectCreateManyAndReturn<
     doughId?: boolean;
     orderId?: boolean;
     pizzaId?: boolean;
+    sizeId?: boolean;
     dough?: boolean | Prisma.OrderItem$doughArgs<ExtArgs>;
     order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>;
     pizza?: boolean | Prisma.OrderItem$pizzaArgs<ExtArgs>;
+    size?: boolean | Prisma.OrderItem$sizeArgs<ExtArgs>;
   },
   ExtArgs["result"]["orderItem"]
 >;
@@ -1122,9 +1386,11 @@ export type OrderItemSelectUpdateManyAndReturn<
     doughId?: boolean;
     orderId?: boolean;
     pizzaId?: boolean;
+    sizeId?: boolean;
     dough?: boolean | Prisma.OrderItem$doughArgs<ExtArgs>;
     order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>;
     pizza?: boolean | Prisma.OrderItem$pizzaArgs<ExtArgs>;
+    size?: boolean | Prisma.OrderItem$sizeArgs<ExtArgs>;
   },
   ExtArgs["result"]["orderItem"]
 >;
@@ -1137,6 +1403,7 @@ export type OrderItemSelectScalar = {
   doughId?: boolean;
   orderId?: boolean;
   pizzaId?: boolean;
+  sizeId?: boolean;
 };
 
 export type OrderItemOmit<
@@ -1149,7 +1416,8 @@ export type OrderItemOmit<
   | "updatedAt"
   | "doughId"
   | "orderId"
-  | "pizzaId",
+  | "pizzaId"
+  | "sizeId",
   ExtArgs["result"]["orderItem"]
 >;
 export type OrderItemInclude<
@@ -1159,6 +1427,7 @@ export type OrderItemInclude<
   dough?: boolean | Prisma.OrderItem$doughArgs<ExtArgs>;
   order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>;
   pizza?: boolean | Prisma.OrderItem$pizzaArgs<ExtArgs>;
+  size?: boolean | Prisma.OrderItem$sizeArgs<ExtArgs>;
 };
 export type OrderItemIncludeCreateManyAndReturn<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
@@ -1167,6 +1436,7 @@ export type OrderItemIncludeCreateManyAndReturn<
   dough?: boolean | Prisma.OrderItem$doughArgs<ExtArgs>;
   order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>;
   pizza?: boolean | Prisma.OrderItem$pizzaArgs<ExtArgs>;
+  size?: boolean | Prisma.OrderItem$sizeArgs<ExtArgs>;
 };
 export type OrderItemIncludeUpdateManyAndReturn<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
@@ -1175,6 +1445,7 @@ export type OrderItemIncludeUpdateManyAndReturn<
   dough?: boolean | Prisma.OrderItem$doughArgs<ExtArgs>;
   order?: boolean | Prisma.OrderDefaultArgs<ExtArgs>;
   pizza?: boolean | Prisma.OrderItem$pizzaArgs<ExtArgs>;
+  size?: boolean | Prisma.OrderItem$sizeArgs<ExtArgs>;
 };
 
 export type $OrderItemPayload<
@@ -1186,6 +1457,7 @@ export type $OrderItemPayload<
     dough: Prisma.$DoughPayload<ExtArgs> | null;
     order: Prisma.$OrderPayload<ExtArgs>;
     pizza: Prisma.$PizzaPayload<ExtArgs> | null;
+    size: Prisma.$SizePayload<ExtArgs> | null;
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -1196,6 +1468,7 @@ export type $OrderItemPayload<
       doughId: string | null;
       orderId: string;
       pizzaId: string | null;
+      sizeId: string | null;
     },
     ExtArgs["result"]["orderItem"]
   >;
@@ -1786,6 +2059,19 @@ export interface Prisma__OrderItemClient<
     ExtArgs,
     GlobalOmitOptions
   >;
+  size<T extends Prisma.OrderItem$sizeArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.OrderItem$sizeArgs<ExtArgs>>,
+  ): Prisma.Prisma__SizeClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$SizePayload<ExtArgs>,
+      T,
+      "findUniqueOrThrow",
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1835,6 +2121,7 @@ export interface OrderItemFieldRefs {
   readonly doughId: Prisma.FieldRef<"OrderItem", "String">;
   readonly orderId: Prisma.FieldRef<"OrderItem", "String">;
   readonly pizzaId: Prisma.FieldRef<"OrderItem", "String">;
+  readonly sizeId: Prisma.FieldRef<"OrderItem", "String">;
 }
 
 // Custom InputTypes
@@ -2346,6 +2633,28 @@ export type OrderItem$pizzaArgs<
    */
   include?: Prisma.PizzaInclude<ExtArgs> | null;
   where?: Prisma.PizzaWhereInput;
+};
+
+/**
+ * OrderItem.size
+ */
+export type OrderItem$sizeArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Size
+   */
+  select?: Prisma.SizeSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Size
+   */
+  omit?: Prisma.SizeOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SizeInclude<ExtArgs> | null;
+  where?: Prisma.SizeWhereInput;
 };
 
 /**

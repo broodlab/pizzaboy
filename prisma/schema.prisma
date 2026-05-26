@@ -19,6 +19,7 @@ model User {
   ingredients Ingredient[]
   orders      Order[]
   pizzas      Pizza[]
+  sizes       Size[]
 }
 
 model Order {
@@ -45,6 +46,21 @@ model OrderItem {
   orderId String
   pizza   Pizza?  @relation(fields: [pizzaId], references: [id], onDelete: SetNull)
   pizzaId String?
+  size    Size?   @relation(fields: [sizeId], references: [id], onDelete: SetNull)
+  sizeId  String?
+}
+
+model Size {
+  id          String  @id @default(cuid())
+  name        String  @unique
+  description String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  orderItems OrderItem[]
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String
 }
 
 model Pizza {

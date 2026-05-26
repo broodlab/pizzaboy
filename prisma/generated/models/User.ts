@@ -190,6 +190,7 @@ export type UserWhereInput = {
   ingredients?: Prisma.IngredientListRelationFilter;
   orders?: Prisma.OrderListRelationFilter;
   pizzas?: Prisma.PizzaListRelationFilter;
+  sizes?: Prisma.SizeListRelationFilter;
 };
 
 export type UserOrderByWithRelationInput = {
@@ -202,6 +203,7 @@ export type UserOrderByWithRelationInput = {
   ingredients?: Prisma.IngredientOrderByRelationAggregateInput;
   orders?: Prisma.OrderOrderByRelationAggregateInput;
   pizzas?: Prisma.PizzaOrderByRelationAggregateInput;
+  sizes?: Prisma.SizeOrderByRelationAggregateInput;
 };
 
 export type UserWhereUniqueInput = Prisma.AtLeast<
@@ -218,6 +220,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<
     ingredients?: Prisma.IngredientListRelationFilter;
     orders?: Prisma.OrderListRelationFilter;
     pizzas?: Prisma.PizzaListRelationFilter;
+    sizes?: Prisma.SizeListRelationFilter;
   },
   "id" | "name"
 >;
@@ -258,6 +261,7 @@ export type UserCreateInput = {
   ingredients?: Prisma.IngredientCreateNestedManyWithoutUserInput;
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput;
   pizzas?: Prisma.PizzaCreateNestedManyWithoutUserInput;
+  sizes?: Prisma.SizeCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateInput = {
@@ -270,6 +274,7 @@ export type UserUncheckedCreateInput = {
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutUserInput;
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput;
   pizzas?: Prisma.PizzaUncheckedCreateNestedManyWithoutUserInput;
+  sizes?: Prisma.SizeUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserUpdateInput = {
@@ -282,6 +287,7 @@ export type UserUpdateInput = {
   ingredients?: Prisma.IngredientUpdateManyWithoutUserNestedInput;
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput;
   pizzas?: Prisma.PizzaUpdateManyWithoutUserNestedInput;
+  sizes?: Prisma.SizeUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateInput = {
@@ -294,6 +300,7 @@ export type UserUncheckedUpdateInput = {
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutUserNestedInput;
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput;
   pizzas?: Prisma.PizzaUncheckedUpdateManyWithoutUserNestedInput;
+  sizes?: Prisma.SizeUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserCreateManyInput = {
@@ -387,6 +394,32 @@ export type UserUpdateOneRequiredWithoutOrdersNestedInput = {
   >;
 };
 
+export type UserCreateNestedOneWithoutSizesInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutSizesInput,
+    Prisma.UserUncheckedCreateWithoutSizesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSizesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
+
+export type UserUpdateOneRequiredWithoutSizesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutSizesInput,
+    Prisma.UserUncheckedCreateWithoutSizesInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSizesInput;
+  upsert?: Prisma.UserUpsertWithoutSizesInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutSizesInput,
+      Prisma.UserUpdateWithoutSizesInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutSizesInput
+  >;
+};
+
 export type UserCreateNestedOneWithoutPizzasInput = {
   create?: Prisma.XOR<
     Prisma.UserCreateWithoutPizzasInput,
@@ -474,6 +507,7 @@ export type UserCreateWithoutOrdersInput = {
   doughs?: Prisma.DoughCreateNestedManyWithoutUserInput;
   ingredients?: Prisma.IngredientCreateNestedManyWithoutUserInput;
   pizzas?: Prisma.PizzaCreateNestedManyWithoutUserInput;
+  sizes?: Prisma.SizeCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutOrdersInput = {
@@ -485,6 +519,7 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   doughs?: Prisma.DoughUncheckedCreateNestedManyWithoutUserInput;
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutUserInput;
   pizzas?: Prisma.PizzaUncheckedCreateNestedManyWithoutUserInput;
+  sizes?: Prisma.SizeUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutOrdersInput = {
@@ -524,6 +559,7 @@ export type UserUpdateWithoutOrdersInput = {
   doughs?: Prisma.DoughUpdateManyWithoutUserNestedInput;
   ingredients?: Prisma.IngredientUpdateManyWithoutUserNestedInput;
   pizzas?: Prisma.PizzaUpdateManyWithoutUserNestedInput;
+  sizes?: Prisma.SizeUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -534,6 +570,83 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   doughs?: Prisma.DoughUncheckedUpdateManyWithoutUserNestedInput;
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutUserNestedInput;
+  pizzas?: Prisma.PizzaUncheckedUpdateManyWithoutUserNestedInput;
+  sizes?: Prisma.SizeUncheckedUpdateManyWithoutUserNestedInput;
+};
+
+export type UserCreateWithoutSizesInput = {
+  id?: string;
+  name: string;
+  role: $Enums.UserRole;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  doughs?: Prisma.DoughCreateNestedManyWithoutUserInput;
+  ingredients?: Prisma.IngredientCreateNestedManyWithoutUserInput;
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput;
+  pizzas?: Prisma.PizzaCreateNestedManyWithoutUserInput;
+};
+
+export type UserUncheckedCreateWithoutSizesInput = {
+  id?: string;
+  name: string;
+  role: $Enums.UserRole;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  doughs?: Prisma.DoughUncheckedCreateNestedManyWithoutUserInput;
+  ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutUserInput;
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput;
+  pizzas?: Prisma.PizzaUncheckedCreateNestedManyWithoutUserInput;
+};
+
+export type UserCreateOrConnectWithoutSizesInput = {
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutSizesInput,
+    Prisma.UserUncheckedCreateWithoutSizesInput
+  >;
+};
+
+export type UserUpsertWithoutSizesInput = {
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutSizesInput,
+    Prisma.UserUncheckedUpdateWithoutSizesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutSizesInput,
+    Prisma.UserUncheckedCreateWithoutSizesInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
+
+export type UserUpdateToOneWithWhereWithoutSizesInput = {
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutSizesInput,
+    Prisma.UserUncheckedUpdateWithoutSizesInput
+  >;
+};
+
+export type UserUpdateWithoutSizesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  doughs?: Prisma.DoughUpdateManyWithoutUserNestedInput;
+  ingredients?: Prisma.IngredientUpdateManyWithoutUserNestedInput;
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput;
+  pizzas?: Prisma.PizzaUpdateManyWithoutUserNestedInput;
+};
+
+export type UserUncheckedUpdateWithoutSizesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  doughs?: Prisma.DoughUncheckedUpdateManyWithoutUserNestedInput;
+  ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutUserNestedInput;
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput;
   pizzas?: Prisma.PizzaUncheckedUpdateManyWithoutUserNestedInput;
 };
 
@@ -546,6 +659,7 @@ export type UserCreateWithoutPizzasInput = {
   doughs?: Prisma.DoughCreateNestedManyWithoutUserInput;
   ingredients?: Prisma.IngredientCreateNestedManyWithoutUserInput;
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput;
+  sizes?: Prisma.SizeCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutPizzasInput = {
@@ -557,6 +671,7 @@ export type UserUncheckedCreateWithoutPizzasInput = {
   doughs?: Prisma.DoughUncheckedCreateNestedManyWithoutUserInput;
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutUserInput;
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput;
+  sizes?: Prisma.SizeUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutPizzasInput = {
@@ -596,6 +711,7 @@ export type UserUpdateWithoutPizzasInput = {
   doughs?: Prisma.DoughUpdateManyWithoutUserNestedInput;
   ingredients?: Prisma.IngredientUpdateManyWithoutUserNestedInput;
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput;
+  sizes?: Prisma.SizeUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutPizzasInput = {
@@ -607,6 +723,7 @@ export type UserUncheckedUpdateWithoutPizzasInput = {
   doughs?: Prisma.DoughUncheckedUpdateManyWithoutUserNestedInput;
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutUserNestedInput;
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput;
+  sizes?: Prisma.SizeUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserCreateWithoutDoughsInput = {
@@ -618,6 +735,7 @@ export type UserCreateWithoutDoughsInput = {
   ingredients?: Prisma.IngredientCreateNestedManyWithoutUserInput;
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput;
   pizzas?: Prisma.PizzaCreateNestedManyWithoutUserInput;
+  sizes?: Prisma.SizeCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutDoughsInput = {
@@ -629,6 +747,7 @@ export type UserUncheckedCreateWithoutDoughsInput = {
   ingredients?: Prisma.IngredientUncheckedCreateNestedManyWithoutUserInput;
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput;
   pizzas?: Prisma.PizzaUncheckedCreateNestedManyWithoutUserInput;
+  sizes?: Prisma.SizeUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutDoughsInput = {
@@ -668,6 +787,7 @@ export type UserUpdateWithoutDoughsInput = {
   ingredients?: Prisma.IngredientUpdateManyWithoutUserNestedInput;
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput;
   pizzas?: Prisma.PizzaUpdateManyWithoutUserNestedInput;
+  sizes?: Prisma.SizeUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutDoughsInput = {
@@ -679,6 +799,7 @@ export type UserUncheckedUpdateWithoutDoughsInput = {
   ingredients?: Prisma.IngredientUncheckedUpdateManyWithoutUserNestedInput;
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput;
   pizzas?: Prisma.PizzaUncheckedUpdateManyWithoutUserNestedInput;
+  sizes?: Prisma.SizeUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 export type UserCreateWithoutIngredientsInput = {
@@ -690,6 +811,7 @@ export type UserCreateWithoutIngredientsInput = {
   doughs?: Prisma.DoughCreateNestedManyWithoutUserInput;
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput;
   pizzas?: Prisma.PizzaCreateNestedManyWithoutUserInput;
+  sizes?: Prisma.SizeCreateNestedManyWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutIngredientsInput = {
@@ -701,6 +823,7 @@ export type UserUncheckedCreateWithoutIngredientsInput = {
   doughs?: Prisma.DoughUncheckedCreateNestedManyWithoutUserInput;
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput;
   pizzas?: Prisma.PizzaUncheckedCreateNestedManyWithoutUserInput;
+  sizes?: Prisma.SizeUncheckedCreateNestedManyWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutIngredientsInput = {
@@ -740,6 +863,7 @@ export type UserUpdateWithoutIngredientsInput = {
   doughs?: Prisma.DoughUpdateManyWithoutUserNestedInput;
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput;
   pizzas?: Prisma.PizzaUpdateManyWithoutUserNestedInput;
+  sizes?: Prisma.SizeUpdateManyWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutIngredientsInput = {
@@ -751,6 +875,7 @@ export type UserUncheckedUpdateWithoutIngredientsInput = {
   doughs?: Prisma.DoughUncheckedUpdateManyWithoutUserNestedInput;
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput;
   pizzas?: Prisma.PizzaUncheckedUpdateManyWithoutUserNestedInput;
+  sizes?: Prisma.SizeUncheckedUpdateManyWithoutUserNestedInput;
 };
 
 /**
@@ -762,6 +887,7 @@ export type UserCountOutputType = {
   ingredients: number;
   orders: number;
   pizzas: number;
+  sizes: number;
 };
 
 export type UserCountOutputTypeSelect<
@@ -772,6 +898,7 @@ export type UserCountOutputTypeSelect<
   ingredients?: boolean | UserCountOutputTypeCountIngredientsArgs;
   orders?: boolean | UserCountOutputTypeCountOrdersArgs;
   pizzas?: boolean | UserCountOutputTypeCountPizzasArgs;
+  sizes?: boolean | UserCountOutputTypeCountSizesArgs;
 };
 
 /**
@@ -827,6 +954,16 @@ export type UserCountOutputTypeCountPizzasArgs<
   where?: Prisma.PizzaWhereInput;
 };
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSizesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.SizeWhereInput;
+};
+
 export type UserSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
@@ -841,6 +978,7 @@ export type UserSelect<
     ingredients?: boolean | Prisma.User$ingredientsArgs<ExtArgs>;
     orders?: boolean | Prisma.User$ordersArgs<ExtArgs>;
     pizzas?: boolean | Prisma.User$pizzasArgs<ExtArgs>;
+    sizes?: boolean | Prisma.User$sizesArgs<ExtArgs>;
     _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs["result"]["user"]
@@ -897,6 +1035,7 @@ export type UserInclude<
   ingredients?: boolean | Prisma.User$ingredientsArgs<ExtArgs>;
   orders?: boolean | Prisma.User$ordersArgs<ExtArgs>;
   pizzas?: boolean | Prisma.User$pizzasArgs<ExtArgs>;
+  sizes?: boolean | Prisma.User$sizesArgs<ExtArgs>;
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type UserIncludeCreateManyAndReturn<
@@ -918,6 +1057,7 @@ export type $UserPayload<
     ingredients: Prisma.$IngredientPayload<ExtArgs>[];
     orders: Prisma.$OrderPayload<ExtArgs>[];
     pizzas: Prisma.$PizzaPayload<ExtArgs>[];
+    sizes: Prisma.$SizePayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -1514,6 +1654,17 @@ export interface Prisma__UserClient<
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
         Prisma.$PizzaPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  sizes<T extends Prisma.User$sizesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$sizesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$SizePayload<ExtArgs>,
         T,
         "findMany",
         GlobalOmitOptions
@@ -2126,6 +2277,35 @@ export type User$pizzasArgs<
   take?: number;
   skip?: number;
   distinct?: Prisma.PizzaScalarFieldEnum | Prisma.PizzaScalarFieldEnum[];
+};
+
+/**
+ * User.sizes
+ */
+export type User$sizesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Size
+   */
+  select?: Prisma.SizeSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Size
+   */
+  omit?: Prisma.SizeOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SizeInclude<ExtArgs> | null;
+  where?: Prisma.SizeWhereInput;
+  orderBy?:
+    | Prisma.SizeOrderByWithRelationInput
+    | Prisma.SizeOrderByWithRelationInput[];
+  cursor?: Prisma.SizeWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.SizeScalarFieldEnum | Prisma.SizeScalarFieldEnum[];
 };
 
 /**

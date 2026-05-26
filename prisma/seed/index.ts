@@ -1,9 +1,10 @@
 import "dotenv/config";
-import { PrismaClient } from "../generated/client";
+import { PrismaClient } from "~/prisma/client";
 import { cleanup } from "./cleanup";
 import { seedPizzaboyUser } from "./seed-pizzaboy-user";
 import { seedIngredients } from "./seed-ingredients";
 import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import { seedSizes } from "./seed-sizes";
 
 const adapter = new PrismaBetterSqlite3({ url: `${process.env.DATABASE_URL}` });
 const prisma = new PrismaClient({ adapter });
@@ -15,6 +16,7 @@ const seed = async () => {
   await cleanup(prisma);
   const pizzaboy = await seedPizzaboyUser(prisma);
   await seedIngredients(prisma, pizzaboy);
+  await seedSizes(prisma, pizzaboy);
 
   console.timeEnd("🌱 Database has been seeded");
 };

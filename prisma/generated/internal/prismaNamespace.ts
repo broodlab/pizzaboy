@@ -415,6 +415,7 @@ export const ModelName = {
   User: "User",
   Order: "Order",
   OrderItem: "OrderItem",
+  Size: "Size",
   Pizza: "Pizza",
   Dough: "Dough",
   RecipeItem: "RecipeItem",
@@ -444,6 +445,7 @@ export type TypeMap<
       | "user"
       | "order"
       | "orderItem"
+      | "size"
       | "pizza"
       | "dough"
       | "recipeItem"
@@ -675,6 +677,82 @@ export type TypeMap<
           args: Prisma.OrderItemCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.OrderItemCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    Size: {
+      payload: Prisma.$SizePayload<ExtArgs>;
+      fields: Prisma.SizeFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.SizeFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.SizeFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>;
+        };
+        findFirst: {
+          args: Prisma.SizeFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.SizeFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>;
+        };
+        findMany: {
+          args: Prisma.SizeFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>[];
+        };
+        create: {
+          args: Prisma.SizeCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>;
+        };
+        createMany: {
+          args: Prisma.SizeCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.SizeCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>[];
+        };
+        delete: {
+          args: Prisma.SizeDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>;
+        };
+        update: {
+          args: Prisma.SizeUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>;
+        };
+        deleteMany: {
+          args: Prisma.SizeDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.SizeUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.SizeUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>[];
+        };
+        upsert: {
+          args: Prisma.SizeUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SizePayload>;
+        };
+        aggregate: {
+          args: Prisma.SizeAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSize>;
+        };
+        groupBy: {
+          args: Prisma.SizeGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.SizeGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.SizeCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.SizeCountAggregateOutputType>
             | number;
         };
       };
@@ -1048,10 +1126,23 @@ export const OrderItemScalarFieldEnum = {
   doughId: "doughId",
   orderId: "orderId",
   pizzaId: "pizzaId",
+  sizeId: "sizeId",
 } as const;
 
 export type OrderItemScalarFieldEnum =
   (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum];
+
+export const SizeScalarFieldEnum = {
+  id: "id",
+  name: "name",
+  description: "description",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+  userId: "userId",
+} as const;
+
+export type SizeScalarFieldEnum =
+  (typeof SizeScalarFieldEnum)[keyof typeof SizeScalarFieldEnum];
 
 export const PizzaScalarFieldEnum = {
   id: "id",
@@ -1291,6 +1382,7 @@ export type GlobalOmitConfig = {
   user?: Prisma.UserOmit;
   order?: Prisma.OrderOmit;
   orderItem?: Prisma.OrderItemOmit;
+  size?: Prisma.SizeOmit;
   pizza?: Prisma.PizzaOmit;
   dough?: Prisma.DoughOmit;
   recipeItem?: Prisma.RecipeItemOmit;

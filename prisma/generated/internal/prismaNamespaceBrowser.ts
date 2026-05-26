@@ -57,6 +57,7 @@ export const ModelName = {
   User: "User",
   Order: "Order",
   OrderItem: "OrderItem",
+  Size: "Size",
   Pizza: "Pizza",
   Dough: "Dough",
   RecipeItem: "RecipeItem",
@@ -105,10 +106,23 @@ export const OrderItemScalarFieldEnum = {
   doughId: "doughId",
   orderId: "orderId",
   pizzaId: "pizzaId",
+  sizeId: "sizeId",
 } as const;
 
 export type OrderItemScalarFieldEnum =
   (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum];
+
+export const SizeScalarFieldEnum = {
+  id: "id",
+  name: "name",
+  description: "description",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+  userId: "userId",
+} as const;
+
+export type SizeScalarFieldEnum =
+  (typeof SizeScalarFieldEnum)[keyof typeof SizeScalarFieldEnum];
 
 export const PizzaScalarFieldEnum = {
   id: "id",

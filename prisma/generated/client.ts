@@ -62,6 +62,11 @@ export type Order = Prisma.OrderModel;
  */
 export type OrderItem = Prisma.OrderItemModel;
 /**
+ * Model Size
+ *
+ */
+export type Size = Prisma.SizeModel;
+/**
  * Model Pizza
  *
  */
