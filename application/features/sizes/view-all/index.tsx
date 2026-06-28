@@ -5,10 +5,29 @@ import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod/v4";
 import { sizesSchema } from "~/features/sizes/common/schemas";
 import { SizeForm } from "~/features/sizes/common/components/size-form";
+import { persistSizes } from "~/features/sizes/view-all/persist-sizes";
+
+export const action = async ({ request }: Route.ActionArgs) => {
+  const formData = await request.formData();
+  const submission = await parseWithZod(formData, {
+    async: true,
+    schema: sizesSchema,
+  });
+
+  if (submission.status !== "success") {
+    return submission.reply();
+  }
+
+  if (submission.status === "success") {
+    await persistSizes(submission.value.sizes);
+
+    return submission.reply();
+  }
+};
 
 export const loader = async () => {
   const sizes = await prisma.size.findMany({
-    select: { name: true },
+    select: { description: true, id: true, name: true },
   });
   return { sizes };
 };

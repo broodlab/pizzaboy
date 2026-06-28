@@ -14,7 +14,7 @@ import {
 } from "~/components/field";
 import { Input } from "~/components/input";
 import { Button } from "~/components/button";
-import { PlusIcon, Trash2 as DeleteIcon } from "lucide-react";
+import { PlusIcon, Trash2 as DeleteIcon, Save as SaveIcon } from "lucide-react";
 import { Actions } from "~/components/actions";
 
 type SizeFormProps = {
@@ -39,6 +39,11 @@ export const SizeForm: FC<SizeFormProps> = ({ formConfig: [form, fields] }) => {
                     <FieldGroup>
                       <div className="grid grid-cols-12 gap-x-1 gap-y-3">
                         <div className="col-span-12 grid gap-3 sm:col-span-11 sm:border-r sm:pr-6">
+                          <input
+                            {...getInputProps(sizeFieldSet.id, {
+                              type: "hidden",
+                            })}
+                          />
                           <Field data-invalid={!sizeFieldSet.name.valid}>
                             <FieldLabel required>Name</FieldLabel>
                             <Input
@@ -105,6 +110,12 @@ export const SizeForm: FC<SizeFormProps> = ({ formConfig: [form, fields] }) => {
             </FieldGroup>
           </CardContent>
         </Card>
+        <Actions alignment="right">
+          <Button type="submit">
+            <SaveIcon />
+            <span>Save</span>
+          </Button>
+        </Actions>
       </div>
     </Form>
   );

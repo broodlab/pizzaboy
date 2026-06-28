@@ -3,6 +3,7 @@ import { descriptionMaxLength, nameMaxLength } from "~/configs/schema-rules";
 
 export const sizeSchema = z.object({
   description: z.string().max(descriptionMaxLength).optional(),
+  id: z.string().optional(),
   name: z.string().max(nameMaxLength),
 });
 
