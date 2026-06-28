@@ -1,5 +1,5 @@
 import prisma from "~/utils/prisma.server";
-import { sizeSchema, sizesSchema } from "~/features/sizes/common/schemas";
+import { sizeSchema, sizesSchema } from "~/features/sizes/view-all/schemas";
 import { z } from "zod/v4";
 
 export const persistSizes = async (

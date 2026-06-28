@@ -1,5 +1,5 @@
 import { getFormProps, getInputProps, type useForm } from "@conform-to/react";
-import { sizesSchema } from "~/features/sizes/common/schemas";
+import { sizesSchema } from "~/features/sizes/view-all/schemas";
 import { z } from "zod/v4";
 import { type FC } from "react";
 import { Form } from "react-router";

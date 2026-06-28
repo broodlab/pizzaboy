@@ -3,8 +3,8 @@ import type { Route } from "./+types";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod/v4";
-import { sizesSchema } from "~/features/sizes/common/schemas";
-import { SizeForm } from "~/features/sizes/common/components/size-form";
+import { sizesSchema } from "~/features/sizes/view-all/schemas";
+import { SizeForm } from "~/features/sizes/view-all/size-form";
 import { persistSizes } from "~/features/sizes/view-all/persist-sizes";
 
 export const action = async ({ request }: Route.ActionArgs) => {
