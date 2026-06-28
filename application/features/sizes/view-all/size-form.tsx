@@ -55,7 +55,7 @@ export const SizeForm: FC<SizeFormProps> = ({ formConfig: [form, fields] }) => {
                             <FieldError errors={sizeFieldSet.name.errors} />
                           </Field>
                           <Field data-invalid={!sizeFieldSet.description.valid}>
-                            <FieldLabel required>Description</FieldLabel>
+                            <FieldLabel>Description</FieldLabel>
                             <Input
                               {...getInputProps(sizeFieldSet.description, {
                                 type: "text",
