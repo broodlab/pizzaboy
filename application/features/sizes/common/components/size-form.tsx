@@ -32,6 +32,7 @@ export const SizeForm: FC<SizeFormProps> = ({ formConfig: [form, fields] }) => {
             <FieldGroup>
               {sizeFields.map((sizeField, index) => {
                 const sizeFieldSet = sizeField.getFieldset();
+                const isOnly = sizeFields.length === 1;
                 const isLast = index === sizeFields.length - 1;
 
                 return (
@@ -72,6 +73,7 @@ export const SizeForm: FC<SizeFormProps> = ({ formConfig: [form, fields] }) => {
                               index,
                             })}
                             className="hidden flex-1 sm:flex"
+                            disabled={isOnly}
                             type="submit"
                             variant="ghost"
                           >
@@ -83,6 +85,7 @@ export const SizeForm: FC<SizeFormProps> = ({ formConfig: [form, fields] }) => {
                               index,
                             })}
                             className="flex-1 sm:hidden"
+                            disabled={isOnly}
                             type="submit"
                             variant="destructive"
                           >

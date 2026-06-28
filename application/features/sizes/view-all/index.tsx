@@ -19,7 +19,13 @@ export const action = async ({ request }: Route.ActionArgs) => {
   }
 
   if (submission.status === "success") {
-    await persistSizes(submission.value.sizes);
+    const sizes = submission.value.sizes;
+
+    if (sizes.length === 0) {
+      throw new Error("At least one size is required.");
+    }
+
+    await persistSizes(sizes);
 
     return submission.reply();
   }
