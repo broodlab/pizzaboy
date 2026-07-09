@@ -6,6 +6,9 @@ import { parseWithZod } from "@conform-to/zod/v4";
 import { sizesSchema } from "~/features/sizes/view-all/schemas";
 import { SizeForm } from "~/features/sizes/view-all/size-form";
 import { persistSizes } from "~/features/sizes/view-all/persist-sizes";
+import { redirect } from "react-router";
+import { Notifications } from "~/utils/notifications.v2";
+import { pinNotification } from "~/utils/notifications.v2/pin-notification";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -27,7 +30,12 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
     await persistSizes(sizes);
 
-    return submission.reply();
+    const searchParams = pinNotification({
+      notificationId: "sizes.storageSucceeded",
+      searchParams: new URL(request.url).searchParams,
+    });
+
+    return redirect(`/sizes?${searchParams.toString()}`);
   }
 };
 
@@ -57,6 +65,7 @@ export default function Sizes({
         <PageTitle>Sizes</PageTitle>
         <PageIntro>Manage the sizes of your pizzas.</PageIntro>
       </PageHeader>
+      <Notifications />
       <SizeForm formConfig={formConfig} />
     </Page>
   );
