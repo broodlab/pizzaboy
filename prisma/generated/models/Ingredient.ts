@@ -227,8 +227,7 @@ export type IngredientWhereUniqueInput = Prisma.AtLeast<
     NOT?: Prisma.IngredientWhereInput | Prisma.IngredientWhereInput[];
     description?: Prisma.StringNullableFilter<"Ingredient"> | string | null;
     category?:
-      | Prisma.EnumFoodCategoryFilter<"Ingredient">
-      | $Enums.FoodCategory;
+      Prisma.EnumFoodCategoryFilter<"Ingredient"> | $Enums.FoodCategory;
     createdAt?: Prisma.DateTimeFilter<"Ingredient"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Ingredient"> | Date | string;
     userId?: Prisma.StringFilter<"Ingredient"> | string;
@@ -262,9 +261,7 @@ export type IngredientScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Ingredient"> | string;
   name?: Prisma.StringWithAggregatesFilter<"Ingredient"> | string;
   description?:
-    | Prisma.StringNullableWithAggregatesFilter<"Ingredient">
-    | string
-    | null;
+    Prisma.StringNullableWithAggregatesFilter<"Ingredient"> | string | null;
   category?:
     | Prisma.EnumFoodCategoryWithAggregatesFilter<"Ingredient">
     | $Enums.FoodCategory;
@@ -300,8 +297,7 @@ export type IngredientUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   category?:
-    | Prisma.EnumFoodCategoryFieldUpdateOperationsInput
-    | $Enums.FoodCategory;
+    Prisma.EnumFoodCategoryFieldUpdateOperationsInput | $Enums.FoodCategory;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   recipeItems?: Prisma.RecipeItemUpdateManyWithoutIngredientNestedInput;
@@ -313,8 +309,7 @@ export type IngredientUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   category?:
-    | Prisma.EnumFoodCategoryFieldUpdateOperationsInput
-    | $Enums.FoodCategory;
+    Prisma.EnumFoodCategoryFieldUpdateOperationsInput | $Enums.FoodCategory;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -336,8 +331,7 @@ export type IngredientUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   category?:
-    | Prisma.EnumFoodCategoryFieldUpdateOperationsInput
-    | $Enums.FoodCategory;
+    Prisma.EnumFoodCategoryFieldUpdateOperationsInput | $Enums.FoodCategory;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -347,8 +341,7 @@ export type IngredientUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   category?:
-    | Prisma.EnumFoodCategoryFieldUpdateOperationsInput
-    | $Enums.FoodCategory;
+    Prisma.EnumFoodCategoryFieldUpdateOperationsInput | $Enums.FoodCategory;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -412,8 +405,7 @@ export type IngredientCreateNestedManyWithoutUserInput = {
     | Prisma.IngredientCreateOrConnectWithoutUserInput[];
   createMany?: Prisma.IngredientCreateManyUserInputEnvelope;
   connect?:
-    | Prisma.IngredientWhereUniqueInput
-    | Prisma.IngredientWhereUniqueInput[];
+    Prisma.IngredientWhereUniqueInput | Prisma.IngredientWhereUniqueInput[];
 };
 
 export type IngredientUncheckedCreateNestedManyWithoutUserInput = {
@@ -429,8 +421,7 @@ export type IngredientUncheckedCreateNestedManyWithoutUserInput = {
     | Prisma.IngredientCreateOrConnectWithoutUserInput[];
   createMany?: Prisma.IngredientCreateManyUserInputEnvelope;
   connect?:
-    | Prisma.IngredientWhereUniqueInput
-    | Prisma.IngredientWhereUniqueInput[];
+    Prisma.IngredientWhereUniqueInput | Prisma.IngredientWhereUniqueInput[];
 };
 
 export type IngredientUpdateManyWithoutUserNestedInput = {
@@ -450,14 +441,11 @@ export type IngredientUpdateManyWithoutUserNestedInput = {
   createMany?: Prisma.IngredientCreateManyUserInputEnvelope;
   set?: Prisma.IngredientWhereUniqueInput | Prisma.IngredientWhereUniqueInput[];
   disconnect?:
-    | Prisma.IngredientWhereUniqueInput
-    | Prisma.IngredientWhereUniqueInput[];
+    Prisma.IngredientWhereUniqueInput | Prisma.IngredientWhereUniqueInput[];
   delete?:
-    | Prisma.IngredientWhereUniqueInput
-    | Prisma.IngredientWhereUniqueInput[];
+    Prisma.IngredientWhereUniqueInput | Prisma.IngredientWhereUniqueInput[];
   connect?:
-    | Prisma.IngredientWhereUniqueInput
-    | Prisma.IngredientWhereUniqueInput[];
+    Prisma.IngredientWhereUniqueInput | Prisma.IngredientWhereUniqueInput[];
   update?:
     | Prisma.IngredientUpdateWithWhereUniqueWithoutUserInput
     | Prisma.IngredientUpdateWithWhereUniqueWithoutUserInput[];
@@ -465,8 +453,7 @@ export type IngredientUpdateManyWithoutUserNestedInput = {
     | Prisma.IngredientUpdateManyWithWhereWithoutUserInput
     | Prisma.IngredientUpdateManyWithWhereWithoutUserInput[];
   deleteMany?:
-    | Prisma.IngredientScalarWhereInput
-    | Prisma.IngredientScalarWhereInput[];
+    Prisma.IngredientScalarWhereInput | Prisma.IngredientScalarWhereInput[];
 };
 
 export type IngredientUncheckedUpdateManyWithoutUserNestedInput = {
@@ -486,14 +473,11 @@ export type IngredientUncheckedUpdateManyWithoutUserNestedInput = {
   createMany?: Prisma.IngredientCreateManyUserInputEnvelope;
   set?: Prisma.IngredientWhereUniqueInput | Prisma.IngredientWhereUniqueInput[];
   disconnect?:
-    | Prisma.IngredientWhereUniqueInput
-    | Prisma.IngredientWhereUniqueInput[];
+    Prisma.IngredientWhereUniqueInput | Prisma.IngredientWhereUniqueInput[];
   delete?:
-    | Prisma.IngredientWhereUniqueInput
-    | Prisma.IngredientWhereUniqueInput[];
+    Prisma.IngredientWhereUniqueInput | Prisma.IngredientWhereUniqueInput[];
   connect?:
-    | Prisma.IngredientWhereUniqueInput
-    | Prisma.IngredientWhereUniqueInput[];
+    Prisma.IngredientWhereUniqueInput | Prisma.IngredientWhereUniqueInput[];
   update?:
     | Prisma.IngredientUpdateWithWhereUniqueWithoutUserInput
     | Prisma.IngredientUpdateWithWhereUniqueWithoutUserInput[];
@@ -501,8 +485,7 @@ export type IngredientUncheckedUpdateManyWithoutUserNestedInput = {
     | Prisma.IngredientUpdateManyWithWhereWithoutUserInput
     | Prisma.IngredientUpdateManyWithWhereWithoutUserInput[];
   deleteMany?:
-    | Prisma.IngredientScalarWhereInput
-    | Prisma.IngredientScalarWhereInput[];
+    Prisma.IngredientScalarWhereInput | Prisma.IngredientScalarWhereInput[];
 };
 
 export type IngredientCreateNestedOneWithoutRecipeItemsInput = {
@@ -663,8 +646,7 @@ export type IngredientUpdateWithoutRecipeItemsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   category?:
-    | Prisma.EnumFoodCategoryFieldUpdateOperationsInput
-    | $Enums.FoodCategory;
+    Prisma.EnumFoodCategoryFieldUpdateOperationsInput | $Enums.FoodCategory;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   user?: Prisma.UserUpdateOneRequiredWithoutIngredientsNestedInput;
@@ -675,8 +657,7 @@ export type IngredientUncheckedUpdateWithoutRecipeItemsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   category?:
-    | Prisma.EnumFoodCategoryFieldUpdateOperationsInput
-    | $Enums.FoodCategory;
+    Prisma.EnumFoodCategoryFieldUpdateOperationsInput | $Enums.FoodCategory;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -696,8 +677,7 @@ export type IngredientUpdateWithoutUserInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   category?:
-    | Prisma.EnumFoodCategoryFieldUpdateOperationsInput
-    | $Enums.FoodCategory;
+    Prisma.EnumFoodCategoryFieldUpdateOperationsInput | $Enums.FoodCategory;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   recipeItems?: Prisma.RecipeItemUpdateManyWithoutIngredientNestedInput;
@@ -708,8 +688,7 @@ export type IngredientUncheckedUpdateWithoutUserInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   category?:
-    | Prisma.EnumFoodCategoryFieldUpdateOperationsInput
-    | $Enums.FoodCategory;
+    Prisma.EnumFoodCategoryFieldUpdateOperationsInput | $Enums.FoodCategory;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   recipeItems?: Prisma.RecipeItemUncheckedUpdateManyWithoutIngredientNestedInput;
@@ -720,8 +699,7 @@ export type IngredientUncheckedUpdateManyWithoutUserInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   category?:
-    | Prisma.EnumFoodCategoryFieldUpdateOperationsInput
-    | $Enums.FoodCategory;
+    Prisma.EnumFoodCategoryFieldUpdateOperationsInput | $Enums.FoodCategory;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -1350,9 +1328,9 @@ export interface IngredientDelegate<
       Prisma.Extends<"skip", Prisma.Keys<T>>,
       Prisma.Extends<"take", Prisma.Keys<T>>
     >,
-    OrderByArg extends Prisma.True extends HasSelectOrTake
+    OrderByArg extends (Prisma.True extends HasSelectOrTake
       ? { orderBy: IngredientGroupByArgs["orderBy"] }
-      : { orderBy?: IngredientGroupByArgs["orderBy"] },
+      : { orderBy?: IngredientGroupByArgs["orderBy"] }),
     OrderFields extends Prisma.ExcludeUnderscoreKeys<
       Prisma.Keys<Prisma.MaybeTupleToUnion<T["orderBy"]>>
     >,
@@ -1360,8 +1338,8 @@ export interface IngredientDelegate<
     ByValid extends Prisma.Has<ByFields, OrderFields>,
     HavingFields extends Prisma.GetHavingFields<T["having"]>,
     HavingValid extends Prisma.Has<ByFields, HavingFields>,
-    ByEmpty extends T["by"] extends never[] ? Prisma.True : Prisma.False,
-    InputErrors extends ByEmpty extends Prisma.True
+    ByEmpty extends (T["by"] extends never[] ? Prisma.True : Prisma.False),
+    InputErrors extends (ByEmpty extends Prisma.True
       ? `Error: "by" must not be empty.`
       : HavingValid extends Prisma.False
         ? {
@@ -1402,7 +1380,7 @@ export interface IngredientDelegate<
                   [P in OrderFields]: P extends ByFields
                     ? never
                     : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                }[OrderFields],
+                }[OrderFields]),
   >(
     args: Prisma.SubsetIntersection<T, IngredientGroupByArgs, OrderByArg> &
       InputErrors,
@@ -1462,13 +1440,9 @@ export interface Prisma__IngredientClient<
    */
   then<TResult1 = T, TResult2 = never>(
     onfulfilled?:
-      | ((value: T) => TResult1 | PromiseLike<TResult1>)
-      | undefined
-      | null,
+      ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
     onrejected?:
-      | ((reason: any) => TResult2 | PromiseLike<TResult2>)
-      | undefined
-      | null,
+      ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
   ): runtime.Types.Utils.JsPromise<TResult1 | TResult2>;
   /**
    * Attaches a callback for only the rejection of the Promise.
@@ -1477,9 +1451,7 @@ export interface Prisma__IngredientClient<
    */
   catch<TResult = never>(
     onrejected?:
-      | ((reason: any) => TResult | PromiseLike<TResult>)
-      | undefined
-      | null,
+      ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
   ): runtime.Types.Utils.JsPromise<T | TResult>;
   /**
    * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
@@ -1611,8 +1583,7 @@ export type IngredientFindFirstArgs<
    * Filter by unique combinations of Ingredients.
    */
   distinct?:
-    | Prisma.IngredientScalarFieldEnum
-    | Prisma.IngredientScalarFieldEnum[];
+    Prisma.IngredientScalarFieldEnum | Prisma.IngredientScalarFieldEnum[];
 };
 
 /**
@@ -1670,8 +1641,7 @@ export type IngredientFindFirstOrThrowArgs<
    * Filter by unique combinations of Ingredients.
    */
   distinct?:
-    | Prisma.IngredientScalarFieldEnum
-    | Prisma.IngredientScalarFieldEnum[];
+    Prisma.IngredientScalarFieldEnum | Prisma.IngredientScalarFieldEnum[];
 };
 
 /**
@@ -1729,8 +1699,7 @@ export type IngredientFindManyArgs<
    * Filter by unique combinations of Ingredients.
    */
   distinct?:
-    | Prisma.IngredientScalarFieldEnum
-    | Prisma.IngredientScalarFieldEnum[];
+    Prisma.IngredientScalarFieldEnum | Prisma.IngredientScalarFieldEnum[];
 };
 
 /**
@@ -1999,8 +1968,7 @@ export type Ingredient$recipeItemsArgs<
   take?: number;
   skip?: number;
   distinct?:
-    | Prisma.RecipeItemScalarFieldEnum
-    | Prisma.RecipeItemScalarFieldEnum[];
+    Prisma.RecipeItemScalarFieldEnum | Prisma.RecipeItemScalarFieldEnum[];
 };
 
 /**

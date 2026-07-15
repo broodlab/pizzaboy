@@ -155,8 +155,7 @@ export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
 
 export type EnumFoodCategoryFilter<$PrismaModel = never> = {
   equals?:
-    | $Enums.FoodCategory
-    | Prisma.EnumFoodCategoryFieldRefInput<$PrismaModel>;
+    $Enums.FoodCategory | Prisma.EnumFoodCategoryFieldRefInput<$PrismaModel>;
   in?: $Enums.FoodCategory[];
   notIn?: $Enums.FoodCategory[];
   not?: Prisma.NestedEnumFoodCategoryFilter<$PrismaModel> | $Enums.FoodCategory;
@@ -164,8 +163,7 @@ export type EnumFoodCategoryFilter<$PrismaModel = never> = {
 
 export type EnumFoodCategoryWithAggregatesFilter<$PrismaModel = never> = {
   equals?:
-    | $Enums.FoodCategory
-    | Prisma.EnumFoodCategoryFieldRefInput<$PrismaModel>;
+    $Enums.FoodCategory | Prisma.EnumFoodCategoryFieldRefInput<$PrismaModel>;
   in?: $Enums.FoodCategory[];
   notIn?: $Enums.FoodCategory[];
   not?:
@@ -336,8 +334,7 @@ export type NestedIntNullableFilter<$PrismaModel = never> = {
 
 export type NestedEnumFoodCategoryFilter<$PrismaModel = never> = {
   equals?:
-    | $Enums.FoodCategory
-    | Prisma.EnumFoodCategoryFieldRefInput<$PrismaModel>;
+    $Enums.FoodCategory | Prisma.EnumFoodCategoryFieldRefInput<$PrismaModel>;
   in?: $Enums.FoodCategory[];
   notIn?: $Enums.FoodCategory[];
   not?: Prisma.NestedEnumFoodCategoryFilter<$PrismaModel> | $Enums.FoodCategory;
@@ -345,8 +342,7 @@ export type NestedEnumFoodCategoryFilter<$PrismaModel = never> = {
 
 export type NestedEnumFoodCategoryWithAggregatesFilter<$PrismaModel = never> = {
   equals?:
-    | $Enums.FoodCategory
-    | Prisma.EnumFoodCategoryFieldRefInput<$PrismaModel>;
+    $Enums.FoodCategory | Prisma.EnumFoodCategoryFieldRefInput<$PrismaModel>;
   in?: $Enums.FoodCategory[];
   notIn?: $Enums.FoodCategory[];
   not?:
