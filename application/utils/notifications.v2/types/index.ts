@@ -1,4 +1,5 @@
 export type Notification = {
-  title: string;
   description: string;
+  title: string;
+  type: "error" | "information" | "success" | "warning";
 };
