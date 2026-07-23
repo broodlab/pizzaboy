@@ -8,7 +8,7 @@ import { SizeForm } from "~/features/sizes/view-all/size-form";
 import { persistSizes } from "~/features/sizes/view-all/persist-sizes";
 import { redirect } from "react-router";
 import { Notifications } from "~/utils/notifications.v2";
-import { pinNotification } from "~/utils/notifications.v2/pin-notification";
+import { requestNotification } from "~/utils/notifications.v2/request-notification";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -30,8 +30,8 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
     await persistSizes(sizes);
 
-    const searchParams = pinNotification({
-      notificationId: "sizes.storageSucceeded",
+    const searchParams = requestNotification({
+      id: "sizes.storageSucceeded",
       searchParams: new URL(request.url).searchParams,
     });
 

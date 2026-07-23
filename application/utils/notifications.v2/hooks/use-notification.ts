@@ -1,13 +1,15 @@
 import { useSearchParams } from "react-router";
-import { useMemo, useRef } from "react";
-import { notifications } from "~/i18n/notifications";
+import { useMemo } from "react";
+import type { Notification } from "~/utils/notifications.v2/types";
 
-export const useNotification = () => {
+export const useNotification = (): Notification => {
   const [searchParams] = useSearchParams();
-  const notificationId = searchParams.get("nid");
+  const rawNotification = searchParams.get("n");
 
-  return useMemo(
-    () => (notificationId !== null ? notifications[notificationId] : null),
-    [notificationId],
-  );
+  return useMemo(() => {
+    if (rawNotification === null) {
+      return null;
+    }
+    return JSON.parse(rawNotification);
+  }, [rawNotification]);
 };

@@ -1,2 +1,2 @@
 export * from "./components/notifications";
-export * from "./pin-notification";
+export * from "./request-notification";
