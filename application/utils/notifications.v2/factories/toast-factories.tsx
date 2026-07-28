@@ -20,6 +20,20 @@ export const toastFactories: Record<string, ToastFactory> = {
       duration: toastDuration,
     });
   },
+  editionSuccess: ({ navigate = defaultNavigate, parameters }) => {
+    const editionPath = parameters?.editionPath ?? "";
+    const entity = parameters?.entity ?? "";
+    const name = parameters?.name ?? "";
+
+    toast("Edition Success", {
+      action: {
+        label: "Edit",
+        onClick: () => navigate(editionPath),
+      },
+      description: `${capitalize(entity)} '${name}' has been successfully updated.`,
+      duration: toastDuration,
+    });
+  },
   "sizes.storageSuccess": () => {
     toast("Storage Success", {
       description: "The size(s) have been successfully saved.",
