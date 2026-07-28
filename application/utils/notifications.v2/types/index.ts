@@ -1,10 +1,16 @@
 import type { ReactElement } from "react";
+import type { NavigateFunction } from "react-router";
 
-export type AlertFactory = (
-  parameters?: Record<string, string>,
-) => ReactElement;
+export type AlertFactory = (options: {
+  parameters?: Record<string, string>;
+  searchParams?: URLSearchParams;
+}) => ReactElement;
 
-export type ToastFactory = (parameters?: Record<string, string>) => void;
+export type ToastFactory = (options: {
+  navigate?: NavigateFunction;
+  parameters?: Record<string, string>;
+  searchParams?: URLSearchParams;
+}) => void;
 
 export type Notification = {
   id: string;
