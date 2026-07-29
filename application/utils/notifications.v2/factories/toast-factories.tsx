@@ -20,6 +20,15 @@ export const toastFactories: Record<string, ToastFactory> = {
       duration: toastDuration,
     });
   },
+  deletionSuccess: ({ parameters }) => {
+    const entity = parameters?.entity ?? "";
+    const name = parameters?.name ?? "";
+
+    toast("Deletion Success", {
+      description: `${capitalize(entity)} '${name}' has been successfully deleted.`,
+      duration: toastDuration,
+    });
+  },
   editionSuccess: ({ navigate = defaultNavigate, parameters }) => {
     const editionPath = parameters?.editionPath ?? "";
     const entity = parameters?.entity ?? "";

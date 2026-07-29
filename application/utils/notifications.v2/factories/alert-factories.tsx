@@ -27,6 +27,20 @@ export const alertFactories: Record<string, AlertFactory> = {
       </SuccessAlert>
     );
   },
+  deletionSuccess: ({ parameters }) => {
+    const entity = parameters?.entity ?? "";
+    const name = parameters?.name ?? "";
+
+    return (
+      <SuccessAlert title="Deletion Success">
+        <span>
+          <span>{capitalize(entity)} </span>
+          <span className="font-bold">{name}</span>
+          <span> has been successfully deleted.</span>
+        </span>
+      </SuccessAlert>
+    );
+  },
   editionSuccess: ({ parameters, searchParams }) => {
     const editionPath = parameters?.editionPath ?? "";
     const entity = parameters?.entity ?? "";
