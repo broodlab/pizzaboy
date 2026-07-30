@@ -31,7 +31,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
     await persistSizes(sizes);
 
     const searchParams = requestNotification({
-      id: "sizes.storageSucceeded",
+      id: "sizes.storageSuccess",
       searchParams: new URL(request.url).searchParams,
     });
 
