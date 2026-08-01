@@ -7,7 +7,7 @@ import { doughSchema } from "~/features/doughs/common/schemas";
 import { DoughForm } from "~/features/doughs/common/components/dough-form";
 import type { EntityData } from "~/types/entities";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
-import { enhanceWithEditionSuccessSearchParams } from "~/utils/notifications";
+import { requestEditionSuccessNotification } from "~/utils/notifications.v2";
 
 export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -39,11 +39,12 @@ export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
       where: { id },
     });
 
-    const searchParams = enhanceWithEditionSuccessSearchParams(
-      id,
+    const searchParams = requestEditionSuccessNotification({
+      editionPath: `/doughs/${id}/edit/`,
+      entity: "dough",
       name,
-      new URL(request.url).searchParams,
-    );
+      searchParams: new URL(request.url).searchParams,
+    });
     return redirect(`/doughs?${searchParams.toString()}`);
   }
 };

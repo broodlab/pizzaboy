@@ -4,18 +4,30 @@ import prisma from "~/utils/prisma.server";
 import type { EntityData } from "~/types/entities";
 import { Button } from "~/components/button";
 import { backNavigationIntent } from "~/types";
-import { enhanceWithDeletionSuccessSearchParams } from "~/utils/notifications";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
+import { requestDeletionSuccessNotification } from "~/utils/notifications.v2";
 
 export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
+  const dough = await prisma.dough.findFirst({
+    select: { name: true },
+    where: { id },
+  });
+
+  if (dough === null) {
+    throw data({ entity: "dough" } satisfies EntityData, {
+      status: 404,
+    });
+  }
+
   await prisma.dough.delete({
     where: { id },
   });
 
-  const searchParams = enhanceWithDeletionSuccessSearchParams(
-    id,
-    new URL(request.url).searchParams,
-  );
+  const searchParams = requestDeletionSuccessNotification({
+    entity: "dough",
+    name: dough.name,
+    searchParams: new URL(request.url).searchParams,
+  });
   return redirect(`/doughs?${searchParams.toString()}`);
 };
 

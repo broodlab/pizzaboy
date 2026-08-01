@@ -1,12 +1,12 @@
 import prisma from "~/utils/prisma.server";
 import type { Route } from "./+types";
-import { Form, Link, Outlet, redirect, useLocation } from "react-router";
+import { data, Form, Link, Outlet, redirect, useLocation } from "react-router";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
 import {
-  enhanceWithDeletionSuccessSearchParams,
   Notifications,
+  requestDeletionSuccessNotification,
   useNotificationlessSearchParams,
-} from "~/utils/notifications";
+} from "~/utils/notifications.v2";
 import { Actions } from "~/components/actions";
 import { Button } from "~/components/button";
 import {
@@ -39,6 +39,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "~/components/alert-dialog";
+import type { EntityData } from "~/types/entities";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -49,11 +50,21 @@ export const action = async ({ request }: Route.ActionArgs) => {
     where: { id },
   });
 
+  if (dough === null) {
+    throw data({ entity: "dough" } satisfies EntityData, {
+      status: 404,
+    });
+  }
+
   await prisma.dough.delete({
     where: { id },
   });
 
-  const searchParams = enhanceWithDeletionSuccessSearchParams(dough!.name);
+  const searchParams = requestDeletionSuccessNotification({
+    entity: "dough",
+    name: dough.name,
+    searchParams: new URL(request.url).searchParams,
+  });
   return redirect(`/doughs?${searchParams.toString()}`);
 };
 
@@ -87,7 +98,7 @@ export default function Doughs({ loaderData }: Route.ComponentProps) {
         <PageIntro>Search and manage your doughs.</PageIntro>
       </PageHeader>
       <div>
-        <Notifications editionPath="/doughs/:id/edit" entity="dough" />
+        <Notifications />
       </div>
       <div className="flex flex-col gap-4">
         <Actions alignment="right">

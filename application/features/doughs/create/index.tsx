@@ -6,7 +6,7 @@ import { doughSchema } from "~/features/doughs/common/schemas";
 import { DoughForm } from "~/features/doughs/common/components/dough-form";
 import type { Route } from "./+types";
 import prisma from "~/utils/prisma.server";
-import { enhanceWithCreationSuccessSearchParams } from "~/utils/notifications";
+import { requestCreationSuccessNotification } from "~/utils/notifications.v2";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -41,11 +41,12 @@ export const action = async ({ request }: Route.ActionArgs) => {
       },
     });
 
-    const searchParams = enhanceWithCreationSuccessSearchParams(
-      id,
+    const searchParams = requestCreationSuccessNotification({
+      editionPath: `/doughs/${id}/edit/`,
+      entity: "dough",
       name,
-      new URL(request.url).searchParams,
-    );
+      searchParams: new URL(request.url).searchParams,
+    });
     return redirect(`/doughs?${searchParams.toString()}`);
   }
 };
