@@ -6,7 +6,6 @@ export const requestDeletionSuccessNotification = ({
   name,
   searchParams,
 }: {
-  editionPath: string;
   entity: Entity;
   name: string;
   searchParams?: URLSearchParams;
