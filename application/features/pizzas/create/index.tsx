@@ -5,7 +5,7 @@ import { parseWithZod } from "@conform-to/zod/v4";
 import { PizzaForm } from "~/features/pizzas/common/components/pizza-form";
 import type { Route } from "./+types";
 import prisma from "~/utils/prisma.server";
-import { requestCreationSuccessNotification } from "~/utils/notifications.v2";
+import { requestCreationSuccessNotification } from "~/utils/notifications";
 import { pizzaSchema } from "~/features/pizzas/common/schemas";
 
 export const action = async ({ request }: Route.ActionArgs) => {

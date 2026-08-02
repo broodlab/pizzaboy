@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router";
 import { useMemo } from "react";
 import { z } from "zod";
-import type { Notification } from "~/utils/notifications.v2/types";
+import type { Notification } from "~/utils/notifications/types";
 import { jsonCodec } from "~/utils/json-codec";
 
 const notificationSchema = z.object({

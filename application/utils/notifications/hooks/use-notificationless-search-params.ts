@@ -1,6 +1,5 @@
 import { type SetURLSearchParams, useSearchParams } from "react-router";
 import { useMemo } from "react";
-import { clearNotificationSearchParams } from "~/utils/notifications/search-params/clear-notification-search-params";
 
 export const useNotificationlessSearchParams = (): [
   URLSearchParams,
@@ -8,7 +7,8 @@ export const useNotificationlessSearchParams = (): [
 ] => {
   const [searchParams, setSearchParams] = useSearchParams();
   return useMemo(() => {
-    const clearedSearchParams = clearNotificationSearchParams(searchParams);
+    const clearedSearchParams = new URLSearchParams(searchParams);
+    clearedSearchParams.delete("n");
     return [clearedSearchParams, setSearchParams];
   }, [searchParams.toString()]);
 };

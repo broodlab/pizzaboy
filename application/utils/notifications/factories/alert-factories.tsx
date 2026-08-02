@@ -1,5 +1,5 @@
 import { SuccessAlert } from "~/components/alerts/success-alert";
-import type { AlertFactory } from "~/utils/notifications.v2/types";
+import type { AlertFactory } from "~/utils/notifications/types";
 import { capitalize } from "~/utils/strings";
 import { Link } from "react-router";
 

@@ -1,7 +1,7 @@
-import { requestNotification } from "~/utils/notifications.v2/request-notification";
+import { requestNotification } from "~/utils/notifications/request-notification";
 import type { Entity } from "~/types/entities";
 
-export const requestEditionSuccessNotification = ({
+export const requestCreationSuccessNotification = ({
   editionPath,
   entity,
   name,
@@ -13,7 +13,7 @@ export const requestEditionSuccessNotification = ({
   searchParams?: URLSearchParams;
 }) =>
   requestNotification({
-    id: "editionSuccess",
+    id: "creationSuccess",
     parameters: {
       editionPath,
       entity,

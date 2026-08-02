@@ -1,4 +1,4 @@
-import type { Notification } from "~/utils/notifications.v2/types";
+import type { Notification } from "~/utils/notifications/types";
 
 export const requestNotification = ({
   id,

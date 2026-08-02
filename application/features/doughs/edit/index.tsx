@@ -7,7 +7,7 @@ import { doughSchema } from "~/features/doughs/common/schemas";
 import { DoughForm } from "~/features/doughs/common/components/dough-form";
 import type { EntityData } from "~/types/entities";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
-import { requestEditionSuccessNotification } from "~/utils/notifications.v2";
+import { requestEditionSuccessNotification } from "~/utils/notifications";
 
 export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
   const formData = await request.formData();

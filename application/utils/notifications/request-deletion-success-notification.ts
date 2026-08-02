@@ -1,4 +1,4 @@
-import { requestNotification } from "~/utils/notifications.v2/request-notification";
+import { requestNotification } from "~/utils/notifications/request-notification";
 import type { Entity } from "~/types/entities";
 
 export const requestDeletionSuccessNotification = ({

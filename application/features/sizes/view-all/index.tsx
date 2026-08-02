@@ -7,8 +7,8 @@ import { sizesSchema } from "~/features/sizes/view-all/schemas";
 import { SizeForm } from "~/features/sizes/view-all/size-form";
 import { persistSizes } from "~/features/sizes/view-all/persist-sizes";
 import { redirect } from "react-router";
-import { Notifications } from "~/utils/notifications.v2";
-import { requestNotification } from "~/utils/notifications.v2/request-notification";
+import { Notifications } from "~/utils/notifications";
+import { requestNotification } from "~/utils/notifications/request-notification";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();

@@ -9,7 +9,7 @@ import {
   ingredientSchema,
 } from "~/features/ingredients/common/schemas";
 import { IngredientForm } from "~/features/ingredients/common/components/ingredient-form";
-import { requestCreationSuccessNotification } from "~/utils/notifications.v2";
+import { requestCreationSuccessNotification } from "~/utils/notifications";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
 
 export const action = async ({ request }: Route.ActionArgs) => {

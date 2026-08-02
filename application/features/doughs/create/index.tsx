@@ -6,7 +6,7 @@ import { doughSchema } from "~/features/doughs/common/schemas";
 import { DoughForm } from "~/features/doughs/common/components/dough-form";
 import type { Route } from "./+types";
 import prisma from "~/utils/prisma.server";
-import { requestCreationSuccessNotification } from "~/utils/notifications.v2";
+import { requestCreationSuccessNotification } from "~/utils/notifications";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();

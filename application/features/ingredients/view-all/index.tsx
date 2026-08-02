@@ -26,7 +26,7 @@ import {
   Notifications,
   requestDeletionSuccessNotification,
   useNotificationlessSearchParams,
-} from "~/utils/notifications.v2";
+} from "~/utils/notifications";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
 import { Card, CardContent } from "~/components/card";
 import {

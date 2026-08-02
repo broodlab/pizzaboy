@@ -6,7 +6,7 @@ import {
   Notifications,
   requestDeletionSuccessNotification,
   useNotificationlessSearchParams,
-} from "~/utils/notifications.v2";
+} from "~/utils/notifications";
 import { Actions } from "~/components/actions";
 import { Button } from "~/components/button";
 import {

@@ -5,7 +5,7 @@ import type { EntityData } from "~/types/entities";
 import { Button } from "~/components/button";
 import { backNavigationIntent } from "~/types";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
-import { requestDeletionSuccessNotification } from "~/utils/notifications.v2";
+import { requestDeletionSuccessNotification } from "~/utils/notifications";
 
 export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
   const dough = await prisma.dough.findFirst({

@@ -1,4 +1,4 @@
-import type { ToastFactory } from "~/utils/notifications.v2/types";
+import type { ToastFactory } from "~/utils/notifications/types";
 import { toast } from "sonner";
 import { capitalize } from "~/utils/strings";
 

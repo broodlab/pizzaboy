@@ -6,7 +6,7 @@ import { data, redirect } from "react-router";
 import { PizzaForm } from "~/features/pizzas/common/components/pizza-form";
 import type { EntityData } from "~/types/entities";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
-import { requestEditionSuccessNotification } from "~/utils/notifications.v2";
+import { requestEditionSuccessNotification } from "~/utils/notifications";
 import { pizzaSchema } from "~/features/pizzas/common/schemas";
 
 export const action = async ({ params: { id }, request }: Route.ActionArgs) => {

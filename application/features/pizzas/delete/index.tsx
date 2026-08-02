@@ -4,7 +4,7 @@ import prisma from "~/utils/prisma.server";
 import type { EntityData } from "~/types/entities";
 import { Button } from "~/components/button";
 import { backNavigationIntent } from "~/types";
-import { requestDeletionSuccessNotification } from "~/utils/notifications.v2";
+import { requestDeletionSuccessNotification } from "~/utils/notifications";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
 
 export const action = async ({ params: { id }, request }: Route.ActionArgs) => {

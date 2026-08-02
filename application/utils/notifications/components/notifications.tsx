@@ -1,28 +1,46 @@
-import { type FC } from "react";
-import type { Entity } from "~/types/entities";
+import { type FC, useRef } from "react";
 import { useScripting } from "~/hooks/use-scripting";
-import { Alerts } from "~/utils/notifications/components/alerts";
-import { Toasts } from "~/utils/notifications/components/toasts";
-import { useAlertsVisibility } from "~/utils/notifications/components/use-alerts-visibility";
+import { useAlertVisibility } from "~/utils/notifications/hooks/use-alert-visibility";
+import { useNotificationFactories } from "~/utils/notifications/hooks/use-notification-factories";
+import { useNotification } from "~/utils/notifications/hooks/use-notification";
+import type { Notification } from "~/utils/notifications/types";
 
-export const Notifications: FC<{ editionPath: string; entity: Entity }> = ({
-  editionPath,
-  entity,
+export const Notifications: FC = () => {
+  const notification = useNotification();
+
+  if (notification === null) {
+    return null;
+  }
+
+  return <NotificationRenderer notification={notification} />;
+};
+
+const NotificationRenderer: FC<{ notification: Notification }> = ({
+  notification,
 }) => {
   const isScripting = useScripting();
-  const [alertsId, alertsVisible] = useAlertsVisibility();
-  const displayAlerts =
-    (!isScripting && !alertsVisible) || (isScripting && alertsVisible);
-  const displayToasts = !displayAlerts;
+  const [alertId, alertVisible] = useAlertVisibility();
+  const displayAlert =
+    (!isScripting && !alertVisible) || (isScripting && alertVisible);
+  const displayToast = !displayAlert;
+  const lastNotificationRequestIdRef = useRef<null | string>(null);
+  const [alertFactory, toastFactory] = useNotificationFactories(notification);
 
-  return (
-    <>
-      {displayAlerts && (
-        <div className="deferredVisibility" id={alertsId}>
-          <Alerts editionPath={editionPath} entity={entity} />
-        </div>
-      )}
-      {displayToasts && <Toasts editionPath={editionPath} entity={entity} />}
-    </>
-  );
+  if (displayAlert) {
+    return (
+      <div className="deferredVisibility" id={alertId}>
+        {alertFactory()}
+      </div>
+    );
+  }
+
+  if (
+    displayToast &&
+    lastNotificationRequestIdRef.current !== notification.requestId
+  ) {
+    lastNotificationRequestIdRef.current = notification.requestId;
+    toastFactory();
+  }
+
+  return null;
 };

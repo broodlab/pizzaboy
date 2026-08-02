@@ -14,7 +14,7 @@ import { NativeSelect as Select } from "~/components/native-select";
 import { Button } from "~/components/button";
 import { backNavigationIntent } from "~/types";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/card";
-import { useNotificationlessSearchParams } from "~/utils/notifications.v2";
+import { useNotificationlessSearchParams } from "~/utils/notifications";
 import {
   Field,
   FieldError,
