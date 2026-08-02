@@ -1,12 +1,12 @@
 import prisma from "~/utils/prisma.server";
 import type { Route } from "./+types";
-import { Form, Link, Outlet, redirect, useLocation } from "react-router";
+import { data, Form, Link, Outlet, redirect, useLocation } from "react-router";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
 import {
-  enhanceWithDeletionSuccessSearchParams,
   Notifications,
+  requestDeletionSuccessNotification,
   useNotificationlessSearchParams,
-} from "~/utils/notifications";
+} from "~/utils/notifications.v2";
 import { Actions } from "~/components/actions";
 import { Button } from "~/components/button";
 import {
@@ -39,6 +39,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "~/components/alert-dialog";
+import type { EntityData } from "~/types/entities";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -49,11 +50,21 @@ export const action = async ({ request }: Route.ActionArgs) => {
     where: { id },
   });
 
+  if (pizza === null) {
+    throw data({ entity: "pizza" } satisfies EntityData, {
+      status: 404,
+    });
+  }
+
   await prisma.pizza.delete({
     where: { id },
   });
 
-  const searchParams = enhanceWithDeletionSuccessSearchParams(pizza!.name);
+  const searchParams = requestDeletionSuccessNotification({
+    entity: "pizza",
+    name: pizza!.name,
+    searchParams: new URL(request.url).searchParams,
+  });
   return redirect(`/pizzas?${searchParams.toString()}`);
 };
 
@@ -87,7 +98,7 @@ export default function Pizzas({ loaderData }: Route.ComponentProps) {
         <PageIntro>Search and manage your pizzas.</PageIntro>
       </PageHeader>
       <div>
-        <Notifications editionPath="/pizzas/:id/edit" entity="pizza" />
+        <Notifications />
       </div>
       <div className="flex flex-col gap-4">
         <Actions alignment="right">

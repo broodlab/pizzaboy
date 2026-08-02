@@ -6,7 +6,7 @@ import { data, redirect } from "react-router";
 import { PizzaForm } from "~/features/pizzas/common/components/pizza-form";
 import type { EntityData } from "~/types/entities";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
-import { enhanceWithEditionSuccessSearchParams } from "~/utils/notifications";
+import { requestEditionSuccessNotification } from "~/utils/notifications.v2";
 import { pizzaSchema } from "~/features/pizzas/common/schemas";
 
 export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
@@ -39,11 +39,12 @@ export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
       where: { id },
     });
 
-    const searchParams = enhanceWithEditionSuccessSearchParams(
-      id,
+    const searchParams = requestEditionSuccessNotification({
+      editionPath: `/pizzas/${id}/edit/`,
+      entity: "pizza",
       name,
-      new URL(request.url).searchParams,
-    );
+      searchParams: new URL(request.url).searchParams,
+    });
     return redirect(`/pizzas?${searchParams.toString()}`);
   }
 };

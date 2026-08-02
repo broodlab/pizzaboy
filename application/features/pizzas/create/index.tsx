@@ -5,7 +5,7 @@ import { parseWithZod } from "@conform-to/zod/v4";
 import { PizzaForm } from "~/features/pizzas/common/components/pizza-form";
 import type { Route } from "./+types";
 import prisma from "~/utils/prisma.server";
-import { enhanceWithCreationSuccessSearchParams } from "~/utils/notifications";
+import { requestCreationSuccessNotification } from "~/utils/notifications.v2";
 import { pizzaSchema } from "~/features/pizzas/common/schemas";
 
 export const action = async ({ request }: Route.ActionArgs) => {
@@ -41,11 +41,12 @@ export const action = async ({ request }: Route.ActionArgs) => {
       },
     });
 
-    const searchParams = enhanceWithCreationSuccessSearchParams(
-      id,
+    const searchParams = requestCreationSuccessNotification({
+      editionPath: `/pizzas/${id}/edit/`,
+      entity: "pizza",
       name,
-      new URL(request.url).searchParams,
-    );
+      searchParams: new URL(request.url).searchParams,
+    });
     return redirect(`/pizzas?${searchParams.toString()}`);
   }
 };
