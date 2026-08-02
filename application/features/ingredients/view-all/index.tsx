@@ -1,6 +1,6 @@
 import type { Route } from "./+types";
 import prisma from "~/utils/prisma.server";
-import { Form, Link, Outlet, redirect, useLocation } from "react-router";
+import { data, Form, Link, Outlet, redirect, useLocation } from "react-router";
 import {
   FunnelPlus as FilterIcon,
   FunnelX as ClearFilterIcon,
@@ -23,10 +23,10 @@ import {
   TableRow,
 } from "~/components/table";
 import {
-  enhanceWithDeletionSuccessSearchParams,
   Notifications,
+  requestDeletionSuccessNotification,
   useNotificationlessSearchParams,
-} from "~/utils/notifications";
+} from "~/utils/notifications.v2";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
 import { Card, CardContent } from "~/components/card";
 import {
@@ -41,6 +41,7 @@ import {
   AlertDialogTrigger,
 } from "~/components/alert-dialog";
 import { Actions } from "~/components/actions";
+import type { EntityData } from "~/types/entities";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -51,11 +52,21 @@ export const action = async ({ request }: Route.ActionArgs) => {
     where: { id },
   });
 
+  if (ingredient === null) {
+    throw data({ entity: "ingredient" } satisfies EntityData, {
+      status: 404,
+    });
+  }
+
   await prisma.ingredient.delete({
     where: { id },
   });
 
-  const searchParams = enhanceWithDeletionSuccessSearchParams(ingredient!.name);
+  const searchParams = requestDeletionSuccessNotification({
+    entity: "ingredient",
+    name: ingredient!.name,
+    searchParams: new URL(request.url).searchParams,
+  });
   return redirect(`/ingredients?${searchParams.toString()}`);
 };
 
@@ -107,10 +118,7 @@ export default function Ingredients({ loaderData }: Route.ComponentProps) {
         <PageIntro>Search and manage your ingredients.</PageIntro>
       </PageHeader>
       <div>
-        <Notifications
-          editionPath="/ingredients/:id/edit"
-          entity="ingredient"
-        />
+        <Notifications />
       </div>
       <div className="flex flex-col gap-4">
         <Actions alignment="right">

@@ -9,7 +9,7 @@ import {
   ingredientSchema,
 } from "~/features/ingredients/common/schemas";
 import { IngredientForm } from "~/features/ingredients/common/components/ingredient-form";
-import { enhanceWithCreationSuccessSearchParams } from "~/utils/notifications";
+import { requestCreationSuccessNotification } from "~/utils/notifications.v2";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
 
 export const action = async ({ request }: Route.ActionArgs) => {
@@ -46,11 +46,12 @@ export const action = async ({ request }: Route.ActionArgs) => {
       },
     });
 
-    const searchParams = enhanceWithCreationSuccessSearchParams(
-      id,
+    const searchParams = requestCreationSuccessNotification({
+      editionPath: `/ingredients/${id}/edit/`,
+      entity: "ingredient",
       name,
-      new URL(request.url).searchParams,
-    );
+      searchParams: new URL(request.url).searchParams,
+    });
     return redirect(`/ingredients?${searchParams.toString()}`);
   }
 };
