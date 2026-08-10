@@ -1,9 +1,8 @@
 import { type ErrorResponse, isRouteErrorResponse } from "react-router";
 import type { FC } from "react";
 import type { Route } from "../+types/root";
-import { Alert, AlertDescription, AlertTitle } from "~/components/alert";
-import { AlertCircleIcon } from "lucide-react";
 import { Layout } from "./layout";
+import { ErrorAlert } from "~/components/alerts/error-alert";
 
 export const HtmlBodyErrorContent: FC<Route.ErrorBoundaryProps> = ({
   error,
@@ -26,11 +25,9 @@ export const HtmlBodyErrorContent: FC<Route.ErrorBoundaryProps> = ({
 
   return (
     <Layout>
-      <Alert variant="destructive">
-        <AlertCircleIcon />
-        <AlertTitle>{title}</AlertTitle>
-        <AlertDescription>{description}</AlertDescription>
-      </Alert>
+      <ErrorAlert title={title}>
+        <span>{description}</span>
+      </ErrorAlert>
       {stack && (
         <pre className="w-full overflow-x-auto p-4">
           <code>{stack}</code>
