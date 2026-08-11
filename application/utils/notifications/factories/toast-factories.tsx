@@ -43,6 +43,14 @@ export const toastFactories: Record<string, ToastFactory> = {
       duration: toastDuration,
     });
   },
+  entityNotFound: ({ parameters }) => {
+    const entity = parameters?.entity ?? "";
+
+    toast(`${capitalize(entity)} Not Found`, {
+      description: `The ${entity} does not exist (anymore).`,
+      duration: toastDuration,
+    });
+  },
   "sizes.storageSuccess": () => {
     toast("Storage Success", {
       description: "The size(s) have been successfully saved.",

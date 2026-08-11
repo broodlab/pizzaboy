@@ -1,10 +1,11 @@
 import prisma from "~/utils/prisma.server";
 import type { Route } from "./+types";
-import { data, Form, Link, Outlet, redirect, useLocation } from "react-router";
+import { Form, Link, Outlet, redirect, useLocation } from "react-router";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
 import {
   Notifications,
   requestDeletionSuccessNotification,
+  requestEntityNotFoundNotification,
   useNotificationlessSearchParams,
 } from "~/utils/notifications";
 import { Actions } from "~/components/actions";
@@ -39,7 +40,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "~/components/alert-dialog";
-import type { EntityData } from "~/types/entities";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -51,9 +51,11 @@ export const action = async ({ request }: Route.ActionArgs) => {
   });
 
   if (dough === null) {
-    throw data({ entity: "dough" } satisfies EntityData, {
-      status: 404,
+    const searchParams = requestEntityNotFoundNotification({
+      entity: "dough",
+      searchParams: new URL(request.url).searchParams,
     });
+    return redirect(`/doughs?${searchParams.toString()}`);
   }
 
   await prisma.dough.delete({

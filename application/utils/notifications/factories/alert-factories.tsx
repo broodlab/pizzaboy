@@ -2,6 +2,7 @@ import { SuccessAlert } from "~/components/alerts/success-alert";
 import type { AlertFactory } from "~/utils/notifications/types";
 import { capitalize } from "~/utils/strings";
 import { Link } from "react-router";
+import { ErrorAlert } from "~/components/alerts/error-alert";
 
 export const alertFactories: Record<string, AlertFactory> = {
   creationSuccess: ({ parameters, searchParams }) => {
@@ -62,6 +63,15 @@ export const alertFactories: Record<string, AlertFactory> = {
           <span> has been successfully updated.</span>
         </span>
       </SuccessAlert>
+    );
+  },
+  entityNotFound: ({ parameters, searchParams }) => {
+    const entity = parameters?.entity ?? "";
+
+    return (
+      <ErrorAlert title={`${capitalize(entity)} Not Found`}>
+        <span>The {entity} does not exist (anymore).</span>
+      </ErrorAlert>
     );
   },
   "sizes.storageSuccess": () => (

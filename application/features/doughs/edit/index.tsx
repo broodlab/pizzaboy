@@ -7,9 +7,25 @@ import { doughSchema } from "~/features/doughs/common/schemas";
 import { DoughForm } from "~/features/doughs/common/components/dough-form";
 import type { EntityData } from "~/types/entities";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
-import { requestEditionSuccessNotification } from "~/utils/notifications";
+import {
+  requestEditionSuccessNotification,
+  requestEntityNotFoundNotification,
+} from "~/utils/notifications";
 
 export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
+  const dough = await prisma.dough.findFirst({
+    select: { name: true },
+    where: { id },
+  });
+
+  if (dough === null) {
+    const searchParams = requestEntityNotFoundNotification({
+      entity: "dough",
+      searchParams: new URL(request.url).searchParams,
+    });
+    return redirect(`/doughs?${searchParams.toString()}`);
+  }
+
   const formData = await request.formData();
   const submission = await parseWithZod(formData, {
     async: true,

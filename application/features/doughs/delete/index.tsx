@@ -5,7 +5,10 @@ import type { EntityData } from "~/types/entities";
 import { Button } from "~/components/button";
 import { backNavigationIntent } from "~/types";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
-import { requestDeletionSuccessNotification } from "~/utils/notifications";
+import {
+  requestDeletionSuccessNotification,
+  requestEntityNotFoundNotification,
+} from "~/utils/notifications";
 
 export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
   const dough = await prisma.dough.findFirst({
@@ -14,9 +17,11 @@ export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
   });
 
   if (dough === null) {
-    throw data({ entity: "dough" } satisfies EntityData, {
-      status: 404,
+    const searchParams = requestEntityNotFoundNotification({
+      entity: "dough",
+      searchParams: new URL(request.url).searchParams,
     });
+    return redirect(`/doughs?${searchParams.toString()}`);
   }
 
   await prisma.dough.delete({
