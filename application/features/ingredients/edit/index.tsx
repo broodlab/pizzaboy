@@ -9,10 +9,26 @@ import {
 } from "~/features/ingredients/common/schemas";
 import { IngredientForm } from "~/features/ingredients/common/components/ingredient-form";
 import type { EntityData } from "~/types/entities";
-import { requestEditionSuccessNotification } from "~/utils/notifications";
+import {
+  requestEditionSuccessNotification,
+  requestEntityNotFoundNotification,
+} from "~/utils/notifications";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
 
 export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
+  const ingredient = await prisma.ingredient.findFirst({
+    select: { name: true },
+    where: { id },
+  });
+
+  if (ingredient === null) {
+    const searchParams = requestEntityNotFoundNotification({
+      entity: "ingredient",
+      searchParams: new URL(request.url).searchParams,
+    });
+    return redirect(`/ingredients?${searchParams.toString()}`);
+  }
+
   const formData = await request.formData();
   const submission = await parseWithZod(formData, {
     async: true,

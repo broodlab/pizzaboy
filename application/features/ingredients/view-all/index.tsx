@@ -1,6 +1,6 @@
 import type { Route } from "./+types";
 import prisma from "~/utils/prisma.server";
-import { data, Form, Link, Outlet, redirect, useLocation } from "react-router";
+import { Form, Link, Outlet, redirect, useLocation } from "react-router";
 import {
   FunnelPlus as FilterIcon,
   FunnelX as ClearFilterIcon,
@@ -25,6 +25,7 @@ import {
 import {
   Notifications,
   requestDeletionSuccessNotification,
+  requestEntityNotFoundNotification,
   useNotificationlessSearchParams,
 } from "~/utils/notifications";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
@@ -41,7 +42,6 @@ import {
   AlertDialogTrigger,
 } from "~/components/alert-dialog";
 import { Actions } from "~/components/actions";
-import type { EntityData } from "~/types/entities";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
@@ -53,9 +53,11 @@ export const action = async ({ request }: Route.ActionArgs) => {
   });
 
   if (ingredient === null) {
-    throw data({ entity: "ingredient" } satisfies EntityData, {
-      status: 404,
+    const searchParams = requestEntityNotFoundNotification({
+      entity: "ingredient",
+      searchParams: new URL(request.url).searchParams,
     });
+    return redirect(`/ingredients?${searchParams.toString()}`);
   }
 
   await prisma.ingredient.delete({
