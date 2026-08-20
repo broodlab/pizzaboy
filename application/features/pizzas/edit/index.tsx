@@ -3,6 +3,7 @@ import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod/v4";
 import prisma from "~/utils/prisma.server";
 import { data, redirect } from "react-router";
+import { requestEntityNotFoundNotification } from "~/utils/notifications";
 import { PizzaForm } from "~/features/pizzas/common/components/pizza-form";
 import type { EntityData } from "~/types/entities";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
@@ -10,6 +11,19 @@ import { requestEditionSuccessNotification } from "~/utils/notifications";
 import { pizzaSchema } from "~/features/pizzas/common/schemas";
 
 export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
+  const pizza = await prisma.pizza.findFirst({
+    select: { name: true },
+    where: { id },
+  });
+
+  if (pizza === null) {
+    const searchParams = requestEntityNotFoundNotification({
+      entity: "pizza",
+      searchParams: new URL(request.url).searchParams,
+    });
+    return redirect(`/pizzas?${searchParams.toString()}`);
+  }
+
   const formData = await request.formData();
   const submission = await parseWithZod(formData, {
     async: true,

@@ -4,7 +4,10 @@ import prisma from "~/utils/prisma.server";
 import type { EntityData } from "~/types/entities";
 import { Button } from "~/components/button";
 import { backNavigationIntent } from "~/types";
-import { requestDeletionSuccessNotification } from "~/utils/notifications";
+import {
+  requestDeletionSuccessNotification,
+  requestEntityNotFoundNotification,
+} from "~/utils/notifications";
 import { Page, PageHeader, PageIntro, PageTitle } from "~/components/page";
 
 export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
@@ -14,9 +17,11 @@ export const action = async ({ params: { id }, request }: Route.ActionArgs) => {
   });
 
   if (pizza === null) {
-    throw data({ entity: "pizza" } satisfies EntityData, {
-      status: 404,
+    const searchParams = requestEntityNotFoundNotification({
+      entity: "pizza",
+      searchParams: new URL(request.url).searchParams,
     });
+    return redirect(`/pizzas?${searchParams.toString()}`);
   }
 
   await prisma.pizza.delete({
