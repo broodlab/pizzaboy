@@ -50,6 +50,7 @@ export const DoughForm: FC<DoughFormProps> = ({
 
   return (
     <Form {...getFormProps(form)} method="post" onSubmit={form.onSubmit}>
+      <button hidden type="submit" />
       <div className="grid gap-6">
         <Card>
           <CardHeader>
