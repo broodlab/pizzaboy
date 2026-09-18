@@ -50,6 +50,7 @@ export const PizzaForm: FC<PizzaFormProps> = ({
 
   return (
     <Form {...getFormProps(form)} method="post" onSubmit={form.onSubmit}>
+      <button hidden type="submit" />
       <div className="grid gap-6">
         <Card>
           <CardHeader>
