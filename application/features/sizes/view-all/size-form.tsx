@@ -14,7 +14,7 @@ import {
 } from "~/components/field";
 import { Input } from "~/components/input";
 import { Button } from "~/components/button";
-import { PlusIcon, Trash2 as DeleteIcon, Save as SaveIcon } from "lucide-react";
+import { PlusIcon, Save as SaveIcon, Trash2 as DeleteIcon } from "lucide-react";
 import { Actions } from "~/components/actions";
 
 type SizeFormProps = {
@@ -26,6 +26,7 @@ export const SizeForm: FC<SizeFormProps> = ({ formConfig: [form, fields] }) => {
 
   return (
     <Form {...getFormProps(form)} method="post" onSubmit={form.onSubmit}>
+      <button hidden type="submit" />
       <div className="grid gap-6">
         <Card>
           <CardContent>
