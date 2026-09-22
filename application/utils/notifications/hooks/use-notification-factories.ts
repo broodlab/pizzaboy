@@ -37,5 +37,5 @@ export const useNotificationFactories = (notification: Notification) => {
           searchParams,
         }),
     ] as const;
-  }, [notification.id]);
+  }, [notification.requestId]);
 };
