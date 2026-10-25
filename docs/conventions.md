@@ -4,7 +4,7 @@
 - Use ~ to import from the `application` folder. E.g., `import { MyComponent } from '~/components'`.
 - Use lambda functions instead of function expressions. E.g., use `const MyComponent: FC = () => { ... }` instead of `function MyComponent() { ... }`.
 - Do not use the `React` namespace to reference React types. E.g., use `FC` instead of `React.FC`.
-- Sort props and class members alphabetically.
+- Sort attributes, class members and props alphabetically.
 
 # UI components
 
