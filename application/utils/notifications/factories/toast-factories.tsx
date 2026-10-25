@@ -1,6 +1,6 @@
 import type { ToastFactory } from "~/utils/notifications/types";
-import { toast } from "sonner";
 import { capitalize } from "~/utils/strings";
+import { toastManager } from "~/components/toast";
 
 const defaultNavigate = () => {};
 const toastDuration = 10_000;
@@ -11,22 +11,24 @@ export const toastFactories: Record<string, ToastFactory> = {
     const entity = parameters?.entity ?? "";
     const name = parameters?.name ?? "";
 
-    toast("Creation Success", {
-      action: {
-        label: "Edit",
+    toastManager.add({
+      title: "Creation Success",
+      actionProps: {
+        children: "Edit",
         onClick: () => navigate(editionPath),
       },
       description: `${capitalize(entity)} '${name}' has been successfully created.`,
-      duration: toastDuration,
+      timeout: toastDuration,
     });
   },
   deletionSuccess: ({ parameters }) => {
     const entity = parameters?.entity ?? "";
     const name = parameters?.name ?? "";
 
-    toast("Deletion Success", {
+    toastManager.add({
+      title: "Deletion Success",
       description: `${capitalize(entity)} '${name}' has been successfully deleted.`,
-      duration: toastDuration,
+      timeout: toastDuration,
     });
   },
   editionSuccess: ({ navigate = defaultNavigate, parameters }) => {
@@ -34,27 +36,30 @@ export const toastFactories: Record<string, ToastFactory> = {
     const entity = parameters?.entity ?? "";
     const name = parameters?.name ?? "";
 
-    toast("Edition Success", {
-      action: {
-        label: "Edit",
+    toastManager.add({
+      title: "Edition Success",
+      actionProps: {
+        children: "Edit",
         onClick: () => navigate(editionPath),
       },
       description: `${capitalize(entity)} '${name}' has been successfully updated.`,
-      duration: toastDuration,
+      timeout: toastDuration,
     });
   },
   entityNotFound: ({ parameters }) => {
     const entity = parameters?.entity ?? "";
 
-    toast(`${capitalize(entity)} Not Found`, {
+    toastManager.add({
+      title: `${capitalize(entity)} Not Found`,
       description: `The ${entity} does not exist (anymore).`,
-      duration: toastDuration,
+      timeout: toastDuration,
     });
   },
   "sizes.storageSuccess": () => {
-    toast("Storage Success", {
+    toastManager.add({
+      title: "Storage Success",
       description: "The size(s) have been successfully saved.",
-      duration: toastDuration,
+      timeout: toastDuration,
     });
   },
 };
