@@ -1,5 +1,5 @@
-import type { ComponentProps, FC } from "react";
 import { cn } from "~/utils/create-class-name";
+import type { ComponentProps, FC } from "react";
 
 export const SidebarInset: FC<ComponentProps<"main">> = ({
   className,
@@ -8,8 +8,7 @@ export const SidebarInset: FC<ComponentProps<"main">> = ({
   return (
     <main
       className={cn(
-        "bg-background relative flex h-full w-full flex-1 flex-col p-3 pt-0 md:p-6 md:pt-0",
-        "md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
+        "bg-background relative flex w-full flex-1 flex-col md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
         className,
       )}
       data-slot="sidebar-inset"

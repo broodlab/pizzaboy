@@ -1,5 +1,5 @@
-import type { ComponentProps, FC } from "react";
 import { cn } from "~/utils/create-class-name";
+import type { ComponentProps, FC } from "react";
 
 export const SidebarContent: FC<ComponentProps<"div">> = ({
   className,
@@ -8,7 +8,7 @@ export const SidebarContent: FC<ComponentProps<"div">> = ({
   return (
     <div
       className={cn(
-        "flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden",
+        "no-scrollbar flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden",
         className,
       )}
       data-sidebar="content"

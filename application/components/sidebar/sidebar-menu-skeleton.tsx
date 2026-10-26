@@ -1,10 +1,10 @@
+import { cn } from "~/utils/create-class-name";
 import {
   type ComponentProps,
   type CSSProperties,
   type FC,
-  useMemo,
+  useState,
 } from "react";
-import { cn } from "~/utils/create-class-name";
 import { Skeleton } from "~/components/skeleton";
 
 export const SidebarMenuSkeleton: FC<
@@ -13,9 +13,9 @@ export const SidebarMenuSkeleton: FC<
   }
 > = ({ className, showIcon = false, ...props }) => {
   // Random width between 50 to 90%.
-  const width = useMemo(() => {
+  const [width] = useState(() => {
     return `${Math.floor(Math.random() * 40) + 50}%`;
-  }, []);
+  });
 
   return (
     <div

@@ -1,5 +1,5 @@
-import type { ComponentProps, FC } from "react";
 import { cn } from "~/utils/create-class-name";
+import type { ComponentProps, FC } from "react";
 
 export const SidebarMenuSubItem: FC<ComponentProps<"li">> = ({
   className,

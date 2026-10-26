@@ -1,6 +1,6 @@
-import type { ComponentProps, FC } from "react";
-import { Input } from "~/components/input";
 import { cn } from "~/utils/create-class-name";
+import { Input } from "~/components/input";
+import type { ComponentProps, FC } from "react";
 
 export const SidebarInput: FC<ComponentProps<typeof Input>> = ({
   className,

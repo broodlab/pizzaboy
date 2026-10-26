@@ -1,5 +1,5 @@
-import type { ComponentProps, FC } from "react";
 import { cn } from "~/utils/create-class-name";
+import type { ComponentProps, FC } from "react";
 
 export const SidebarMenu: FC<ComponentProps<"ul">> = ({
   className,
@@ -7,7 +7,7 @@ export const SidebarMenu: FC<ComponentProps<"ul">> = ({
 }) => {
   return (
     <ul
-      className={cn("flex w-full min-w-0 flex-col gap-1", className)}
+      className={cn("flex w-full min-w-0 flex-col gap-0", className)}
       data-sidebar="menu"
       data-slot="sidebar-menu"
       {...props}

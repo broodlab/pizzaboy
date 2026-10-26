@@ -1,5 +1,5 @@
-import { useSidebar } from "~/components/sidebar/use-sidebar";
 import { cn } from "~/utils/create-class-name";
+import { useSidebar } from "~/components/sidebar/use-sidebar";
 import {
   Sheet,
   SheetContent,
@@ -7,8 +7,8 @@ import {
   SheetHeader,
   SheetTitle,
 } from "~/components/sheet";
-import type { ComponentProps, CSSProperties, FC } from "react";
 import { SIDEBAR_WIDTH_MOBILE } from "~/components/sidebar/configs";
+import type { ComponentProps, CSSProperties, FC } from "react";
 
 export const Sidebar: FC<
   ComponentProps<"div"> & {
@@ -20,6 +20,7 @@ export const Sidebar: FC<
   children,
   className,
   collapsible = "offcanvas",
+  dir,
   side = "left",
   variant = "sidebar",
   ...props
@@ -43,12 +44,13 @@ export const Sidebar: FC<
 
   if (isMobile) {
     return (
-      <Sheet onOpenChange={setOpenMobile} open={openMobile} {...props}>
+      <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
         <SheetContent
           className="bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden"
           data-mobile="true"
           data-sidebar="sidebar"
           data-slot="sidebar"
+          dir={dir}
           side={side}
           style={
             {
@@ -89,21 +91,18 @@ export const Sidebar: FC<
       />
       <div
         className={cn(
-          "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex",
-          side === "left"
-            ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
-            : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
-          // Adjust the padding for floating and inset variants.
+          "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] data-[side=right]:right-0 data-[side=right]:group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)] md:flex",
           variant === "floating" || variant === "inset"
             ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
             : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
           className,
         )}
+        data-side={side}
         data-slot="sidebar-container"
         {...props}
       >
         <div
-          className="bg-sidebar group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm"
+          className="bg-sidebar group-data-[variant=floating]:ring-sidebar-border flex size-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:shadow-sm group-data-[variant=floating]:ring-1"
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
         >

@@ -1,3 +1,5 @@
+import { cn } from "~/utils/create-class-name";
+import { useIsMobile } from "~/hooks/use-mobile";
 import {
   type ComponentProps,
   type CSSProperties,
@@ -7,11 +9,10 @@ import {
   useMemo,
   useState,
 } from "react";
-import { useIsMobile } from "~/hooks/use-mobile";
-import { SidebarContext } from "~/components/sidebar/sidebar-context";
-import { TooltipProvider } from "~/components/tooltip";
-import { cn } from "~/utils/create-class-name";
-import type { SidebarContextProps } from "~/components/sidebar/types";
+import {
+  SidebarContext,
+  type SidebarContextProps,
+} from "~/components/sidebar/sidebar-context";
 import {
   SIDEBAR_COOKIE_MAX_AGE,
   SIDEBAR_COOKIE_NAME,
@@ -92,30 +93,28 @@ export const SidebarProvider: FC<
       state,
       toggleSidebar,
     }),
-    [isMobile, open, openMobile, setOpen, setOpenMobile, state, toggleSidebar],
+    [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar],
   );
 
   return (
     <SidebarContext.Provider value={contextValue}>
-      <TooltipProvider delay={0}>
-        <div
-          className={cn(
-            "group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full",
-            className,
-          )}
-          data-slot="sidebar-wrapper"
-          style={
-            {
-              "--sidebar-width": SIDEBAR_WIDTH,
-              "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
-              ...style,
-            } as CSSProperties
-          }
-          {...props}
-        >
-          {children}
-        </div>
-      </TooltipProvider>
+      <div
+        className={cn(
+          "group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full",
+          className,
+        )}
+        data-slot="sidebar-wrapper"
+        style={
+          {
+            "--sidebar-width": SIDEBAR_WIDTH,
+            "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
+            ...style,
+          } as CSSProperties
+        }
+        {...props}
+      >
+        {children}
+      </div>
     </SidebarContext.Provider>
   );
 };

@@ -23,22 +23,22 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
         <SidebarGroup>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild>
+              <SidebarMenuButton>
                 <Link to="/pizzas">Pizzas</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild>
+              <SidebarMenuButton>
                 <Link to="/doughs">Doughs</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild>
+              <SidebarMenuButton>
                 <Link to="/sizes">Sizes</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild>
+              <SidebarMenuButton>
                 <Link to="/ingredients">Ingredients</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

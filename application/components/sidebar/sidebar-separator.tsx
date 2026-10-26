@@ -1,6 +1,6 @@
-import type { ComponentProps, FC } from "react";
-import { Separator } from "~/components/separator";
 import { cn } from "~/utils/create-class-name";
+import { Separator } from "~/components/separator";
+import type { ComponentProps, FC } from "react";
 
 export const SidebarSeparator: FC<ComponentProps<typeof Separator>> = ({
   className,
