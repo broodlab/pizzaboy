@@ -105,6 +105,7 @@ export default function Doughs({ loaderData }: Route.ComponentProps) {
       <div className="flex flex-col gap-4">
         <Actions alignment="right">
           <Button
+            nativeButton={false}
             render={
               <Link
                 to={{ pathname: "filter", search: searchParams.toString() }}
@@ -115,6 +116,7 @@ export default function Doughs({ loaderData }: Route.ComponentProps) {
             variant="outline"
           />
           <Button
+            nativeButton={false}
             render={
               <Link to="/doughs">
                 <ClearFilterIcon /> Clear
@@ -123,6 +125,7 @@ export default function Doughs({ loaderData }: Route.ComponentProps) {
             variant="outline"
           />
           <Button
+            nativeButton={false}
             render={
               <Link
                 to={{ pathname: "create", search: searchParams.toString() }}
@@ -217,6 +220,7 @@ const ActionLinks: FC<{ deletable: boolean; id: string; name: string }> = ({
     DeleteAction = () => (
       <AlertDialog>
         <AlertDialogTrigger
+          nativeButton={false}
           render={
             <DeleteIcon
               className="size-6 cursor-pointer text-red-400 md:size-5"

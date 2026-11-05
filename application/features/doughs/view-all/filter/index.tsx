@@ -75,6 +75,7 @@ export default function FilterDoughs({ actionData }: Route.ComponentProps) {
                 </Field>
                 <Actions alignment="right">
                   <Button
+                    nativeButton={false}
                     render={
                       <Link
                         state={{ ...backNavigationIntent }}

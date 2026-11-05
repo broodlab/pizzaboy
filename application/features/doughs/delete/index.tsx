@@ -70,6 +70,7 @@ export default function DeleteDough({
             Delete
           </Button>
           <Button
+            nativeButton={false}
             render={
               <Link state={{ ...backNavigationIntent }} to="/doughs">
                 Cancel
