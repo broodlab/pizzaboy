@@ -70,6 +70,7 @@ export default function DeleteIngredient({
             Delete
           </Button>
           <Button
+            nativeButton={false}
             render={
               <Link state={{ ...backNavigationIntent }} to="/ingredients">
                 Cancel

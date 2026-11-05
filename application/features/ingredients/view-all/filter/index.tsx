@@ -109,6 +109,7 @@ export default function FilterIngredients({
                 </Field>
                 <Actions alignment="right">
                   <Button
+                    nativeButton={false}
                     render={
                       <Link
                         state={{ ...backNavigationIntent }}
