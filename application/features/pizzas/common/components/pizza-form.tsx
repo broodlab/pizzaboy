@@ -122,6 +122,7 @@ export const PizzaForm: FC<PizzaFormProps> = ({
                               </Field>
                               <Button
                                 className="basis-1/3"
+                                nativeButton={false}
                                 render={
                                   <Link className="text-gray-600" to="/todo">
                                     <SearchIcon className="size-6 text-gray-600 md:size-5" />

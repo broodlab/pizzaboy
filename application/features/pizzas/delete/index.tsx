@@ -70,6 +70,7 @@ export default function DeletePizza({
             Delete
           </Button>
           <Button
+            nativeButton={false}
             render={
               <Link state={{ ...backNavigationIntent }} to="/pizzas">
                 Cancel
