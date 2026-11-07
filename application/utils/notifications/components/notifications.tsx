@@ -1,4 +1,4 @@
-import { type FC, useRef } from "react";
+import { type FC, useEffect, useRef } from "react";
 import { useScripting } from "~/hooks/use-scripting";
 import { useAlertVisibility } from "~/utils/notifications/hooks/use-alert-visibility";
 import { useNotificationFactories } from "~/utils/notifications/hooks/use-notification-factories";
@@ -26,20 +26,22 @@ const NotificationRenderer: FC<{ notification: Notification }> = ({
   const lastNotificationRequestIdRef = useRef<null | string>(null);
   const [alertFactory, toastFactory] = useNotificationFactories(notification);
 
+  useEffect(() => {
+    if (
+      displayToast &&
+      lastNotificationRequestIdRef.current !== notification.requestId
+    ) {
+      lastNotificationRequestIdRef.current = notification.requestId;
+      toastFactory();
+    }
+  }, [displayToast, notification.requestId, toastFactory]);
+
   if (displayAlert) {
     return (
       <div className="deferredVisibility" id={alertId}>
         {alertFactory()}
       </div>
     );
-  }
-
-  if (
-    displayToast &&
-    lastNotificationRequestIdRef.current !== notification.requestId
-  ) {
-    lastNotificationRequestIdRef.current = notification.requestId;
-    toastFactory();
   }
 
   return null;
