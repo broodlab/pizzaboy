@@ -37,7 +37,7 @@ export const SizeForm: FC<SizeFormProps> = ({ formConfig: [form, fields] }) => {
                 const isLast = index === sizeFields.length - 1;
 
                 return (
-                  <FieldSet>
+                  <FieldSet key={sizeField.key}>
                     <FieldGroup>
                       <div className="grid grid-cols-12 gap-x-1 gap-y-3">
                         <div className="col-span-12 grid gap-3 sm:col-span-11 sm:border-r sm:pr-6">
