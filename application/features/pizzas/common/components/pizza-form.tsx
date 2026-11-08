@@ -107,7 +107,12 @@ export const PizzaForm: FC<PizzaFormProps> = ({
                         <div className="grid grid-cols-12 gap-x-1 gap-y-3">
                           <div className="col-span-12 grid gap-3 sm:col-span-11 sm:border-r sm:pr-6">
                             <div className="flex flex-row items-end">
-                              <Field className="grid basis-2/3 gap-3">
+                              <Field
+                                className="grid basis-2/3 gap-3"
+                                data-invalid={
+                                  !recipeItemFieldSet.ingredientId.valid
+                                }
+                              >
                                 <FieldLabel required>Ingredient</FieldLabel>
                                 <IngredientsCombobox
                                   form={form}
@@ -132,7 +137,9 @@ export const PizzaForm: FC<PizzaFormProps> = ({
                                 variant="link"
                               />
                             </div>
-                            <Field>
+                            <Field
+                              data-invalid={!recipeItemFieldSet.quantity.valid}
+                            >
                               <FieldLabel>Quantity</FieldLabel>
                               <Input
                                 {...getInputProps(recipeItemFieldSet.quantity, {
