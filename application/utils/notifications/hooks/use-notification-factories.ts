@@ -37,10 +37,5 @@ export const useNotificationFactories = (notification: Notification) => {
           searchParams,
         }),
     ] as const;
-  }, [
-    navigate,
-    notification.id,
-    notification.parameters,
-    searchParams,
-  ]);
+  }, [navigate, notification.id, notification.parameters, searchParams]);
 };
