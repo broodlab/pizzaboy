@@ -73,7 +73,9 @@ export default function CreatePizza({
     <Page>
       <PageHeader>
         <PageTitle>Create Pizza</PageTitle>
-        <PageIntro>A pizza is an integral part of a pizza.</PageIntro>
+        <PageIntro>
+          Create a pizza that will be offered to your guests on the menu..
+        </PageIntro>
       </PageHeader>
       <PizzaForm formConfig={formConfig} ingredients={ingredients} />
     </Page>

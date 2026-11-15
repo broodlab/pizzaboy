@@ -73,7 +73,9 @@ export default function CreateDough({
     <Page>
       <PageHeader>
         <PageTitle>Create Dough</PageTitle>
-        <PageIntro>A dough is an integral part of a pizza.</PageIntro>
+        <PageIntro>
+          Create a dough that will be offered to your guests on the menu.
+        </PageIntro>
       </PageHeader>
       <DoughForm formConfig={formConfig} ingredients={ingredients} />
     </Page>
